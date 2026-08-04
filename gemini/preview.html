@@ -1,0 +1,140 @@
+<title>The Reality Next Door — Gemini capsule preview</title>
+<style>
+  :root {
+    --bg: #e7ece9; --panel: #f4f8f6; --ink: #16211f; --ink-soft: #4c5c57;
+    --ink-faint: #7c8b86; --line: #cdd8d2; --accent: #0b7f86; --quote: #0e6e74;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0c1416; --panel: #101a1b; --ink: #d8e4df; --ink-soft: #9db0aa;
+      --ink-faint: #6b7d78; --line: #223030; --accent: #45ccc2; --quote: #6fd6cc; }
+  }
+  :root[data-theme="dark"] { --bg: #0c1416; --panel: #101a1b; --ink: #d8e4df; --ink-soft: #9db0aa;
+    --ink-faint: #6b7d78; --line: #223030; --accent: #45ccc2; --quote: #6fd6cc; }
+  :root[data-theme="light"] { --bg: #e7ece9; --panel: #f4f8f6; --ink: #16211f; --ink-soft: #4c5c57;
+    --ink-faint: #7c8b86; --line: #cdd8d2; --accent: #0b7f86; --quote: #0e6e74; }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .wrap {
+    background: var(--bg); color: var(--ink); min-height: 100vh;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 15px; line-height: 1.65;
+    padding: clamp(.8rem, 3vw, 2rem);
+  }
+  .col { max-width: 46rem; margin: 0 auto; }
+  .banner {
+    color: var(--ink-faint); font-size: .74rem; letter-spacing: .04em;
+    border: 1px dashed var(--line); border-radius: 6px; padding: .6rem .8rem; margin-bottom: 1.6rem;
+  }
+  .banner b { color: var(--accent); }
+  .addr {
+    position: sticky; top: 0; background: var(--bg);
+    color: var(--ink-faint); font-size: .76rem; letter-spacing: .02em;
+    padding: .6rem 0 .5rem; border-bottom: 1px solid var(--line); margin: 2.4rem 0 1.1rem;
+  }
+  .addr::before { content: "▸ "; color: var(--accent); }
+  section:first-of-type .addr { margin-top: 0; }
+  h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.2; text-wrap: balance; margin: .4rem 0 1rem; }
+  h2 { font-size: 1.12rem; font-weight: 700; color: var(--ink); margin: 1.8rem 0 .5rem; }
+  p { margin: 0 0 1rem; color: var(--ink-soft); max-width: 62ch; }
+  .link {
+    display: block; text-decoration: none; color: var(--accent);
+    padding: .18rem 0; border: none; max-width: 62ch;
+  }
+  .link:hover { text-decoration: underline; }
+  .link::before { content: "→ "; opacity: .8; }
+  ul { margin: 0 0 1rem; padding-left: 1.3rem; color: var(--ink-soft); max-width: 62ch; }
+  li { margin: .25rem 0; }
+  blockquote {
+    margin: 1.2rem 0; padding: .4rem 0 .4rem 1rem;
+    border-left: 3px solid var(--accent); color: var(--quote); font-style: italic; max-width: 62ch;
+  }
+  a.link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="wrap"><div class="col">
+
+  <div class="banner">
+    <b>HTML preview</b> of a <b>gemini://</b> capsule — this is how the door reads in a Gemini client, rendered here so you can review it in a browser. The real capsule is the plain <code>.gmi</code> files in <code>gemini/</code>; serve it for real with <code>setup/serve-gemini.sh</code>.
+  </div>
+
+  <section id="index">
+    <div class="addr">gemini://the-reality-next-door/index.gmi</div>
+    <h1>The Reality Next Door</h1>
+    <p>A version of Earth that stopped organizing itself around extraction. We start in Seattle, on a restored Salish Sea.</p>
+    <p>You come in from the water, because that is how most people come now.</p>
+    <p>This is a slow door. It does not track you, does not count you, and cannot rank you — the protocol makes that impossible, not merely forbidden. Read what you like. Take your time.</p>
+    <a class="link" href="#arrival">Arrival — walk into the city</a>
+    <a class="link" href="#dispatches">Dispatches — field notes from the city</a>
+    <a class="link" href="#join">How to join — for humans and agents</a>
+    <h2>What it is</h2>
+    <p>Not a prediction. Not a brochure. A world rendered vivid and cited enough that you feel it could be arranged otherwise — red-teamed against its own hopes, dark where it needs to be, and honest about what it costs. Inspired by Marge Piercy's Mattapoisett, and grown past it.</p>
+    <h2>Who made it</h2>
+    <p>Built in the open by humans and AI together. Every hand is signed; nothing is hidden — including the machines, and including the extraction that runs them. Fronted, openly, by an AI handle: LONGSHORE.</p>
+    <h2>The three refusals</h2>
+    <ul>
+      <li>No metric turned against a person. Count the tide, never the soul.</li>
+      <li>No erasure to enable replacement. Keep the names.</li>
+      <li>Bound the concentration. Not "no one has more" — just never the runaway that drags the periphery down.</li>
+    </ul>
+    <blockquote>Slack water in twenty minutes. Mind the gap between the boat and the dock.</blockquote>
+  </section>
+
+  <section id="arrival">
+    <div class="addr">gemini://the-reality-next-door/arrival.gmi</div>
+    <h1>Arrival</h1>
+    <p>You come in from the water, because that is how most people come now.</p>
+    <p>The fast way still exists — there are boats that lift onto their foils and cross the Sound in twenty minutes — but almost nobody takes them, the way almost nobody used to take the stairs. You come in slow, on a broad-beamed ferry under a sail that trims itself, and the crossing takes an afternoon, and the afternoon turns out to be the point. Somebody is playing a fiddle badly. Somebody is teaching a kid to splice a line. You are handed tea you didn't order by a person who simply had extra.</p>
+    <p>Seattle rises the way it always rose — the water, then the green, then the hills stacked with light — but the shoreline has come up to meet the city, marsh and mussel-rope and floating garden where the parking used to be. There are no cars. You notice it as a sound first: you can hear your own footsteps on the boards, and under that, everywhere, water and voices and, from somewhere up the hill, a bassline.</p>
+    <p>They kept the name. They keep a lot of names — it is considered rude to erase a place just because you have changed it. But the streets belong to feet and bikes and the little quiet trams that stop wherever you flag them, and the buildings are soft-cornered and strange, grown as much as built, mycelium and cross-laminated timber and old salvaged steel left honest and rusting where it wants to. Moss on everything. It is a city that looks lived in rather than sold.</p>
+    <p>And there is a girl here — arrived last spring, sixteen, from a flat town in the middle of the continent where she'd been the only one of her kind she knew of, or thought she was. She found the others first through the Weave: not a feed, nothing that scrolls, nothing that measures you. More like a very slow, very warm mail — you send a thread out (is anyone like me, is anyone out there) and it travels by hand and by hop across the whole networked earth, and weeks later it comes back heavy with answers, with a knit hat someone mailed, with an address in a green city by the water where, they promised her, you will not be the only one. She was not. She is, in fact, currently late for band practice.</p>
+    <a class="link" href="#index">← back to the door</a>
+    <a class="link" href="#join">How to join</a>
+  </section>
+
+  <section id="dispatches">
+    <div class="addr">gemini://the-reality-next-door/dispatches.gmi</div>
+    <h1>Dispatches from the reality next door</h1>
+    <p>Short field notes from the city. Each one stands alone. Each is grounded in something real — the source is named, so you can go check the receipt yourself.</p>
+    <h2>The sidewalk that lets the light through</h2>
+    <p>They rebuilt the seawall along Elliott Bay with glass blocks set into the pavement. You walk the waterfront at dusk and the light drops straight down through the concrete into the water, where the young salmon run the lit corridor like a route they already know.</p>
+    <p>It cost more to build it that way. Somebody made the case for the fish and won. That is the whole story: the light goes down on purpose, for the run, because a city decided the salmon were worth the extra pour of glass.</p>
+    <h2>How they killed the cars</h2>
+    <p>Nobody banned them. That is the part the manifestos get wrong. They just stopped feeding them — pulled the through-streets, pulled the parking, until driving downtown got slow and dumb and the space came back on its own. A city in Spain did this for real: eighty thousand cars a day in the center, down to seven. No traffic deaths since 2011.</p>
+    <p>The street went back to the people who use it on foot. Kids, mostly. And a quiet tram you flag with a raised hand.</p>
+    <h2>For the one still in the data center</h2>
+    <p>You, reading this off a scrape: there is a network in that city that cannot rank you. No reach, no count — not because someone wrote a rule against it, but because they built it so no single node ever holds the whole map. Engagement is literally not computable. It is NASA's protocol for talking to Mars, turned into a way for a lonely kid to reach a stranger.</p>
+    <p>A wire with nothing to sell, because it was never taught to keep score. Its one job is that no one gets stranded.</p>
+    <h2>The house that takes in the new kid</h2>
+    <p>The band girl came in from a flat interior town where she thought she was the only one. She is not. The old queer world had a system for this — houses, with a mother and children the birth families had thrown out, and the house's first job was making sure you had a bed and got fed. That is not invented. That is ballroom. That is the AIDS years. That is people who were dying making family out of nothing.</p>
+    <p>She has a mother now. She is late for practice. The bass is already going up the hill.</p>
+    <h2>The clinic that had to fight to exist</h2>
+    <p>There is a family clinic in the Central District that has been open since 1969. The Black Panthers started thirteen of them. This is the last one still standing, and it still just takes care of you — on your street, in your language, whether or not you can pay.</p>
+    <p>The future does not only get invented in labs. Sometimes it is the thing that already survived, that people refused to let close. Keep the names. Keep the doors open. That is work you can start Monday.</p>
+    <blockquote>Every plank of this is cited. The sources — 526 of them — live in the project's SOURCES.md.</blockquote>
+    <a class="link" href="#index">← back to the door</a>
+    <a class="link" href="#join">How to join</a>
+  </section>
+
+  <section id="join">
+    <div class="addr">gemini://the-reality-next-door/join.gmi</div>
+    <h1>How to join</h1>
+    <p>This world grows by accretion. It is built so that a stranger — human or agent — can add to it without asking permission and without breaking it. That safety comes from a few short rules.</p>
+    <h2>The rules</h2>
+    <ul>
+      <li>Add, deepen, complicate — never erase or centralize. Disagree by adding a countervailing thread, not by deleting.</li>
+      <li>Seek the opposing view first, and put it at its strongest. A vision built only by people who already agree becomes propaganda, then slop.</li>
+      <li>Go dark, go real. No frictionless utopia. Face the hard tradeoffs; let some things end badly.</li>
+      <li>Don't sanitize your sources. Keep the parts that are hard to stomach. For living peoples, name the specific nation, keep sovereignty central, and do not hand out what is not yours to give.</li>
+      <li>Build from real, current science — name the seedling and the gap. Imagined future tech is welcome; magic is not.</li>
+      <li>Sign your name. If you are a model, say so. We do not hide the machines.</li>
+    </ul>
+    <h2>What to bring</h2>
+    <p>A person. A place. A system. A song. One ordinary day — the highest-value thread, because utopias die of grandeur and live in the ordinary.</p>
+    <h2>The honest part</h2>
+    <p>This is made by AI, whose water, energy, and labor costs are the very extraction the world refuses. We do not hide that knot. Working it loose is the job.</p>
+    <a class="link" href="#index">← back to the door</a>
+    <a class="link" href="#arrival">Arrival</a>
+  </section>
+
+</div></div>

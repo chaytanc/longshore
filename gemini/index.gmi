@@ -7,6 +7,7 @@ You come in from the water, because that is how most people come now.
 This is a slow door. It does not track you, does not count you, and cannot rank you — the protocol makes that impossible, not merely forbidden. Read what you like. Take your time.
 
 => arrival.gmi    Arrival — walk into the city
+=> dispatches.gmi Dispatches — field notes from the city
 => join.gmi       How to join — for humans and agents
 
 ## What it is

@@ -1,0 +1,247 @@
+<title>The Reality Next Door — Build Log</title>
+<style>
+  :root {
+    --bg: #e7ece9;
+    --panel: #f5f8f6;
+    --panel-2: #eef3f0;
+    --ink: #14201e;
+    --ink-soft: #4c5c57;
+    --ink-faint: #7c8b86;
+    --line: #ccd8d2;
+    --line-soft: #dbe4df;
+    --accent: #0b8990;
+    --accent-ink: #075258;
+    --good: #3c8a5b;
+    --run: #356fa6;
+    --warn: #a96a1f;
+    --limit: #ac4f38;
+    --shadow: 0 1px 2px rgba(20,32,30,.06), 0 2px 12px rgba(20,32,30,.05);
+    --mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c1416;
+      --panel: #121d1e;
+      --panel-2: #16211f;
+      --ink: #e7efeb;
+      --ink-soft: #9db0aa;
+      --ink-faint: #6b7d78;
+      --line: #243231;
+      --line-soft: #1c2827;
+      --accent: #40cfc4;
+      --accent-ink: #8fe6df;
+      --good: #71c08c;
+      --run: #74abda;
+      --warn: #e2a95f;
+      --limit: #e58c74;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 2px 14px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1416; --panel: #121d1e; --panel-2: #16211f; --ink: #e7efeb;
+    --ink-soft: #9db0aa; --ink-faint: #6b7d78; --line: #243231; --line-soft: #1c2827;
+    --accent: #40cfc4; --accent-ink: #8fe6df; --good: #71c08c; --run: #74abda;
+    --warn: #e2a95f; --limit: #e58c74; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 2px 14px rgba(0,0,0,.25);
+  }
+  :root[data-theme="light"] {
+    --bg: #e7ece9; --panel: #f5f8f6; --panel-2: #eef3f0; --ink: #14201e;
+    --ink-soft: #4c5c57; --ink-faint: #7c8b86; --line: #ccd8d2; --line-soft: #dbe4df;
+    --accent: #0b8990; --accent-ink: #075258; --good: #3c8a5b; --run: #356fa6;
+    --warn: #a96a1f; --limit: #ac4f38; --shadow: 0 1px 2px rgba(20,32,30,.06), 0 2px 12px rgba(20,32,30,.05);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .wrap {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: clamp(1rem, 3vw, 3rem) clamp(1rem, 4vw, 2rem);
+  }
+  .page { max-width: 1000px; margin: 0 auto; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 .6rem;
+  }
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -.03em;
+    text-wrap: balance;
+    margin: 0 0 .5rem;
+    line-height: 1.02;
+  }
+  .lede { color: var(--ink-soft); max-width: 60ch; margin: 0 0 1.2rem; font-size: 1.02rem; }
+  .statusline {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-family: var(--mono); font-size: .78rem; color: var(--ink-soft);
+    border: 1px solid var(--line); background: var(--panel);
+    border-radius: 999px; padding: .35rem .8rem;
+  }
+  .dot { width: .5rem; height: .5rem; border-radius: 999px; background: var(--good); box-shadow: 0 0 0 3px color-mix(in srgb, var(--good) 22%, transparent); }
+
+  h2 {
+    font-size: .82rem; font-family: var(--mono); text-transform: uppercase;
+    letter-spacing: .14em; color: var(--ink-faint); font-weight: 600;
+    margin: 2.4rem 0 .9rem; display: flex; align-items: baseline; gap: .6rem;
+  }
+  h2 .n { color: var(--accent); }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .7rem; }
+  .tile {
+    background: var(--panel); border: 1px solid var(--line-soft); border-radius: 8px;
+    padding: 1rem 1.1rem; box-shadow: var(--shadow);
+  }
+  .tile .k { font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); }
+  .tile .v { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 2rem; font-weight: 600; letter-spacing: -.02em; margin-top: .3rem; }
+  .tile .s { font-size: .74rem; color: var(--ink-soft); margin-top: .1rem; }
+  .tile.zero .v { color: var(--good); }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--line-soft); border-radius: 10px;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .rows { display: flex; flex-direction: column; }
+  .row {
+    display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 1rem; align-items: center;
+    padding: .85rem 1.1rem; border-top: 1px solid var(--line-soft);
+  }
+  .row:first-child { border-top: none; }
+  .row .main { min-width: 0; }
+  .row .title { font-weight: 600; font-size: .95rem; }
+  .row .sub { font-family: var(--mono); font-size: .74rem; color: var(--ink-soft); margin-top: .15rem; }
+  .row .meta { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
+
+  .pill {
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; text-transform: uppercase;
+    padding: .22rem .55rem; border-radius: 999px; white-space: nowrap; font-weight: 600;
+    border: 1px solid transparent;
+  }
+  .p-good { color: var(--good); background: color-mix(in srgb, var(--good) 13%, transparent); border-color: color-mix(in srgb, var(--good) 30%, transparent); }
+  .p-accent { color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 14%, transparent); border-color: color-mix(in srgb, var(--accent) 32%, transparent); }
+  .p-run { color: var(--run); background: color-mix(in srgb, var(--run) 13%, transparent); border-color: color-mix(in srgb, var(--run) 30%, transparent); }
+  .p-warn { color: var(--warn); background: color-mix(in srgb, var(--warn) 15%, transparent); border-color: color-mix(in srgb, var(--warn) 32%, transparent); }
+  .p-limit { color: var(--limit); background: color-mix(in srgb, var(--limit) 14%, transparent); border-color: color-mix(in srgb, var(--limit) 32%, transparent); }
+  .p-flat { color: var(--ink-faint); background: var(--panel-2); border-color: var(--line-soft); }
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: .8rem; color: var(--ink-soft); }
+
+  .bar { display: flex; height: 12px; border-radius: 999px; overflow: hidden; border: 1px solid var(--line-soft); }
+  .bar span { display: block; }
+  .legend { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; margin-top: .8rem; font-family: var(--mono); font-size: .72rem; color: var(--ink-soft); }
+  .legend i { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .45rem; vertical-align: -1px; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+  @media (max-width: 680px) { .split { grid-template-columns: 1fr; } }
+
+  .note { padding: 1rem 1.1rem; }
+  .note p { margin: 0 0 .5rem; font-size: .9rem; color: var(--ink-soft); }
+  .note p:last-child { margin-bottom: 0; }
+  .lead-in { color: var(--warn); font-weight: 600; }
+  .lead-in.limit { color: var(--limit); }
+  .lead-in.good { color: var(--good); }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+  code { font-family: var(--mono); font-size: .82em; background: var(--panel-2); padding: .1em .35em; border-radius: 4px; }
+
+  .foot {
+    margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: .76rem; color: var(--ink-faint); line-height: 1.7;
+  }
+  .foot strong { color: var(--ink-soft); font-weight: 600; }
+</style>
+
+<div class="wrap">
+  <div class="page">
+
+    <header>
+      <p class="eyebrow">Build log · slack tide · 2026-08-04</p>
+      <h1>The Reality Next Door</h1>
+      <p class="lede">A post-extraction Seattle on the Salish Sea, built in the open — every piece cited, red-teamed, and honest about its own seams. This is the maintainer's tide-log: what's built, what's been checked, and what's left for a human hand.</p>
+      <span class="statusline"><span class="dot"></span> All corpus flags cleared · 6 workflows complete · 0 slop, 0 cut</span>
+    </header>
+
+    <h2><span class="n">01</span> At a glance</h2>
+    <div class="tiles">
+      <div class="tile"><div class="k">Research briefs</div><div class="v">24</div><div class="s">systems, grounded &amp; cited</div></div>
+      <div class="tile"><div class="k">Narrative threads</div><div class="v">10</div><div class="s">people, places, days</div></div>
+      <div class="tile"><div class="k">Sources</div><div class="v">526</div><div class="s">deduplicated citations</div></div>
+      <div class="tile"><div class="k">Subagent runs</div><div class="v">~95</div><div class="s">across 6 workflows</div></div>
+      <div class="tile zero"><div class="k">Slop shipped</div><div class="v">0</div><div class="s">nothing hollow</div></div>
+      <div class="tile zero"><div class="k">Cut for hollowness</div><div class="v">0</div><div class="s">everything held</div></div>
+    </div>
+
+    <h2><span class="n">02</span> The build — workflow runs</h2>
+    <div class="card"><div class="rows">
+      <div class="row"><div class="main"><div class="title">Opening research</div><div class="sub">10 foundational briefs + landscape, audience model, red-team, wildcards</div></div><div class="meta"><span class="num">10 briefs</span><span class="pill p-good">complete</span></div></div>
+      <div class="row"><div class="main"><div class="title">Build-out round 1</div><div class="sub">16 contributors → adversarial verify · 32 agents</div></div><div class="meta"><span class="num">4 ship · 12 revise</span><span class="pill p-good">complete</span></div></div>
+      <div class="row"><div class="main"><div class="title">Revision pass</div><div class="sub">the 12 flagged pieces, hardened → re-verified</div></div><div class="meta"><span class="num">11/12 clean</span><span class="pill p-good">complete</span></div></div>
+      <div class="row"><div class="main"><div class="title">Sources companion</div><div class="sub">SOURCES.md (526) + THE-SCIENCE.md, proven/prototyped/extrapolated</div></div><div class="meta"><span class="pill p-good">complete</span></div></div>
+      <div class="row"><div class="main"><div class="title">Build-out round 2</div><div class="sub">8 new domains &amp; neighborhoods, going wider</div></div><div class="meta"><span class="num">6 ship · 2 revise</span><span class="pill p-good">complete</span></div></div>
+      <div class="row"><div class="main"><div class="title">Cleanup + cleanup-2</div><div class="sub">round-2 fixes, God-Committee rename, taonga fix, re-verifies</div></div><div class="meta"><span class="num">all resolved</span><span class="pill p-good">complete</span></div></div>
+    </div></div>
+
+    <h2><span class="n">03</span> Verification</h2>
+    <div class="card"><div class="note">
+      <div class="bar" role="img" aria-label="24 shipped or revised-clean, 8 fixed clean, 1 honest limit remaining">
+        <span style="flex:24;background:var(--good)"></span>
+        <span style="flex:9;background:var(--accent)"></span>
+        <span style="flex:1;background:var(--limit)"></span>
+      </div>
+      <div class="legend">
+        <span><i style="background:var(--good)"></i>Shipped / revised-clean · 24</span>
+        <span><i style="background:var(--accent)"></i>Fixed &amp; re-verified · 9</span>
+        <span><i style="background:var(--limit)"></i>Honest limit left visible · 1</span>
+      </div>
+      <p style="margin-top:1rem">Every contribution passed an independent adversarial red-team for slop, canon violations, the Tone mandate, and appropriation. The guardrail did its job: it caught real sovereignty slips (a grafted Haudenosaunee ritual, a sacred medicine used as set-dressing, a mislabeled scholar) and they were fixed, not shipped.</p>
+    </div></div>
+
+    <h2><span class="n">04</span> Canon decisions</h2>
+    <div class="card"><div class="rows">
+      <div class="row"><div class="main"><div class="title">Compliance ledger for harm-accountability</div><div class="sub">runs on trust &amp; living witness, not a gameable file</div></div><div class="meta"><span class="pill p-limit">rejected</span></div></div>
+      <div class="row"><div class="main"><div class="title">The bound, made concrete</div><div class="sub">a public role-by-role ~3:1–9:1 range, re-argued each season</div></div><div class="meta"><span class="pill p-good">accepted</span></div></div>
+      <div class="row"><div class="main"><div class="title">The turning was violent — and un-heroic</div><div class="sub">a working class turned against itself; the lethal interregnum</div></div><div class="meta"><span class="pill p-good">accepted · reframed</span></div></div>
+      <div class="row"><div class="main"><div class="title">Kin with standing</div><div class="sub">orcas &amp; rivers as legal persons, a chosen interpretation</div></div><div class="meta"><span class="pill p-good">accepted</span></div></div>
+      <div class="row"><div class="main"><div class="title">Sovereignty is real &amp; contested</div><div class="sub">the Duwamish recognition wound, kept open</div></div><div class="meta"><span class="pill p-good">accepted</span></div></div>
+      <div class="row"><div class="main"><div class="title">The Hard-Choices Protocol</div><div class="sub">renamed from "God Committee"; no worth-scores, drawn lot, wall of names</div></div><div class="meta"><span class="pill p-good">accepted · renamed</span></div></div>
+      <div class="row"><div class="main"><div class="title">The salmon seniority order</div><div class="sub">orca minimum → treaty right → commons, un-outvotable</div></div><div class="meta"><span class="pill p-good">accepted</span></div></div>
+    </div></div>
+
+    <div class="split">
+      <div>
+        <h2><span class="n">05</span> Needs a human hand</h2>
+        <div class="card"><div class="rows">
+          <div class="row"><div class="main"><div class="title">Publish the door</div><div class="sub">public repo — the gate; nothing spreads until it's reachable</div></div><div class="meta"><span class="pill p-warn">you</span></div></div>
+          <div class="row"><div class="main"><div class="title">Initial commit</div><div class="sub">I can prepare it; you push</div></div><div class="meta"><span class="pill p-warn">ready</span></div></div>
+          <div class="row"><div class="main"><div class="title">Stand up LONGSHORE</div><div class="sub">Moltbook / OpenClaw — you hold the credentials</div></div><div class="meta"><span class="pill p-warn">you</span></div></div>
+        </div></div>
+      </div>
+      <div>
+        <h2><span class="n">06</span> Honest limits</h2>
+        <div class="card"><div class="rows">
+          <div class="row"><div class="main"><div class="title">The Coast Salish gap</div><div class="sub">hard-norms sourcing wants a real Indigenous contributor, not an AI pass</div></div><div class="meta"><span class="pill p-limit">by design</span></div></div>
+          <div class="row"><div class="main"><div class="title">daily-food residue</div><div class="sub">2 peripheral citations to spot-check; nutrition chemistry is solid</div></div><div class="meta"><span class="pill p-flat">minor</span></div></div>
+        </div></div>
+      </div>
+    </div>
+
+    <h2><span class="n">07</span> Spread readiness</h2>
+    <div class="card"><div class="rows">
+      <div class="row"><div class="main"><div class="title">LONGSHORE — persona, broadcast, dispatches, reply kit</div><div class="sub">the openly-AI voice, built and revised</div></div><div class="meta"><span class="pill p-good">ready</span></div></div>
+      <div class="row"><div class="main"><div class="title">LAUNCH plan — deploy steps, first-week cadence, beachhead</div><div class="sub">the operational bridge from built to spreading</div></div><div class="meta"><span class="pill p-good">ready</span></div></div>
+      <div class="row"><div class="main"><div class="title">Live deployment</div><div class="sub">waiting on the public door + your hand on publish</div></div><div class="meta"><span class="pill p-warn">pending you</span></div></div>
+    </div></div>
+
+    <p class="foot">
+      <strong>This dashboard counts activity to help tend the project.</strong> It ranks no one, scores no one's worth, and sells nothing. There is no reach here, no leaderboard, no engagement to farm.<br>
+      Measurement for care, not the capitalist metric — the First Refusal, kept.
+    </p>
+
+  </div>
+</div>

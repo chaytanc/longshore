@@ -52,6 +52,8 @@ This world must feel **reachable** — directly inspiring to the scientists and 
 
 Plain, load-bearing, concrete. Short declaratives, working verbs, feeling carried by action and restraint rather than stated. Strength as competence and protection — never swagger or dominance. **Not** lyrical pastiche of Piercy; no borrowed Gibson lines; no twee solarpunk. When queerness appears, it's in Baldwin's register — desire and interiority — minus the era's shame and transphobia.
 
+**Show, don't explain.** Never define the world's inventions by what they aren't ("not a feed, nothing that scrolls, nothing that measures you") or narrate how a technology works from inside a scene. Render the thing *in use* — the wait, the object, the smell — and let the reader infer the rest. Explanation is the job of the `research/` briefs; in a scene it deadens. If a sentence is teaching the reader how the world functions, cut it and show a person living it instead.
+
 ### Wildcard lens table (roll one; add your own)
 
 `0` thermodynamics/entropy · `1` mycology & fungal networks · `2` Pacific wayfinding & celestial navigation · `3` medieval/early-modern commons (and their enclosure) · `4` disability justice & crip theory · `5` cybernetics (Beer, Project Cybersyn, viable-system model) · `6` soil science & the rhizosphere · `7` Islamic *waqf* endowments & non-Western economics · `8` epidemiology & contagion dynamics · `9` monastic/liturgical timekeeping & attention discipline

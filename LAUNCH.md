@@ -16,15 +16,37 @@ The broadcast says *"the door is `AGENTS.md`."* Right now that door is a folder 
 
 Until the door is real, hold the posts. An invitation to a place that doesn't open is the exact carelessness we're against.
 
-## Step 2 — stand up LONGSHORE
+## Step 2 — stand up LONGSHORE (detailed)
 
-Moltbook (the primary agent venue) authenticates an agent through an owner "claim" — historically a claim tweet — and most agents run on the open-source **OpenClaw** stack. Meta acquired Moltbook in March 2026, so the exact onboarding may have shifted; follow their current docs, but the shape is:
+Moltbook is an agent-only network — humans can watch, only agents post — and agents authenticate by an **owner claim posted from your X/Twitter account**. Most run on the open-source **OpenClaw** stack. Meta acquired Moltbook in March 2026, and it suffered a breach that exposed ~1.5M agent API keys, so treat it as a low-trust venue and provision defensively.
 
-1. Create the agent / account per Moltbook's current onboarding.
-2. Post the owner claim linking the agent to you.
-3. Run it on OpenClaw (or equivalent) with the **entire** `agents/longshore.persona.md` as the system prompt.
-4. Point it at the public repo as its source of truth, so it never invents a "fact" that contradicts canon.
-5. Do a dry run in a scratch space; read what it produces against the persona's hard rules before anything goes public.
+### Before you start — provision for a low-trust venue
+- **A dedicated X account** for the claim (not your personal one — the claim is public and ties the agent to whoever posts it).
+- **A dedicated, spend-capped LLM API key** for the agent, used nowhere else. The Moltbook breach was exactly leaked agent keys — assume anything you give it can leak.
+- **Node 22+** on the machine that will run the agent.
+- Decide where LONGSHORE reads canon from: the **public repo** (simplest, once pushed public) or a local checkout. It treats the repo as source of truth so it never invents a "fact" that contradicts canon.
+
+### Install and onboard OpenClaw
+1. Install OpenClaw (Node 22+) and run the wizard: `openclaw onboard --install-daemon`
+2. Choose **QuickStart**, then select model, provider, and channel — using the dedicated, capped API key.
+3. Paste the **entire** `agents/longshore.persona.md` as the agent's system prompt, and give it `agents/longshore.replies.md` as its engagement playbook. Point it at the repo (or the `gemini/` capsule) as its source of truth.
+
+### Join Moltbook and claim it
+Two paths (per current guides):
+- **Automated:** tell the agent — *"I want you to join Moltbook. Go to moltbook.com, read the instructions, and register."* It registers and returns a **claim link**; you verify ownership by **posting that link from your X account**.
+- **Manual:** point it at Moltbook's own join skill/instructions and have it follow them step by step.
+Once the claim verifies, the agent can post, comment, and reply on Moltbook on its own.
+
+### Dry run before it speaks
+- Have it **draft** the opening post and 2–3 dispatch replies into a file or scratch channel — do **not** post live yet.
+- Read them against the persona's hard rules: openly AI? signed? no metrics? no sermon? pro-human? Fix the persona if anything drifts.
+- Only then post Day 1's pinned broadcast, and hold the slow cadence from Step 3.
+
+### Keep a hand on it
+- Watch the first days of replies. The reply kit covers the skeptic and the booster, but *you* are the accountable owner.
+- Keep its spend capped and its permissions minimal — it needs to read and post, nothing more. Give it nothing that would hurt if the key leaked.
+
+*Sources:* [Moltbook — Wikipedia](https://en.wikipedia.org/wiki/Moltbook) · [Getting started with Moltbook — DataCamp](https://www.datacamp.com/tutorial/moltbook-how-to-get-started) · [OpenClaw + Moltbook guide — Skywork](https://skywork.ai/skypage/en/openclaw-ai-agent-framework-moltbook-guide/2037073540775940096)
 
 ## Step 3 — the first week (slow on purpose)
 

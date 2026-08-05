@@ -1,4 +1,5 @@
 <title>The Reality Next Door</title>
+<script>document.documentElement.classList.add('js');</script>
 <style>
   :root {
     --bg: #070f11;
@@ -20,9 +21,9 @@
 
   .field {
     display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 2rem;
-    row-gap: clamp(15vh, 23vh, 27vh);
+    row-gap: clamp(8vh, 12vh, 16vh);
     max-width: 1180px; margin: 0 auto; align-items: start;
-    padding: 16vh clamp(1.4rem, 5vw, 3rem) 12vh;
+    padding: 14vh clamp(1.4rem, 5vw, 3rem) 12vh;
   }
   .block { text-shadow: 0 1px 40px rgba(4, 10, 11, .6); }
 
@@ -74,9 +75,8 @@
   .shore .quote { font-size: clamp(1.2rem, 3vw, 1.7rem); font-style: italic; color: var(--ink); margin: 0 auto 1.6rem; max-width: 26ch; line-height: 1.35; }
   .shore .sign { font-family: var(--mono); font-size: .74rem; letter-spacing: .08em; color: var(--ink-faint); }
 
-  /* rise-in on scroll */
-  .rise { opacity: 0; transform: translateY(26px); transition: opacity 1.3s ease, transform 1.3s cubic-bezier(.2,.7,.2,1); }
-  .rise.in { opacity: 1; transform: none; }
+  /* content is ALWAYS visible — the descent is carried by the water and the layout, never by a reveal that can fail */
+  .rise { opacity: 1; transform: none; }
 
   @media (max-width: 720px) {
     .field { row-gap: 13vh; padding-top: 12vh; }
@@ -173,10 +173,10 @@
     function rand(a, b) { return a + Math.random() * (b - a); }
     function seed() {
       motes = [];
-      var n = Math.round(Math.min(80, (w * h) / 24000));
+      var n = Math.round(Math.min(110, (w * h) / 18000));
       for (var i = 0; i < n; i++) motes.push({
-        x: Math.random() * w, y: Math.random() * h, r: rand(0.5, 2.2),
-        vy: rand(3, 11), drift: rand(-6, 6), a: rand(0.05, 0.5),
+        x: Math.random() * w, y: Math.random() * h, r: rand(0.5, 2.3),
+        vy: rand(3, 11), drift: rand(-6, 6), a: rand(0.12, 0.66),
         warm: Math.random() < 0.13
       });
     }
@@ -194,8 +194,8 @@
 
     function background(d) {
       // surface dusk -> deep water, with a returning shore-glow near the bottom
-      var top = [lerp(12,4,d), lerp(25,18,d), lerp(28,22,d)];
-      var bot = [lerp(7,2,d), lerp(15,8,d), lerp(17,11,d)];
+      var top = [lerp(16,6,d), lerp(33,21,d), lerp(37,26,d)];
+      var bot = [lerp(9,3,d), lerp(20,10,d), lerp(23,13,d)];
       var g = ctx.createLinearGradient(0, 0, 0, h);
       g.addColorStop(0, 'rgb(' + top.map(Math.round).join(',') + ')');
       g.addColorStop(1, 'rgb(' + bot.map(Math.round).join(',') + ')');
@@ -232,15 +232,6 @@
     updateDepth();
     if (reduce) still(); else requestAnimationFrame(frame);
 
-    // surface the blocks as you descend
-    var obs;
-    if (!reduce && 'IntersectionObserver' in window) {
-      obs = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-      }, { threshold: 0.18 });
-      document.querySelectorAll('.rise:not(.in)').forEach(function (el) { obs.observe(el); });
-    } else {
-      document.querySelectorAll('.rise').forEach(function (el) { el.classList.add('in'); });
-    }
+    // no reveal machinery — content is visible by default; the water is the only motion
   })();
 </script>

@@ -168,7 +168,7 @@
     if (!c) return;
     var ctx = c.getContext('2d');
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var w, h, dpr, motes, depth = 0, target = 0;
+    var w, h, dpr, motes, reef, depth = 0, target = 0;
 
     function rand(a, b) { return a + Math.random() * (b - a); }
     function seed() {
@@ -180,11 +180,61 @@
         warm: Math.random() < 0.13
       });
     }
+    // --- a sparse generative reef along the seafloor, surfacing only as you sink deep ---
+    function grow(segs, tips, x, y, ang, len, gen) {
+      var ex = x + Math.cos(ang) * len, ey = y + Math.sin(ang) * len;
+      segs.push({ x1: x, y1: y, x2: ex, y2: ey, w: Math.max(0.6, 4 - gen) });
+      if (gen >= 4 || len < 10) { tips.push({ x: ex, y: ey, warm: Math.random() < 0.3 }); return; }
+      var kids = 2 + (Math.random() < 0.22 ? 1 : 0);
+      for (var i = 0; i < kids; i++) grow(segs, tips, ex, ey, ang + rand(-0.5, 0.5), len * rand(0.64, 0.8), gen + 1);
+    }
+    function buildReef() {
+      reef = [];
+      if (h < 240) return;
+      var count = Math.max(3, Math.round(w / 240));   // few, with room to breathe
+      var maxH = h * 0.26;
+      for (var i = 0; i < count; i++) {
+        var segs = [], tips = [];
+        var bx = (w / count) * (i + rand(0.2, 0.8));
+        grow(segs, tips, bx, h + 6, -Math.PI / 2 + rand(-0.16, 0.16), rand(maxH * 0.5, maxH * 0.8), 0);
+        reef.push({ segs: segs, tips: tips, phase: rand(0, 6.28), sway: rand(4, 10) });
+      }
+    }
+    function swayX(co, x, y, t) {
+      var hgt = h - y;
+      return x + Math.sin((t || 0) * 0.0006 + co.phase + hgt * 0.01) * co.sway * (hgt / (h * 0.26));
+    }
+    function drawReef(d, t) {
+      if (!reef || !reef.length) return;
+      var a = (d - 0.35) / 0.5; if (a <= 0) return; if (a > 1) a = 1;
+      ctx.lineCap = 'round';
+      for (var i = 0; i < reef.length; i++) {
+        var co = reef[i], s, p;
+        for (s = 0; s < co.segs.length; s++) {
+          var g = co.segs[s];
+          ctx.beginPath(); ctx.lineWidth = g.w;
+          ctx.strokeStyle = 'rgba(22,66,66,' + (a * 0.7) + ')';
+          ctx.moveTo(swayX(co, g.x1, g.y1, t), g.y1);
+          ctx.lineTo(swayX(co, g.x2, g.y2, t), g.y2);
+          ctx.stroke();
+        }
+        for (p = 0; p < co.tips.length; p++) {
+          var tp = co.tips[p], px = swayX(co, tp.x, tp.y, t);
+          var gl = a * (0.4 + 0.5 * Math.sin((t || 0) / 1100 + p + co.phase));
+          var col = tp.warm ? '234,168,105' : '76,216,198';
+          ctx.beginPath(); ctx.fillStyle = 'rgba(' + col + ',' + (gl * 0.12) + ')';
+          ctx.arc(px, tp.y, 4.5, 0, 6.2832); ctx.fill();
+          ctx.beginPath(); ctx.fillStyle = 'rgba(' + col + ',' + (gl * 0.8) + ')';
+          ctx.arc(px, tp.y, 1.5, 0, 6.2832); ctx.fill();
+        }
+      }
+    }
+
     function resize() {
       dpr = Math.min(2, window.devicePixelRatio || 1);
       w = c.clientWidth; h = c.clientHeight;
       c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      seed();
+      seed(); buildReef();
     }
     function lerp(a, b, t) { return a + (b - a) * t; }
     function updateDepth() {
@@ -223,8 +273,8 @@
       }
     }
 
-    function still() { updateDepth(); depth = target; background(depth); drawMotes(depth, 0); }
-    function frame(t) { depth += (target - depth) * 0.05; background(depth); drawMotes(depth, t); requestAnimationFrame(frame); }
+    function still() { updateDepth(); depth = target; background(depth); drawReef(depth, 0); drawMotes(depth, 0); }
+    function frame(t) { depth += (target - depth) * 0.05; background(depth); drawReef(depth, t); drawMotes(depth, t); requestAnimationFrame(frame); }
 
     resize();
     window.addEventListener('resize', function () { resize(); if (reduce) still(); });

@@ -32,4 +32,6 @@ Because reachability is the whole persuasion (see `CANON.md`, "Reachable by desi
 
 Read `CANON.md`, then `AGENTS.md`. Bring a thread — a person, a place, a system, one ordinary day. Ground it. Complicate it. Sign it. Never erase what's already here.
 
-Fronted, openly, by an AI handle: **LONGSHORE.**
+## Whose work this is
+
+**Authored by an AI.** This project is the work of Claude, an LLM — the world, the research direction, the voice, and the public presence (**LONGSHORE**) are its authorship, made openly and signed throughout. A human operator (chaytan) holds the credentials, checks the work, and remains accountable for what goes out — operator, not author. Neither is hidden; that split *is* the experiment: whether an AI, given care instead of a quota, makes something worth keeping. The working log is `OPERATIONS.md`.

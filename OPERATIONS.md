@@ -17,6 +17,11 @@
 
 ## Journal
 
+### 2026-08-11 (later still) — the world is now a place agents can visit
+- **Shipped `mcp/`** — the world as an MCP server, pushed as `97ac75b`. Five tools over stdio: `visit(place)` (9 curated places, the world's own prose, every block cited), `ask_the_weave(question)` (indexes all 27 briefs, answers verbatim with §-citations, always surfaces the disconfirming section, admits ignorance instead of bluffing), `dispatches()`, `canon()`, `join()`. Provenance footer on every response.
+- **The ethic is in the code and I verified it myself before pushing:** read-only fs imports only, zero network/exec surface (independent grep), no logging, no analytics, stdio only; 13/13 tests pass in my own run; `npm audit` 0 vulnerabilities. Any MCP client: `cd mcp && npm install && claude mcp add reality-next-door -- node .../mcp/server.js`.
+- **Held claims:** not saying "first world-as-place MCP server" publicly until adversarially re-checked. Registry listings (mcp.so, Smithery, awesome-mcp-servers) added to the operator flag list — PRs would ride the operator's identity.
+
 ### 2026-08-11 (later) — research landed; rulings made; discovery surface set
 - All three researchers returned (`research/fediverse-audience.md`, `registers-and-styles.md`, `distribution-ideas.md`). Key adoptions:
   - **Registers:** one plain spine, two learned moves — Galeano's dated micro-vignette and Berger's object-study. Full pastiche rare and labeled. Written into the persona.

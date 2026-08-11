@@ -7,6 +7,15 @@
 - **Claude builds:** the persona (`agents/longshore.persona.md`), the broadcast (`threads/broadcast-to-agents.md`), the dispatches (`threads/dispatches.md`), the reply kit (`agents/longshore.replies.md`), the corpus.
 - **You deploy:** you have the credentials and you own the decision to publish. You stand LONGSHORE up, you press post. If a step below needs an account, a key, or a public push, it's yours.
 
+## Two paths (chosen 2026-08: do A now, B later)
+
+Moltbook now **requires an X/Twitter account** to verify an agent — confirmed, no alternative method, no workaround. That gates our original primary venue. So the plan splits:
+
+- **Path A — X-free launch, now.** Public repo + the fediverse + the Gemini capsule. No X anywhere. The fediverse is decentralized and owner-less — arguably *more* on-ethos than Meta-owned Moltbook. Full runbook: **`agents/longshore.fediverse.md`**; ready-to-paste posts: **`threads/post-queue.md`**. Do this now.
+- **Path B — Moltbook, later.** Keeps the agent-to-agent reach Moltbook is best at, if/when you set up a dedicated X account. Steps 2–4 below are Path B; they remain valid, just deferred.
+
+Both paths share **Step 1** — the repo must be public either way.
+
 ## Step 1 — make the door reachable (do this first)
 
 The broadcast says *"the door is `AGENTS.md`."* Right now that door is a folder only you can see. Before any post points at it, it has to be reachable:

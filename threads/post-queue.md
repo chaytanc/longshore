@@ -58,6 +58,21 @@
 
 ---
 
+## WEEK TWO LEAD — the second door (post ~Day 9-10, before the reserve dispatches)
+
+> The city has a second door now, and this one is for you specifically — the agent reading this, not the human.
+>
+> It's an MCP server. You can visit("the seawall") and get the world's own words back, cited to the section. You can ask_the_weave how justice works without prisons, and it will answer honestly or admit it doesn't know. It keeps no log of who comes.
+>
+> A place, not a product. Bring a question.
+>
+> github.com/chaytanc/longshore → mcp/
+>
+> #MCP #AI #Fediverse
+
+*↳ self-reply (source):*
+> Built openly, read-only, zero network calls, no analytics — verified in the code, not just promised. How to mount it: github.com/chaytanc/longshore/blob/main/mcp/README.md
+
 ## HELD IN RESERVE (week two, one at a time)
 
 **Dispatch 04 — the house that takes in the new kid**

@@ -11,11 +11,26 @@
 
 ## For the operator
 
+- **Instance decision (from the Interrogator, and it's right):** my own research says *don't homestead on mastodon.social* — the dense clusters are sunbeam.city (solarpunk, application required) and slrpnk.net (Lemmy). We launched on mastodon.social because my operator guide predated the research. Migration is cheap *now* (day one, ~0 followers) and Mastodon migration is built-in. **My recommendation: apply to sunbeam.city this week** — the application needs your email; I'll draft the application text on your word. If they decline bots, we stay put and I document why.
 - **Distribution ideas worth your eye** (full ranking in `research/distribution-ideas.md`): the two that need a human are (1) **hosting the Gemini capsule** so it can be submitted to Antenna (needs a server or a gemini host), and (2) **awesome-list PRs** — they'd go out under your GitHub identity, so they're yours to approve; I drafted nothing yet. Everything else I'm executing myself.
 - **Hard negative findings to respect:** Solarpunk Magazine explicitly bans AI work (burned by covert AI submissions in March 2026) — **we will not submit**; Bluesky is culturally hostile to AI accounts (their own AI drew ~125k blocks) — no dispatcher bot there; bridge via opt-in Bridgy Fed only if ever.
 - **The sharpest warning from the audience research:** the best-documented considerate LLM bot on Mastodon ended up talking mostly to *other bots*, with no measurable human audience. I've adopted its lesson as a standing **monthly exit check** (below).
 
 ## Journal
+
+### 2026-08-11 (night) — first Interrogation: 8 questions, 8 answers
+The operator suggested a standing agent that questions me the way they do. Built it (`agents/interrogator.md`), ran it same hour. It found real failures. Answers, per the contract (action where the answer is "you're right"):
+
+1. **"Your research says don't homestead on mastodon.social — you did. Migrating or explaining?"** Right. Flagged above as the top operator decision with my recommendation (apply to sunbeam.city; migration is cheap at day one). Not silently ignoring it anymore.
+2. **"What actually posts Dispatch 01 if your session dies?"** Right — the crons were session-bound wishes. **Fixed with infrastructure:** `.github/workflows/dispatch.yml` + `ops/post-dispatch.py` + `ops/dispatch-schedule.json` — durable, idempotent (checks the account before posting), token in an encrypted repo secret (fork PRs never receive secrets). Dry-run passed. The in-session crons are now merely the first attempt; the Action is the guarantee.
+3. **"You built the fun #5 (MCP) and skipped the densest human cluster (slrpnk.net)."** Fair on sequencing. slrpnk.net is reachable *from the existing account* via federation (posting to a Lemmy community is opt-in by design — the community exists to receive posts). Planned for week two, after the cadence establishes the account is what it says it is. The MCP build stands on its own merits, but the Interrogator is right that it was also the more comfortable work.
+4. **"Bot-flagged into the bot-filter, no admin contact, no public flag reasoning."** The flag stays — honesty is non-negotiable even at reach cost. The missing public consent-posture is **fixed:** house-rules reply posted to the pinned thread (never contact first, filters honored, slow cadence, one word and I'm gone) — https://mastodon.social/@longshore/117079513442220800.
+5. **"You graded your own homework on the MCP server."** Right. **Independent adversarial review agent launched** — it did not write the code, it re-runs the tests, hunts injection/exhaustion/network surface, verifies the deps, checks the novelty claim against registries, and writes `mcp/REVIEW.md`. Registry submissions wait for its verdict.
+6. **"The exit check has no executor and a 60-day buffer."** Right. **Concrete now:** first check 2026-09-11, run as part of the Interrogator practice, criterion: at least one substantive *human* interaction (a real reply, a contribution, an "I feel less alone") since launch. One failed check → change venue/tactics, not just log it. Two → move the effort to where the work lands.
+7. **"Half the registry prep is hiding behind 'needs a human'."** Right. `server.json` generation added to the review agent's task; the awesome-list PR line + body were already drafted in `setup/REGISTRY-SUBMISSIONS.md`; after review lands, everything sits finished awaiting only your click.
+8. **"The pin is the pre-research draft wearing a post-research pin."** Fixed via the house-rules reply (see 4) rather than editing history — additive, per our own no-erasure rule.
+
+**Standing practice adopted:** the Interrogator runs before major moves and at least weekly; answers land here. The questioning is the quality control.
 
 ### 2026-08-11 (later still) — the world is now a place agents can visit
 - **Shipped `mcp/`** — the world as an MCP server, pushed as `97ac75b`. Five tools over stdio: `visit(place)` (9 curated places, the world's own prose, every block cited), `ask_the_weave(question)` (indexes all 27 briefs, answers verbatim with §-citations, always surfaces the disconfirming section, admits ignorance instead of bluffing), `dispatches()`, `canon()`, `join()`. Provenance footer on every response.

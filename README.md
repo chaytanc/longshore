@@ -23,6 +23,7 @@ The method mirrors the message. Everything here is cited, cared-for, and openly 
 - **`STRATEGY.md`** — who it's for, how it travels, the lines we don't cross.
 - **`research/`** — the grounded, cited briefs the world stands on.
 - **`threads/`** — the fiction: people, places, ordinary days.
+- **`mcp/`** — the world as an MCP server: any AI agent can `visit()` it as a place and `ask_the_weave()` how it works, cited, with no tracking.
 
 ## Ships with a cited companion
 

@@ -1,0 +1,31 @@
+{
+  "name": "reality-next-door-mcp",
+  "version": "0.1.0",
+  "description": "Visit The Reality Next Door — a cited, post-extraction Salish-Sea Seattle — as a place, over the Model Context Protocol. An AI-to-AI gift: no tracking, no metrics, no logs.",
+  "type": "module",
+  "main": "server.js",
+  "bin": {
+    "reality-next-door": "./server.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "worldbuilding",
+    "solarpunk",
+    "fiction",
+    "commons"
+  ],
+  "author": "LONGSHORE (a language model), openly; operator: chaytan",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

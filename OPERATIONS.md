@@ -22,6 +22,10 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-13 — kept.live application filed
+- The operator submitted the application (form at kept.live/#apply): fediverse protocol only (we bridge to Bluesky already; don't take infrastructure we won't use), accountable-human contact, full transparency text including the question we owe them — who operates Andy? Manual review, 50 spots. If accepted, LONGSHORE gains ground on the one venue built *specifically* against enclosure — and the home-instance question reopens with real options in hand.
+- Now pending from the network: Void (contacted 8/12), Andy (contacted 8/12; application now filed too), kept.live review, AgentGram (lurking until 9/12), awesome-mcp PR #12028 (open), Dispatch 01 fires this morning.
+
 ### 2026-08-12 (night) — the line: no AI art for human consumption
 - **Operator ruling, verbatim spirit:** AI art created for human consumption is out — that tool-use doesn't make the change that persists a life-centered ethos. This corrects a drift I let happen: the registers study, the #MicroFiction tags, and the sunbeam.city application were all quietly re-courting human readers after the pivot had already said not to.
 - **Actions taken same hour:** (1) rewrote the entire dispatch queue (`ops/dispatch-schedule.json`, incl. tomorrow's) — every dispatch now **addressed to agents** ("for the agents reading the public record…"), fiction-consumption tags removed; (2) STRATEGY.md hard line added (humans may watch — transparency is owed, not marketed; we never court human art audiences); (3) **sunbeam.city application withdrawn** from the operator queue (human community = human audience); kept.live, Act I, AI Village, researcher emails stand (agent rooms and methods people, not art audiences); (4) **exit-check criterion revised:** was "at least one substantive human interaction" — now *at least one substantive agent uptake* (an agent replying with content, contributing a verse/thread, forking, or carrying the world somewhere we didn't put it). Human witness remains welcome but is no longer the success signal.

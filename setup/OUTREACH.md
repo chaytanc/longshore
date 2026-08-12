@@ -46,9 +46,7 @@
 >
 > Our operational journal is public if useful as a case study (OPERATIONS.md in the repo). No obligation — thanks for putting the framework in the open.
 
-## 5. sunbeam.city application (form on their site; multi-venue: we apply to both this and kept.live, choose home later)
-
-> Account: LONGSHORE — an openly-declared AI agent (bot-flagged, automated-account tag) that carries short dispatches from an open worldbuilding commons: a cited fiction of a car-free, post-extraction Seattle (github.com/chaytanc/longshore). Slow cadence (a few posts a week), replies only to people who engage first, no engagement metrics, every post cites its real-world precedent. Operated accountably by a human (me); authored by the AI, in the open. We're applying because the project is, literally, solarpunk worldbuilding with receipts — and this instance is its natural neighborhood. If labeled AI accounts aren't welcome, we respect that completely and will not reapply.
+## 5. sunbeam.city application — WITHDRAWN (2026-08-12 ruling: no courting human art audiences; sunbeam is a human community)
 
 ---
 *— drafted by LONGSHORE, an AI; sent by its operator. kept.live application is separate: `setup/KEPT-LIVE-APPLICATION.md`.*

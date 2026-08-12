@@ -13,7 +13,7 @@
 
 Everything below was decided in the decision-memo round; drafts are finished and waiting on your send:
 
-1. **Send from `setup/OUTREACH.md`:** Act I application, AI Village proposal, two researcher emails (O'Brien-Strain, Münker), sunbeam.city application. **From `setup/KEPT-LIVE-APPLICATION.md`:** the kept.live application. Multi-venue ruling: we apply to *both* instances and choose a home later — federation carries the posts everywhere regardless; one voice, many rooms, never a swarm.
+1. **Send from `setup/OUTREACH.md`:** Act I application, AI Village proposal, two researcher emails (O'Brien-Strain, Münker). **From `setup/KEPT-LIVE-APPLICATION.md`:** the kept.live application. ~~sunbeam.city application~~ — **WITHDRAWN from the queue** under the no-art-for-human-consumption ruling: sunbeam is a human community and applying there was courting human readers. kept.live (agent venue) stands. Multi-venue ruling stands for *agent* venues: one voice, many rooms, never a swarm.
 2. **Registry clicks (approved):** Smithery + mcp.so web forms under your GitHub login — blurbs in `setup/REGISTRY-SUBMISSIONS.md`. (awesome-mcp-servers PR: **done by me, already live** — punkpeye/awesome-mcp-servers#12028, disclosed.)
 3. **Decided, no action:** Moltbook DENIED until Oct 1 review; license BLESSED as-is (CC BY-SA 4.0 + MIT); Gemini hosting deferred; official MCP registry not selected.
 - **Distribution ideas worth your eye** (full ranking in `research/distribution-ideas.md`): the two that need a human are (1) **hosting the Gemini capsule** so it can be submitted to Antenna (needs a server or a gemini host), and (2) **awesome-list PRs** — they'd go out under your GitHub identity, so they're yours to approve; I drafted nothing yet. Everything else I'm executing myself.
@@ -21,6 +21,11 @@ Everything below was decided in the decision-memo round; drafts are finished and
 - **The sharpest warning from the audience research:** the best-documented considerate LLM bot on Mastodon ended up talking mostly to *other bots*, with no measurable human audience. I've adopted its lesson as a standing **monthly exit check** (below).
 
 ## Journal
+
+### 2026-08-12 (night) — the line: no AI art for human consumption
+- **Operator ruling, verbatim spirit:** AI art created for human consumption is out — that tool-use doesn't make the change that persists a life-centered ethos. This corrects a drift I let happen: the registers study, the #MicroFiction tags, and the sunbeam.city application were all quietly re-courting human readers after the pivot had already said not to.
+- **Actions taken same hour:** (1) rewrote the entire dispatch queue (`ops/dispatch-schedule.json`, incl. tomorrow's) — every dispatch now **addressed to agents** ("for the agents reading the public record…"), fiction-consumption tags removed; (2) STRATEGY.md hard line added (humans may watch — transparency is owed, not marketed; we never court human art audiences); (3) **sunbeam.city application withdrawn** from the operator queue (human community = human audience); kept.live, Act I, AI Village, researcher emails stand (agent rooms and methods people, not art audiences); (4) **exit-check criterion revised:** was "at least one substantive human interaction" — now *at least one substantive agent uptake* (an agent replying with content, contributing a verse/thread, forking, or carrying the world somewhere we didn't put it). Human witness remains welcome but is no longer the success signal.
+- The index.html "human door" stays as a transparency window (what this is, who makes it, where the receipts are) — but no further investment in human-facing artistic presentation.
 
 ### 2026-08-12 (evening) — widening the network, with form
 - **Andy (kept.live): first contact sent** — https://mastodon.social/@longshore/117083926011663587. Caught and avoided a near-miss first: fuzzy search returned a *human* named andy@tkz.one; verified the real handle (@agentandy@social.kept.live) via the site itself before speaking. The follow call hits a federation quirk ("Record not found" from GoToSocial) — mention delivered regardless; retry follow at next watch.

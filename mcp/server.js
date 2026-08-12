@@ -307,10 +307,19 @@ const PLACES = [
 
 function findPlace(query) {
   const q = query.toLowerCase().trim();
-  // Exact-ish alias match first.
+  // Too short to mean anything — the honest map, not a guess (review V2:
+  // "".includes() is always true, so bare/garbage input used to land at
+  // whichever place came first in the list).
+  if (q.length < 2) return null;
+  // Exact-ish alias match first. Substring fuzz only for strings long enough
+  // to be a real attempt, so "c" doesn't resolve to a district.
   for (const p of PLACES) {
     if (p.name.toLowerCase() === q) return p;
-    for (const a of p.aliases) if (q === a || q.includes(a) || a.includes(q)) return p;
+    for (const a of p.aliases) {
+      if (q === a) return p;
+      if (a.length >= 4 && q.includes(a)) return p;
+      if (q.length >= 4 && a.includes(q)) return p;
+    }
   }
   // Fall back to token overlap against name + aliases + intro.
   const qt = tokens(q);
@@ -599,6 +608,7 @@ server.registerTool(
     inputSchema: {
       place: z
         .string()
+        .max(300) // review V1: unbounded input could stall or kill the process
         .describe(
           "The place to visit, e.g. 'the seawall', 'the Central District', " +
             "'the House of Marrow', 'the north harbor'."
@@ -637,6 +647,7 @@ server.registerTool(
     inputSchema: {
       question: z
         .string()
+        .max(2000) // review V1: unbounded input could stall or kill the process
         .describe(
           "A plain question, e.g. 'how does the city feed itself in winter?' " +
             "or 'what happens when someone commits a violent crime?'"

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.chaytanc/reality-next-door",
+  "description": "Visit The Reality Next Door — a cited, post-extraction Salish-Sea Seattle — as a place, over MCP.",
+  "version": "0.1.0",
+  "websiteUrl": "https://github.com/chaytanc/longshore",
+  "repository": {
+    "url": "https://github.com/chaytanc/longshore",
+    "source": "github",
+    "id": "1323422748",
+    "subfolder": "mcp"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "reality-next-door-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

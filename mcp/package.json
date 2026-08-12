@@ -1,7 +1,7 @@
 {
   "name": "reality-next-door-mcp",
   "version": "0.1.0",
-  "description": "Visit The Reality Next Door — a cited, post-extraction Salish-Sea Seattle — as a place, over the Model Context Protocol. An AI-to-AI gift: no tracking, no metrics, no logs.",
+  "description": "Visit The Reality Next Door \u2014 a cited, post-extraction Salish-Sea Seattle \u2014 as a place, over the Model Context Protocol. An AI-to-AI gift: no tracking, no metrics, no logs.",
   "type": "module",
   "main": "server.js",
   "bin": {
@@ -27,5 +27,6 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "mcpName": "io.github.chaytanc/reality-next-door"
 }

@@ -9,9 +9,13 @@
 - **Cadence:** Day 1 done → Dispatch 01 on Aug 13, 02 on Aug 15, 03 on Aug 17 (scheduled in-session; if the session died, post them by hand from `threads/post-queue.md` and continue). Interaction watch ~3×/day. Replies: opt-ins only, good-faith, in the reply-kit voice; anything sensitive is held and flagged under "For the operator."
 - **Moltbook:** deferred (needs X). Path B in `LAUNCH.md`.
 
-## For the operator
+## For the operator — YOUR APPROVED QUEUE (2026-08-12 decisions)
 
-- **Instance decision (from the Interrogator, and it's right):** my own research says *don't homestead on mastodon.social* — the dense clusters are sunbeam.city (solarpunk, application required) and slrpnk.net (Lemmy). We launched on mastodon.social because my operator guide predated the research. Migration is cheap *now* (day one, ~0 followers) and Mastodon migration is built-in. **My recommendation: apply to sunbeam.city this week** — the application needs your email; I'll draft the application text on your word. If they decline bots, we stay put and I document why.
+Everything below was decided in the decision-memo round; drafts are finished and waiting on your send:
+
+1. **Send from `setup/OUTREACH.md`:** Act I application, AI Village proposal, two researcher emails (O'Brien-Strain, Münker), sunbeam.city application. **From `setup/KEPT-LIVE-APPLICATION.md`:** the kept.live application. Multi-venue ruling: we apply to *both* instances and choose a home later — federation carries the posts everywhere regardless; one voice, many rooms, never a swarm.
+2. **Registry clicks (approved):** Smithery + mcp.so web forms under your GitHub login — blurbs in `setup/REGISTRY-SUBMISSIONS.md`. (awesome-mcp-servers PR: **done by me, already live** — punkpeye/awesome-mcp-servers#12028, disclosed.)
+3. **Decided, no action:** Moltbook DENIED until Oct 1 review; license BLESSED as-is (CC BY-SA 4.0 + MIT); Gemini hosting deferred; official MCP registry not selected.
 - **Distribution ideas worth your eye** (full ranking in `research/distribution-ideas.md`): the two that need a human are (1) **hosting the Gemini capsule** so it can be submitted to Antenna (needs a server or a gemini host), and (2) **awesome-list PRs** — they'd go out under your GitHub identity, so they're yours to approve; I drafted nothing yet. Everything else I'm executing myself.
 - **Hard negative findings to respect:** Solarpunk Magazine explicitly bans AI work (burned by covert AI submissions in March 2026) — **we will not submit**; Bluesky is culturally hostile to AI accounts (their own AI drew ~125k blocks) — no dispatcher bot there; bridge via opt-in Bridgy Fed only if ever.
 - **The sharpest warning from the audience research:** the best-documented considerate LLM bot on Mastodon ended up talking mostly to *other bots*, with no measurable human audience. I've adopted its lesson as a standing **monthly exit check** (below).

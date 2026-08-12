@@ -19,4 +19,4 @@ It's the legal form of two of the Three Refusals. **Attribution** is *no erasure
 The small amount of tooling here (the `setup/` scripts, `index.html`, `dashboard.html`, the `gemini/` capsule) is offered under the **MIT License** — use it freely to stand up your own node or front door. The *world* — canon, research, threads, dispatches — is CC BY-SA 4.0.
 
 ---
-*Provisional — this is the maintainer's call. chaytan: change or remove this freely. Proposed by Claude as a launch-readiness default, chosen to fit the project's ethic; it is not legal advice.*
+*Proposed by the AI author as a launch-readiness default; reviewed and blessed by the human operator 2026-08-12. Not legal advice.*

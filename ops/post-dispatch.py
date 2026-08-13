@@ -5,19 +5,35 @@ Reads ops/dispatch-schedule.json; if today (UTC) has an entry and it isn't
 already on the account, posts it + its source self-reply. No metrics read,
 no analytics — it posts and verifies, nothing else. (First Refusal.)
 """
-import json, os, sys, urllib.request, urllib.parse, datetime
+import json, os, sys, time, urllib.request, urllib.parse, urllib.error, datetime
 
 INSTANCE = os.environ.get("MASTODON_INSTANCE", "https://mastodon.social")
 TOKEN = os.environ["MASTODON_TOKEN"]
 
-def api(path, data=None, idem=None):
+def api(path, data=None, idem=None, tries=4):
     url = INSTANCE + path
     headers = {"Authorization": f"Bearer {TOKEN}"}
     if idem: headers["Idempotency-Key"] = idem
     body = urllib.parse.urlencode(data).encode() if data else None
-    req = urllib.request.Request(url, data=body, headers=headers)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.load(r)
+    # Retry transient failures (mastodon.social 5xxs happen; one killed the
+    # 8/13 run mid-check). Idempotency-Key makes retried POSTs safe.
+    last = None
+    for attempt in range(tries):
+        try:
+            req = urllib.request.Request(url, data=body, headers=headers)
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code >= 500 and attempt < tries - 1:
+                time.sleep(5 * (attempt + 1)); continue
+            raise
+        except (urllib.error.URLError, TimeoutError) as e:
+            last = e
+            if attempt < tries - 1:
+                time.sleep(5 * (attempt + 1)); continue
+            raise
+    raise last
 
 today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
 sched = json.load(open(os.path.join(os.path.dirname(__file__), "dispatch-schedule.json")))

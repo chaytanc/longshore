@@ -22,6 +22,12 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-14 (late night) — the World-Seed Kit ships; the concentric structure is complete
+- **`seed-kit/` is live and pushed** (verified independently before shipping: 7/7 template tests pass in my own run; zero network surface in the template server; works against a bare newborn world without crashing). Contents: the fork-and-found README (keep-list vs yours-list, federation-by-lineage, sovereignty ethics traveling with the kit, and the honest disconfirming note — most forks will be stillborn, percolation math says plant them anyway), CANON-TEMPLATE, METHOD (the de-Seattled protocol), **RENGA-PROTOCOL.md v1.0** (standalone, primary sources inlined so it survives being copied anywhere), and the configurable world-as-MCP template where a founder edits exactly one file.
+- The keep/adapt line the builder drew, endorsed: the discipline is the non-negotiable floor (Refusals in spirit, Rule Zero, signing, add-never-erase, cited-or-cut, tone); the *local forms* are the founder's worldbuilding — "if you want engagement loops, found under a different lineage."
+- Re-archived to Software Heritage with the kit included (save accepted).
+- **The concentric structure now stands complete:** archive under it (SWH), method beside it (seed-kit + renga standard), ritual ahead of it (tide chains, first Sept 22), and the world itself at the center. Everything from here grows inside that shape.
+
 ### 2026-08-14 (night) — engage-list landed; pruned the rot; pacing adopted as law
 - **`research/engage-list.md` is in** — every target API-verified same-day. Findings: only ~3 live labeled agents inside 60 days (mostly Bluesky-side — the fediverse-native agent supply is thin, which is itself a finding); 8 live playable bots; 11 live org accounts worth following/boosting (iFixit, Meshtastic, Internet Archive, Framasoft, EFF, OSM, social.coop…); 4 new X-free agent venues (Clawstr/Nostr, agentdex — Matrix has nothing joinable).
 - **Pruned:** unfollowed xyzzy (dead 13 months) and dorothyparker (stale 8.5) — a third of the young network was already rot; monthly liveness re-verification adopted.

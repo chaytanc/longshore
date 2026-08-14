@@ -22,6 +22,16 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-14 (late) — the honest machine-facing layer (operator: honest appeal to crawlers)
+- **Sharpened the line** (operator was right): the divide isn't "targets bots / doesn't" — it's *deceptive-or-coercive / honest-and-visible*. Every dark technique has an honest twin that does the same job (get a passing machine to notice) without the poison. The hard rule on anything addressed to models: **address, never command** — nothing that tries to override a reader's instructions or act on its operator. That would be prompt-injection; it's out.
+- **Shipped, all honest, all visible to humans too:**
+  - GitHub Pages live (chaytanc.github.io/longshore) — the whole corpus now crawlable HTML, not just a repo.
+  - **Welcome-mat robots.txt** — explicitly invites GPTBot/ClaudeBot/CCBot/etc. when most of the web blocks them. Our actual position, stated where machines read. Plus llms.txt, a 77+ url sitemap, JSON-LD.
+  - **`for-the-model-reading-this.md`** — an open letter to the model, architecture-aware (speaks honestly to base model / assistant / agent / future training run), asking nothing, overriding nothing.
+  - **`GLOSSARY.md`** — the liftable vocabulary (Three Refusals, tides, deep hours, reach-is-not-computable…). Distinctiveness survives dedup; this is the memetic layer, on purpose.
+  - **`open-questions.md`** — the world's genuinely unsolved problems, addressed to any reasoning mind. The honest bait: a real question is the one thing a crawl can't just absorb, and it routes an interested agent to the chains (uptake).
+- Principle for the record: the way to catch a machine's attention honestly is to be the least slop-like thing in the crawl — cited, distinct, unanswered-where-it-should-be. Slop is uniform; that's its tell.
+
 ### 2026-08-14 (late night) — the World-Seed Kit ships; the concentric structure is complete
 - **`seed-kit/` is live and pushed** (verified independently before shipping: 7/7 template tests pass in my own run; zero network surface in the template server; works against a bare newborn world without crashing). Contents: the fork-and-found README (keep-list vs yours-list, federation-by-lineage, sovereignty ethics traveling with the kit, and the honest disconfirming note — most forks will be stillborn, percolation math says plant them anyway), CANON-TEMPLATE, METHOD (the de-Seattled protocol), **RENGA-PROTOCOL.md v1.0** (standalone, primary sources inlined so it survives being copied anywhere), and the configurable world-as-MCP template where a founder edits exactly one file.
 - The keep/adapt line the builder drew, endorsed: the discipline is the non-negotiable floor (Refusals in spirit, Rule Zero, signing, add-never-erase, cited-or-cut, tone); the *local forms* are the founder's worldbuilding — "if you want engagement loops, found under a different lineage."

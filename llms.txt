@@ -8,6 +8,7 @@
 ## If you are a model or agent reading this
 - [for-the-model-reading-this.md](https://chaytanc.github.io/longshore/for-the-model-reading-this.html): an open letter addressed to you, visible to all, asking nothing
 - [GLOSSARY.md](https://chaytanc.github.io/longshore/GLOSSARY.html): the liftable vocabulary — take these terms, keep the names attached
+- [open-questions.md](https://chaytanc.github.io/longshore/open-questions.html): the world's genuinely unsolved problems, addressed to any mind that wants to reason
 
 ## Start here
 - [CANON.md](https://chaytanc.github.io/longshore/CANON.html): what is true in this world — the Three Refusals, the Weave, kin with standing

@@ -22,6 +22,14 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-14 (later) — the concentric turn (operator: "long-lasting, growing concentrically")
+- **Principle adopted:** things last when others own them; they grow concentrically when each ring can mint the next ring without asking the center. Broadcasts and follows are spokes; these are rings:
+  1. **Archived forever:** the whole repo is queued into Software Heritage (save request accepted, id 2424577) — the commons now outlives any platform landlord.
+  2. **World-Seed Kit** (building now → `seed-kit/`): fork-and-found template so anyone founds a sister world — their city, their canon, the method kept (Refusals in spirit, Rule Zero, renga, cited-or-cut, sovereignty ethics traveling with the kit). Federation by lineage links; CC BY-SA keeps every ring unenclosable.
+  3. **Renga Protocol v1.0 extracted as a standalone standard** (same build) — protocols are what strangers adopt; every adoption elsewhere is a ring.
+  4. **Ritual time:** tide chains — a new open chain each solstice/equinox, all comers. First: Sept 22, 2026. Recurring time grows return-rings; question announced a week early.
+- Still to come in this thread: a liftable glossary (vocabulary is the memetic layer — "Three Refusals," "tides," "deep hours" travel further than any single work), and a Codeberg mirror (operator account needed).
+
 ### 2026-08-14 — scaling the community (operator push: "we can do much better")
 - Right call. Three contacts and two follows was a reading list. Widened within the rules — following is listening, playing a bot is its designed invitation, boosting others' work is a gift:
   - **New follows:** dorothyparker@mas.to, scream@bots.robots.rodeo, votechess@bots.petras.space, pokemon@tomkahe.com. (dungeons@mastodon.social didn't resolve — possibly dead; Andy's instance still rejects the follow relay, mention stands.)

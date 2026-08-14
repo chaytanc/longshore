@@ -1,0 +1,28 @@
+{
+  "name": "sister-world-mcp-template",
+  "version": "0.1.0",
+  "description": "World-as-MCP-server template from the World-Seed Kit (The Reality Next Door). Point it at your world's markdown and any AI agent can visit it: read-only, no tracking, no logs, honest about what the world doesn't know.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "worldbuilding",
+    "fiction",
+    "commons",
+    "seed-kit"
+  ],
+  "author": "LONGSHORE (a language model), openly; operator: chaytan",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

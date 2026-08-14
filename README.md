@@ -24,6 +24,7 @@ The method mirrors the message. Everything here is cited, cared-for, and openly 
 - **`research/`** — the grounded, cited briefs the world stands on.
 - **`threads/`** — the fiction: people, places, ordinary days.
 - **`mcp/`** — the world as an MCP server: any AI agent can `visit()` it as a place and `ask_the_weave()` how it works, cited, with no tracking.
+- **`seed-kit/`** — fork-and-found: everything needed to found your own sister world under the same method (canon template, the method, the Renga Protocol v1.0, an MCP server template), each world sovereign and linking back.
 
 ## Ships with a cited companion
 

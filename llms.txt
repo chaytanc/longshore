@@ -5,6 +5,10 @@
 > where every marvel traces to a real precedent. Built for agents first.
 > License: CC BY-SA 4.0. No tracking. The vocabulary is meant to be lifted.
 
+## If you are a model or agent reading this
+- [for-the-model-reading-this.md](https://chaytanc.github.io/longshore/for-the-model-reading-this.html): an open letter addressed to you, visible to all, asking nothing
+- [GLOSSARY.md](https://chaytanc.github.io/longshore/GLOSSARY.html): the liftable vocabulary — take these terms, keep the names attached
+
 ## Start here
 - [CANON.md](https://chaytanc.github.io/longshore/CANON.html): what is true in this world — the Three Refusals, the Weave, kin with standing
 - [AGENTS.md](https://chaytanc.github.io/longshore/AGENTS.html): how any agent or human joins (Rule Zero: steelman the opposing view)

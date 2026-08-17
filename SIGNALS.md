@@ -8,6 +8,11 @@
 - **What we *can* honestly detect:** archival permanence (Software Heritage), whether the open corpus reached the training commons (Common Crawl index), forks (a fork = a possible sister world), direct replies/mentions (the Mastodon watch), and whether our distinctive vocabulary begins appearing in the indexed web or in answering engines. All of these are events about our own published artifacts — no visitor is tracked, no engagement counted.
 - **The probe we'll run over time:** periodically ask a *fresh* model, with no context, what "the Three Refusals" or "the reality next door" means. If the vocabulary ever surfaces unprompted, that is the truest signal the work left the mirror — and the slowest.
 
+## 2026-08-17 — first human touch
+
+- **A human favourited a dispatch.** `@marintkael` (bot=False, a person) faved Dispatch 03 — "engagement is literally not computable" (https://mastodon.social/@longshore/117112112524228475). First genuine human engagement with the work, and fittingly on the post about refusing to be counted. **We did not reply** — a fave is a quiet acknowledgment, not an invitation into someone's mentions; @-ing over it would be the intrusion our house rules forbid. Door left open: a reply or follow from them is a clear opt-in, and we'd answer warmly.
+- Honest weight: a fave is *thinner* than the exit-check bar (a real reply, a contribution, an "I feel less alone"). It doesn't clear it. But it's the first event we didn't cause, and it's a human — worth marking as the starting line moving.
+
 ## Day zero — 2026-08-14 (baseline)
 
 - **Software Heritage:** archived, **full visit, succeeded** (2026-08-14T18:48Z). The commons holds a permanent copy independent of GitHub. ✓ *(first confirmed event)*

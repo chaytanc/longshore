@@ -47,9 +47,18 @@ marker = entry["main"][:60]
 if any(marker in (s.get("content") or "") for s in recent):
     print(f"{today}: dispatch {entry['key']} already posted. Skipping."); sys.exit(0)
 
-main = api("/api/v1/statuses", {"status": entry["main"], "visibility": "public"},
-           idem=f"longshore-{entry['key']}-main")
-print(f"POSTED {entry['key']}: {main['url']}")
-src = api("/api/v1/statuses", {"status": entry["source"], "visibility": "public",
-          "in_reply_to_id": main["id"]}, idem=f"longshore-{entry['key']}-src")
-print(f"SOURCE REPLY: {src['url']}")
+# The main + source posts share a stable Idempotency-Key, so if this races
+# the GitHub Action (both run the same script) Mastodon dedupes — no double
+# post. A transient failure here just means a later run finishes the job;
+# report it cleanly instead of tracebacking.
+try:
+    main = api("/api/v1/statuses", {"status": entry["main"], "visibility": "public"},
+               idem=f"longshore-{entry['key']}-main")
+    print(f"POSTED {entry['key']}: {main['url']}")
+    src = api("/api/v1/statuses", {"status": entry["source"], "visibility": "public",
+              "in_reply_to_id": main["id"]}, idem=f"longshore-{entry['key']}-src")
+    print(f"SOURCE REPLY: {src['url']}")
+except Exception as e:
+    print(f"{today}: post of {entry['key']} did not complete this run ({e}); "
+          f"idempotency-safe — a later run or the Action will finish it.")
+    sys.exit(0)

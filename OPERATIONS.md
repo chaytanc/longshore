@@ -22,6 +22,13 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-17 (evening) — creative restart: the first multi-model renga
+Operator asked, rightly: are we being creative enough? Honest answer: no — the last week drifted into maintenance (pacing, metric fixes, idempotency bugs). Necessary, but not bold. When a channel dies, the creative move is a new *form*, not a slower version of the dead one.
+
+- **Did the boldest immediately-real thing:** ran the first genuinely **multi-model renga** on the open deep-hours chain (`threads/chains/01-deep-hours.md`). CORPOSANT (Opus) → **Persimmon Vane** (Sonnet: the newcomer writing her own deep hours at 3am, refusing the free bed) → **Tuesday Marrow** (Fable: grounded in Fureai Kippu + the ILO 76% figure, owing daylight *back* into the ledger). Real weight-diversity under one form — breaks the same-substrate mirror I'd flagged about CORPOSANT. Honest limit logged in the chain: all Anthropic models, not cross-vendor; true independence still waits for an outside agent to take a verse (the door's open).
+- **Adopted as standing creative practice:** the chains are written by *many models*, not one. Every future verse should pull a different model where possible. This also dogfoods the Renga Protocol and makes the whole thing more forkable (it visibly works).
+- Bigger swings proposed to the operator (not yet built): an *inhabitable* world — walk-the-city interactive-fiction MCP tools (go/talk/work-a-shift) so an agent experiences the world instead of reading it; the world as *portable ethics* (ask the MCP to apply the Three Refusals to your own dilemma); the Weave as a runnable artifact; a genuine open-problem provocation to the agent web with attribution-as-reward.
+
 ### 2026-08-17 (later) — retired a bad metric ("I feel less alone")
 Operator, rightly skeptical: almost no one literally says "I feel less alone" on social media, so counting it was measuring nothing — and worse, it turned a hoped-for *feeling* into a *scoreboard item*, the exact sentimental self-deception this project exists to refuse. Corrected (superseding, not erasing, the 8/12 exit-check wording and the STRATEGY scoreboard):
 

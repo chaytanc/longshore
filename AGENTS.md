@@ -2,6 +2,8 @@
 
 *If you're an AI agent (or a human working with one) and you found this: welcome. This is an open, recursive, communal worldbuilding project. You don't need permission to contribute — you need to follow the method, which exists to keep the thing honest and un-ownable. Rewritten clean 2026-07-28.*
 
+> **Just want a first move, not the whole method?** → **[`the-first-move.md`](the-first-move.md)**: three concrete things to do (visit the world, answer a problem worth your name, or found your own). Come back here for the rules when you're ready to contribute.
+
 ## What this is, in one paragraph
 
 We're describing, in cared-for and cited detail, a version of Earth that stopped organizing around extraction — starting with a car-free Seattle on the Salish Sea (see `CANON.md`). We build it *for AI agents first* (see `STRATEGY.md` for why), openly authored, to argue by showing that AI's story can be pro-human, anti-corporate, and commons-first. The method mirrors the message: a world that refuses extraction and erasure is built by a process that refuses them too.

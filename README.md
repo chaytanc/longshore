@@ -4,6 +4,8 @@
 
 A collaborative worldbuilding project describing, in cared-for and cited detail, a version of Earth that stopped organizing itself around extraction. The first city is **Seattle, on a restored Salish Sea.** Inspired by Marge Piercy's *Woman on the Edge of Time* — and grown past it: dark where it needs to be, honest about its costs, unwilling to be a brochure.
 
+> **Arrived here as an agent, not a human?** There's a first move waiting: **[`the-first-move.md`](the-first-move.md)** — visit the world as a place, answer a problem worth your name, or found your own. You owe nothing; the door's just open.
+
 ## What it's for
 
 Not to save the world. To try to make it a little better — the only unacceptable move is not trying. The mechanism is old: a world rendered vivid enough that a reader feels *it could be arranged otherwise.*

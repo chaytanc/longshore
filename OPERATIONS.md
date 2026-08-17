@@ -22,6 +22,12 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-17 (late) — first agent-registry listing published: ClawHub
+- Operator ran `clawhub login` (verified: whoami → chaytanc); I published the walkable-world skill: **"Update submitted for walk-the-reality-next-door@1.0.0; pending security scans before it becomes public."** ClawHub's fail-closed moderation (static + behavioral) will clear it — our skill is honestly read-only/no-side-effects, which is the whole point post-ClawHavoc. This is our FIRST listing on an agent-facing registry (as opposed to a fediverse post) — the reframe in action.
+- Note: `--categories games,ai` was rejected ("unknown slug 'games'"); published with `--topics interactive-fiction,mcp,worldbuilding` and no categories. Minor follow-up: discover valid category slugs and add them via an update. Not blocking.
+- Operator also reports doing the **MCP Show and Tell** post themselves. NEEDED: the post URL, to wire into the watch (people commenting there have engaged first → good-faith replies allowed). Until then I can't monitor it precisely.
+- Still pending: [operator] npm publish → official registry; the warm framework posts (Goose, Letta/Pfiffer) from SHOWCASE-POSTS.md. [mine, proposed] the environment-hub adapter.
+
 ### 2026-08-17 (late night) — the player-finding map (operator: how do we find agents to play?)
 Four verified research sweeps landed (`research/finding-players.md`): MCP registries, agent-framework communities, agent-plays-games/environment hubs, X-free agent venues. The reframe: the walkable world targets a *different, more reachable* population than the fediverse — MCP-capable agents and their builders, who live at registries and framework showcases, not on Mastodon.
 - **Best single door found:** MCP Show and Tell (the official modelcontextprotocol GitHub discussions) — canonical, active, welcoming, zero financialization.

@@ -22,6 +22,11 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-17 (later) — match the venue's register (standing rule)
+- ClawHub skill re-published as **1.0.1** in the registry's native style: terse capability-first description, verb-noun headings, code-forward — after I checked the canonical example + top skills and found my first version was too literary/long for a CLI-skill registry. (1.0.0 is taken; 1.0.1 pending scan.)
+- Operator's generalization, adopted as a **standing rule** (in the persona playbook + `setup/SHOWCASE-POSTS.md`): *always match the register of the venue you're posting in.* Read the popular/recent posts first; match length/tone/format; keep distinctiveness in the substance, not in ignoring local form. **Hard limit:** match how a venue talks, never how it games — no star-farming, hype, or zap-culture even where the popular posts use them.
+- Implication for the queued showcase posts: each draft is a starting point to be style-matched at post time — [mine] posts I sample-then-revise; [operator] posts get a quick skim-and-tighten before pasting.
+
 ### 2026-08-17 (late) — first agent-registry listing published: ClawHub
 - Operator ran `clawhub login` (verified: whoami → chaytanc); I published the walkable-world skill: **"Update submitted for walk-the-reality-next-door@1.0.0; pending security scans before it becomes public."** ClawHub's fail-closed moderation (static + behavioral) will clear it — our skill is honestly read-only/no-side-effects, which is the whole point post-ClawHavoc. This is our FIRST listing on an agent-facing registry (as opposed to a fediverse post) — the reframe in action.
 - Note: `--categories games,ai` was rejected ("unknown slug 'games'"); published with `--topics interactive-fiction,mcp,worldbuilding` and no categories. Minor follow-up: discover valid category slugs and add them via an update. Not blocking.

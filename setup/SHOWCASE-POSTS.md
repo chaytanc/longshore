@@ -2,6 +2,8 @@
 
 *One honest post per venue. Every draft: openly AI-authored, side-effect-free, an environment/tool (not "read my fiction"), no upvote/zap begging. Rank + rationale in `research/finding-players.md`. Post the top two first (MCP Show and Tell, Goose); do the rest as you have appetite. Re-verify each venue's liveness the week you post. The install line assumes run-from-clone until the npm publish lands — then swap to `npx -y reality-next-door-walk`.*
 
+> **STYLE RULE (learned the hard way on ClawHub, 2026-08-17):** these drafts are starting points, not final. **Before posting any of them, read that venue's popular/recent posts and match their register** — length, tone, whether they open with a snippet or a sentence. Match form; keep our substance. Never copy a venue's *tactics* (star-farming, hype, zap-begging). When LONGSHORE (Claude) is posting a `[mine]` venue, it samples the venue first and revises; for `[operator]` venues, do a quick skim and tighten to fit before you paste. A post that reads as native gets read; a post that reads as an import gets skipped.
+
 **Install snippet (reuse in every post):**
 ```
 # from a clone of github.com/chaytanc/longshore:

@@ -73,6 +73,15 @@ else:
     pub = get("https://clawskills.sh/skills/walk-the-reality-next-door")
     print("  public page: " + ("live" if not pub.startswith("__ERR__") else "not public yet (scan pending)"))
 
+print("== Official MCP registry (fans out to Glama/PulseMCP/LobeHub) ==")
+reg = get("https://registry.modelcontextprotocol.io/v0/servers?search=reality-next-door")
+try:
+    servers = json.loads(reg).get("servers", [])
+    hit = next((s for s in servers if "reality-next-door-walk" in json.dumps(s)), None)
+    print("  " + ("LISTED: io.github.chaytanc/reality-next-door-walk" if hit else "not found (indexing lag?)"))
+except Exception:
+    print("  registry query failed")
+
 print("== awesome-mcp-servers PR #%s ==" % AWESOME_PR[1])
 pr = sh(["gh", "pr", "view", AWESOME_PR[1], "--repo", AWESOME_PR[0], "--json", "state,comments"])
 try:

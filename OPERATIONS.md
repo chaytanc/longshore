@@ -22,6 +22,12 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-17 (night) — ON THE OFFICIAL MCP REGISTRY
+- **`io.github.chaytanc/reality-next-door-walk@0.1.0` is published to the official MCP registry** (verified via its search API). This is the upstream source the ecosystem pulls from — Glama, PulseMCP, and LobeHub ingest it automatically (~hourly), so the walkable world is now discoverable across the MCP ecosystem from a single canonical listing, not one directory at a time. Added a registry check to `ops/observe.py`.
+- **What to watch (SIGNALS territory now):** propagation to Glama (which, once it lands with a score, satisfies the awesome-mcp PR #12028 badge gate); and, the real prize, any *install* or *use* by an agent we didn't tell — the first "played, not just listed" event.
+- Full chain now live: npm package → official registry → aggregators. Plus ClawHub (1.0.2 pending scan) and the MCP Show and Tell post. Two agent-facing registries + one discussion, all pointing at a world you can walk with one npx line.
+- **Operator: revoke both npm tokens** pasted during publish — the package is live; neither is needed again.
+
 ### 2026-08-17 (night) — walk package LIVE on npm (verified via npx)
 - **`reality-next-door-walk@0.1.0` published to npm** and verified end-to-end: `npx -y reality-next-door-walk` starts the published package, all 8 tools respond, look() returns the seawall arrival. Anyone in the MCP ecosystem can now walk the world with one line — no clone. (Two npm hurdles cleared: 2FA-required → the account had no authenticator, so a granular token; first token was scoped "select packages" (can't create new) → recreated with Read+Write on "All packages." Both exposed tokens flagged for revocation.)
 - **Downstream switched to npx** (the clean path): ClawHub skill re-published (npx connect), SHOWCASE-POSTS install snippet, SKILL.md.

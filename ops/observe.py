@@ -91,4 +91,5 @@ print("  " + ("listed" if not gl.startswith("__ERR__") else "not indexed yet (ne
 print("\n---- NEEDS ACTION ----")
 print("\n".join("  • " + n for n in needs) if needs else "  (nothing blocking)")
 print("  • Mastodon replies are checked by ops/cycle.py, not here.")
-print("  • MCP Show and Tell post: no URL on file — can't monitor until the operator provides it.")
+print("  • MCP Show and Tell: github.com/orgs/modelcontextprotocol/discussions/834 —")
+print("    org discussions aren't in the GraphQL API; monitor by WebFetching that URL each watch cycle.")

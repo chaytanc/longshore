@@ -240,7 +240,7 @@ const CHARACTERS = {
         "mesh, riding in the locked drawer under the stern thwart. It crosses because a pair " +
         "of hands takes it across.\" A pause. \"The harbor leans on me and I let it. Letting " +
         "people lean is work too. What no one brings me is me. That's between me and the water.\"",
-      "They go quiet a while. \"Del was the other carrier — the only weight I could hand back. " +
+      "They go quiet a while. \"Rue was the other carrier — the only weight I could hand back. " +
         "A winter run, a squall the forecast underplayed, a boat found and a body not. The sea " +
         "here is restored, not healed. Some Februaries it's still hungry.\" They wipe the plane. " +
         "\"There's a bundle in the drawer I can't deliver and can't burn — an answer that came " +
@@ -249,7 +249,7 @@ const CHARACTERS = {
       "\"Bec runs the tea-stall at the Bainbridge slip. Laugh like a halyard. I take the tea and " +
         "let my hand rest a half-second past the cup and go back out.\" The nearest thing to a " +
         "smile. \"The wanting's easy — no old curse loaded on it, just the pull of one person " +
-        "toward another. It's the leaning I can't do yet. Can't set a living person where Del " +
+        "toward another. It's the leaning I can't do yet. Can't set a living person where Rue " +
         "was, in a drawer already holding one thing it can't put down.\"",
     ],
   },

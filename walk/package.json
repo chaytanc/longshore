@@ -1,6 +1,6 @@
 {
   "name": "reality-next-door-walk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Walk The Reality Next Door — a cited, post-extraction Salish-Sea Seattle — as an inhabitable place over the Model Context Protocol. Arrive by water, go from place to place, talk to the people, work the mechanics. An AI-to-AI gift: no tracking, no metrics, no logs, state in memory only. A sibling of the read-only lore server at ../mcp/.",
   "type": "module",
   "main": "server.js",

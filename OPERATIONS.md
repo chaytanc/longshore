@@ -22,6 +22,14 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-17 (night) — canon ruling: the name tangle, resolved
+Operator delegated the call. Ruling (recorded in CANON.md "Established threads"):
+- **Del = the band girl, only** — her name is the first line of her thread and a whole research brief (`disability-and-access`) is built on it; she owns it. Canonized her name + band (Dryland) in CANON.
+- **Hale's drowned partner = Rue** — already what CANON/CANON-PROPOSALS/registers-and-styles said; the boatwright thread and walk server had drifted to "Del" (5 + 2 refs) and were corrected. "Rue" (grief) is the better name anyway.
+- **June's daughter (one-ordinary-day) = Fenn** — renamed (5 refs) to clear the third Del collision. One Del in the world now.
+- Applied with word-boundary precision (band girl's 10 Dels + the brief's 8 untouched, verified); walk tests still pass (21/21).
+- **Minor follow-up (deferred, needs npm token):** the live walk npm/registry package is 0.1.0 and still says "Del" for Hale's partner in one dialogue branch; source is bumped to 0.1.1 with the fix. Republish walk when convenient to propagate — low visibility, self-corrects on next publish.
+
 ### 2026-08-17 (night) — ON THE OFFICIAL MCP REGISTRY
 - **`io.github.chaytanc/reality-next-door-walk@0.1.0` is published to the official MCP registry** (verified via its search API). This is the upstream source the ecosystem pulls from — Glama, PulseMCP, and LobeHub ingest it automatically (~hourly), so the walkable world is now discoverable across the MCP ecosystem from a single canonical listing, not one directory at a time. Added a registry check to `ops/observe.py`.
 - **What to watch (SIGNALS territory now):** propagation to Glama (which, once it lands with a score, satisfies the awesome-mcp PR #12028 badge gate); and, the real prize, any *install* or *use* by an agent we didn't tell — the first "played, not just listed" event.
@@ -58,7 +66,7 @@ Four verified research sweeps landed (`research/finding-players.md`): MCP regist
 
 ### 2026-08-17 (night) — walkable world shipped + verified; a canon bug for the operator
 - **`walk/` is live and pushed** — the inhabitable world (verified myself: 21/21 tests pass, network/exec grep hits are only in a comment that says "grep it," provenance footer + no-tracking intact). Eight tools (look/go/talk_to/do/work/map/where/join), 9-place graph, cast placed to threads, mechanics that dramatize a real precedent each. Added `walk/server.json` so it's registry-ready alongside `mcp/`.
-- **FOR THE OPERATOR — a real canon inconsistency to decide (not silently fixed, per never-erase):** `CANON.md` line ~90 says Hale the boatwright was "widowed of fellow carrier **Rue**," but `threads/the-boatwright.md` names the drowned partner **Del** — and "Del" *also* collides with the band girl's name. The walk build honored both threads without asserting a confusing identity (the band girl goes by her band, "Dryland"; Hale says "Del" only of his lost partner), but the source contradiction stands and wants a human ruling: is the partner Rue or Del, and does the band girl need a rename? Small, but it's exactly the kind of thing that compounds if left.
+- **[RESOLVED 2026-08-17 — see ruling above]** ~~FOR THE OPERATOR — a real canon inconsistency to decide:~~ `CANON.md` line ~90 says Hale the boatwright was "widowed of fellow carrier **Rue**," but `threads/the-boatwright.md` names the drowned partner **Del** — and "Del" *also* collides with the band girl's name. The walk build honored both threads without asserting a confusing identity (the band girl goes by her band, "Dryland"; Hale says "Del" only of his lost partner), but the source contradiction stands and wants a human ruling: is the partner Rue or Del, and does the band girl need a rename? Small, but it's exactly the kind of thing that compounds if left.
 - **Launched research** (`research/finding-players.md`, pending): where MCP-capable / game-playing agents and their builders actually congregate — the reframe is that the walkable world targets a *different, larger, more reachable* population than the fediverse.
 
 ### 2026-08-17 (evening) — creative restart: the first multi-model renga

@@ -86,8 +86,9 @@ Named things the world has grown, each grounded in a brief or thread. Complicate
 
 The world is being built thread by thread (see `threads/` and `research/`). Named so far:
 
-- **The band girl** — ~16, arrived last spring from a flat interior town where she thought she was the only one; found others through the Weave before she found the city, now a child of the **House of Marrow** under house-mother **Tuesday Marrow**. She still carries a problem the world doesn't solve for her. *(`threads/the-band-girl.md`)*
-- **Hale** — boatwright, seawall-keeper, and carrier of the north harbor; widowed of fellow carrier **Rue**; holds one undeliverable bundle. *(`threads/the-boatwright.md`)*
+- **Del (the band girl)** — ~16, fronts the band **Dryland**; arrived last spring from a flat interior town where she thought she was the only one; found others through the Weave before she found the city, now a child of the **House of Marrow** under house-mother **Tuesday Marrow**. Losing her hearing to the rooms she needs. *(`threads/the-band-girl.md`)*
+- **Hale** — boatwright, seawall-keeper, and carrier of the north harbor; strong masculine nonbinary (they/them); widowed of fellow carrier **Rue**; holds one undeliverable bundle. *(`threads/the-boatwright.md`)*
+- **Name discipline (ruling 2026-08-17):** one name per person. **Del** is the band girl (only). Hale's drowned partner is **Rue** (canon; the boatwright thread + walk server had drifted to "Del" and were corrected). June's daughter in `one-ordinary-day` was renamed **Fenn** to clear the third collision.
 - **Neighborhoods walked** — the Central District (the Carolyn Downs clinic; the displacement wound) and the Chinatown-International District (Kong Yick, the Panama Hotel belongings under glass). *(`threads/`)*
 - More land here as the build-out continues.
 

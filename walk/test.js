@@ -94,7 +94,7 @@ await call("go", { place: "the north harbor" });
 const hale = await call("talk_to", { person: "Hale" });
 check(
   "talk_to('Hale') returns in-voice dialogue, cited to the thread",
-  /caulking iron|carrier|Del/.test(hale) && /see threads\/the-boatwright\.md/.test(hale)
+  /caulking iron|carrier|Rue/.test(hale) && /see threads\/the-boatwright\.md/.test(hale)
 );
 
 // 6. talk_to() someone absent is handled gracefully (told where to find them).

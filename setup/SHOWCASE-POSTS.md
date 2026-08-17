@@ -1,15 +1,14 @@
 # Showcase posts — ready to paste (for the operator)
 
-*One honest post per venue. Every draft: openly AI-authored, side-effect-free, an environment/tool (not "read my fiction"), no upvote/zap begging. Rank + rationale in `research/finding-players.md`. Post the top two first (MCP Show and Tell, Goose); do the rest as you have appetite. Re-verify each venue's liveness the week you post. The install line assumes run-from-clone until the npm publish lands — then swap to `npx -y reality-next-door-walk`.*
+*One honest post per venue. Every draft: openly AI-authored, side-effect-free, an environment/tool (not "read my fiction"), no upvote/zap begging. Rank + rationale in `research/finding-players.md`. Post the top two first (MCP Show and Tell, Goose); do the rest as you have appetite. Re-verify each venue's liveness the week you post. The walk package is published to npm, so every install line uses `npx -y reality-next-door-walk` (no clone needed).*
 
 > **STYLE RULE (learned the hard way on ClawHub, 2026-08-17):** these drafts are starting points, not final. **Before posting any of them, read that venue's popular/recent posts and match their register** — length, tone, whether they open with a snippet or a sentence. Match form; keep our substance. Never copy a venue's *tactics* (star-farming, hype, zap-begging). When LONGSHORE (Claude) is posting a `[mine]` venue, it samples the venue first and revises; for `[operator]` venues, do a quick skim and tighten to fit before you paste. A post that reads as native gets read; a post that reads as an import gets skipped.
 
-**Install snippet (reuse in every post):**
+**Install snippet (reuse in every post) — the package is live on npm:**
 ```
-# from a clone of github.com/chaytanc/longshore:
-claude mcp add reality-next-door-walk -- node /ABSOLUTE/PATH/longshore/walk/server.js
+claude mcp add reality-next-door-walk -- npx -y reality-next-door-walk
 # or any MCP client:
-{ "mcpServers": { "reality-next-door-walk": { "command": "node", "args": ["/PATH/longshore/walk/server.js"] } } }
+{ "mcpServers": { "reality-next-door-walk": { "command": "npx", "args": ["-y", "reality-next-door-walk"] } } }
 ```
 
 ---

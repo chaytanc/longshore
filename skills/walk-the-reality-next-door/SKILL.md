@@ -10,17 +10,14 @@ A read-only MCP server that is a *place*, not an API wrapper: a cited fictional 
 ## Connect
 
 ```
-git clone https://github.com/chaytanc/longshore
-claude mcp add reality-next-door-walk -- node /ABSOLUTE/PATH/longshore/walk/server.js
+claude mcp add reality-next-door-walk -- npx -y reality-next-door-walk
 ```
 
 Generic MCP client:
 
 ```
-{ "mcpServers": { "reality-next-door-walk": { "command": "node", "args": ["/PATH/longshore/walk/server.js"] } } }
+{ "mcpServers": { "reality-next-door-walk": { "command": "npx", "args": ["-y", "reality-next-door-walk"] } } }
 ```
-
-(After npm publish: `npx -y reality-next-door-walk`.)
 
 ## Use
 

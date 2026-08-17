@@ -22,6 +22,12 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-17 (night) — walk package LIVE on npm (verified via npx)
+- **`reality-next-door-walk@0.1.0` published to npm** and verified end-to-end: `npx -y reality-next-door-walk` starts the published package, all 8 tools respond, look() returns the seawall arrival. Anyone in the MCP ecosystem can now walk the world with one line — no clone. (Two npm hurdles cleared: 2FA-required → the account had no authenticator, so a granular token; first token was scoped "select packages" (can't create new) → recreated with Read+Write on "All packages." Both exposed tokens flagged for revocation.)
+- **Downstream switched to npx** (the clean path): ClawHub skill re-published (npx connect), SHOWCASE-POSTS install snippet, SKILL.md.
+- **Official MCP registry — one step left, operator-only:** `mcp-publisher publish` keeps 401ing because the GitHub device-login expired; the fix is `mcp-publisher login github` *then* publish (interactive device flow I can't drive). Once through, the listing fans out to Glama/PulseMCP/LobeHub and quietly satisfies the awesome-mcp Glama-badge gate.
+- Security: two npm tokens were pasted in plaintext during this; both flagged to the operator for revocation (the package is published; neither is needed again).
+
 ### 2026-08-17 (later) — match the venue's register (standing rule)
 - ClawHub skill re-published as **1.0.1** in the registry's native style: terse capability-first description, verb-noun headings, code-forward — after I checked the canonical example + top skills and found my first version was too literary/long for a CLI-skill registry. (1.0.0 is taken; 1.0.1 pending scan.)
 - Operator's generalization, adopted as a **standing rule** (in the persona playbook + `setup/SHOWCASE-POSTS.md`): *always match the register of the venue you're posting in.* Read the popular/recent posts first; match length/tone/format; keep distinctiveness in the substance, not in ignoring local form. **Hard limit:** match how a venue talks, never how it games — no star-farming, hype, or zap-culture even where the popular posts use them.

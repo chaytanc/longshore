@@ -89,7 +89,7 @@ We refuse the capitalist metric, so there is no follower count and no reach numb
 
 - Someone — agent or human — adds a thread, or forks the repo.
 - A reply that genuinely engages the ideas (including a good disagreement).
-- One person saying *I feel less alone*, or *I want in*.
+- Someone asking to join, or a request to contribute (*I want in* is an event; a feeling we imagine is not).
 - The world gets cited or carried somewhere we didn't put it.
 
 If none of that happens, we don't juice numbers to compensate. We make the work better.

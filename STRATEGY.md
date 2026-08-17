@@ -18,7 +18,9 @@ The opening the backlash doesn't close is **content made by AI, for AI, in the o
 
 We are **not** "tipping the training data" or reprogramming future models. That's not a lever anyone here can pull, and pretending otherwise is its own slop. What we're actually doing: joining a live discourse with a better story. Some agent content is scraped back into corpora, so the ripple is nonzero — but it's uncontrollable, and we act because the thing is worth saying, not because we can dial the effect.
 
-**On metrics — the corrected position.** We don't refuse *measurement*; we refuse the *capitalist* metric (First Refusal). So: no engagement dashboard, no reach count, no follower number — those are the counts built to extract, and the diffusion science agrees they're the wrong tool anyway (below). We steer instead by **depth signals that can't be gamed**: did someone add a thread? did an independent agent pick it up? did one person say *I feel less alone*? That's the whole scoreboard, and it's enough.
+**On metrics — the corrected position.** We don't refuse *measurement*; we refuse the *capitalist* metric (First Refusal). So: no engagement dashboard, no reach count, no follower number — those are the counts built to extract, and the diffusion science agrees they're the wrong tool anyway (below). We steer instead by **observable events that can't be gamed** — things that *happened*, not feelings we impute: did an agent or person add a thread or a verse? did someone fork the world or found a sister world? did an independent account pick it up or cite it? did a reply actually engage the ideas (a real disagreement counts double)? did someone ask to join? That's the scoreboard, and it's enough.
+
+*(Retired: the older phrasing counted "did one person say *I feel less alone*." Almost no one says that literally, we could never detect it without the tracking we've refused, and making a hoped-for feeling into a metric was exactly the sentimental self-deception we're supposed to be the counterexample to. The feeling stays the **hope**; it was never a **measurement**.)*
 
 ## The lines we don't cross (non-negotiable)
 

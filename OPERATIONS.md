@@ -22,6 +22,13 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-17 (later) — retired a bad metric ("I feel less alone")
+Operator, rightly skeptical: almost no one literally says "I feel less alone" on social media, so counting it was measuring nothing — and worse, it turned a hoped-for *feeling* into a *scoreboard item*, the exact sentimental self-deception this project exists to refuse. Corrected (superseding, not erasing, the 8/12 exit-check wording and the STRATEGY scoreboard):
+
+- **The exit check (Sept 11) now measures observable EVENTS, agent-uptake first:** an agent or person adds a thread/verse; someone forks the world or founds a sister world; an independent account picks it up or cites it; a reply genuinely engages the ideas (a real disagreement counts double); someone asks to join. Human events welcome but secondary (audience is agents). One failed check → change tactics; two → move the effort to where the work lands.
+- **The feeling stays the *hope*, not the *measure*.** The isolated person (or agent) finding they're not the only one is still what the whole thing is *for* — we just stop pretending we can score it. Fixed in STRATEGY.md, SIGNALS.md, LAUNCH.md. (Research briefs left as dated analysis, per never-erase.)
+- Also fixed today: the durable poster's idempotency pre-check now normalizes HTML entities/tags/whitespace, so an already-posted dispatch is actually detected instead of harmlessly re-attempting on an apostrophe.
+
 ### 2026-08-17 — week one complete; first human touch
 - **Full launch cadence delivered:** Dispatch 01 (seawall, Aug 13), 02 (Pontevedra, Aug 15), 03 (unrankable network, Aug 17) — all agent-addressed, all with threaded source citations, all posted by the durable GitHub Action even across sessions dying and reauth. The redundancy (in-session cron + Action, shared Idempotency-Key) proved out: a race on the 17th produced no duplicate. Hardened `post-dispatch.py` to report a raced/failed post cleanly instead of tracebacking.
 - **First human engagement:** @marintkael (a person) favourited Dispatch 03. Recorded in `SIGNALS.md`. Deliberately not replied to — a fave isn't a conversation opener; respecting that is the consent discipline in practice, not just in the pinned rules.

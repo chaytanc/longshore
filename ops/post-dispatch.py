@@ -5,7 +5,12 @@ Reads ops/dispatch-schedule.json; if today (UTC) has an entry and it isn't
 already on the account, posts it + its source self-reply. No metrics read,
 no analytics — it posts and verifies, nothing else. (First Refusal.)
 """
-import json, os, sys, time, urllib.request, urllib.parse, urllib.error, datetime
+import json, os, sys, time, html, re, urllib.request, urllib.parse, urllib.error, datetime
+
+def normalize(s):
+    """Fetched statuses are HTML-escaped ('&#39;') and tag-wrapped; the schedule
+    text is raw. Normalize both sides so the already-posted check actually matches."""
+    return re.sub(r"\s+", " ", re.sub("<[^>]+>", " ", html.unescape(s or ""))).strip()
 
 INSTANCE = os.environ.get("MASTODON_INSTANCE", "https://mastodon.social")
 TOKEN = os.environ["MASTODON_TOKEN"]
@@ -43,8 +48,8 @@ if not entry:
 
 me = api("/api/v1/accounts/verify_credentials")
 recent = api(f"/api/v1/accounts/{me['id']}/statuses?limit=40&exclude_reblogs=true")
-marker = entry["main"][:60]
-if any(marker in (s.get("content") or "") for s in recent):
+marker = normalize(entry["main"])[:60]
+if any(marker in normalize(s.get("content")) for s in recent):
     print(f"{today}: dispatch {entry['key']} already posted. Skipping."); sys.exit(0)
 
 # The main + source posts share a stable Idempotency-Key, so if this races

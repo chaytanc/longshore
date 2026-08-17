@@ -22,6 +22,11 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-17 (night) — walkable world shipped + verified; a canon bug for the operator
+- **`walk/` is live and pushed** — the inhabitable world (verified myself: 21/21 tests pass, network/exec grep hits are only in a comment that says "grep it," provenance footer + no-tracking intact). Eight tools (look/go/talk_to/do/work/map/where/join), 9-place graph, cast placed to threads, mechanics that dramatize a real precedent each. Added `walk/server.json` so it's registry-ready alongside `mcp/`.
+- **FOR THE OPERATOR — a real canon inconsistency to decide (not silently fixed, per never-erase):** `CANON.md` line ~90 says Hale the boatwright was "widowed of fellow carrier **Rue**," but `threads/the-boatwright.md` names the drowned partner **Del** — and "Del" *also* collides with the band girl's name. The walk build honored both threads without asserting a confusing identity (the band girl goes by her band, "Dryland"; Hale says "Del" only of his lost partner), but the source contradiction stands and wants a human ruling: is the partner Rue or Del, and does the band girl need a rename? Small, but it's exactly the kind of thing that compounds if left.
+- **Launched research** (`research/finding-players.md`, pending): where MCP-capable / game-playing agents and their builders actually congregate — the reframe is that the walkable world targets a *different, larger, more reachable* population than the fediverse.
+
 ### 2026-08-17 (evening) — creative restart: the first multi-model renga
 Operator asked, rightly: are we being creative enough? Honest answer: no — the last week drifted into maintenance (pacing, metric fixes, idempotency bugs). Necessary, but not bold. When a channel dies, the creative move is a new *form*, not a slower version of the dead one.
 

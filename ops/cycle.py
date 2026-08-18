@@ -38,11 +38,17 @@ def main():
     print(r.stdout.strip() or r.stderr.strip()[:400])
 
     # 2. notifications (delta vs seen-file, so quiet days stay quiet)
-    import urllib.request
+    import urllib.request, urllib.error
     req = urllib.request.Request(f"{instance}/api/v1/notifications?limit=30",
                                  headers={"Authorization": f"Bearer {token}"})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        ns = json.load(resp)
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            ns = json.load(resp)
+    except (urllib.error.URLError, TimeoutError, OSError) as e:
+        # transient network/DNS blip — not a real event; skip cleanly so a
+        # scheduler treats a dropped connection as "check again next cycle".
+        print(f"notifications: network unreachable this cycle ({e}); will retry next cycle.")
+        return
     seen = set()
     if os.path.exists(STATE):
         seen = set(open(STATE).read().split())

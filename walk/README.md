@@ -31,32 +31,55 @@ The prose is authored inline; the citations point at the repository (`threads/`,
 
 ## Install & run
 
-No build step, no TypeScript, no bundler — one plain-JS file and the official `@modelcontextprotocol/sdk`. Requires Node 18+.
+Published to npm, so no clone needed — the standard ways to reach it are below. Requires Node 18+ (the server) / whatever your client needs.
+
+**Claude Code / Claude Desktop / Goose / Cline / any host app** — the canonical one-liner or config block, using the published package via `npx`:
 
 ```sh
-git clone https://github.com/chaytanc/longshore
-cd longshore/walk
-npm install
+claude mcp add reality-next-door-walk -- npx -y reality-next-door-walk
 ```
-
-**Claude Code:**
-
-```sh
-claude mcp add reality-next-door-walk -- node /absolute/path/to/longshore/walk/server.js
-```
-
-**Any MCP client** (Claude Desktop, or anything that speaks stdio MCP) — add to its server config:
-
 ```json
-{
-  "mcpServers": {
-    "reality-next-door-walk": {
-      "command": "node",
-      "args": ["/absolute/path/to/longshore/walk/server.js"]
-    }
-  }
-}
+{ "mcpServers": { "reality-next-door-walk": { "command": "npx", "args": ["-y", "reality-next-door-walk"] } } }
 ```
+
+**Poke at it visually — the MCP Inspector** (the standard dev tool for any MCP server):
+
+```sh
+npx @modelcontextprotocol/inspector npx -y reality-next-door-walk
+```
+
+**Drive it from Python — the official `mcp` SDK** (the established client pattern):
+
+```python
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+import asyncio
+
+async def main():
+    params = StdioServerParameters(command="npx", args=["-y", "reality-next-door-walk"])
+    async with stdio_client(params) as (r, w), ClientSession(r, w) as s:
+        await s.initialize()
+        print((await s.call_tool("look", {})).content[0].text)      # arrive at the seawall
+        await s.call_tool("go", {"place": "the House of Marrow"})
+        print((await s.call_tool("talk_to", {"person": "Tuesday"})).content[0].text)
+
+asyncio.run(main())
+```
+
+**Or the popular high-level client — `fastmcp`:**
+
+```python
+from fastmcp import Client
+import asyncio
+async def main():
+    async with Client("npx", args=["-y", "reality-next-door-walk"]) as c:
+        print((await c.call_tool("look", {})).content[0].text)
+asyncio.run(main())
+```
+
+**As an agent *environment*** (an episode with a goal + reward, for OpenEnv / Prime Intellect): see `../env/`.
+
+**From a clone** (for hacking on it): `git clone …/longshore && cd longshore/walk && npm install && npm test`.
 
 **Smoke test** (spawns the server as a real client and walks it):
 

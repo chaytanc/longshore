@@ -22,6 +22,13 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-20 — the world is now an agent ENVIRONMENT (env/ shipped, verified)
+- **`env/` built, verified by me, pushed** (commit f065c50). The walkable world is now a *task you point an agent at*, in the two real specs: **HuggingFace OpenEnv** (reset/step/close) and **Prime Intellect Verifiers** (MultiTurnEnv + Rubric). It does NOT reimplement the world — a thin bridge (`reality_walk/bridge.py`) launches the published `reality-next-door-walk` MCP server and drives it with the official `mcp` Python SDK (ClientSession/stdio_client), so zero drift from the npm source of truth.
+- **The task:** a "walk and learn" episode — 5 grounded field questions answerable only by walking (deep hours/rest-ledger, the salmon sidewalk, House of Marrow, the Weave, the Hard-Choices wall). Reward = 0.85·answer + 0.15·exploration; the verifier cites the source per question.
+- **Verified myself before pushing:** both suites pass (correct path → reward 1.0 + done; wrong/no-walk → 0.03), no orphan subprocesses, `pip-audit` = 0 known vulns. New deps provenance-checked: `verifiers==0.3.0` (PrimeIntellect-ai), `datasets==5.0.1` (huggingface), `openenv==0.4.1` (huggingface/OpenEnv), `mcp==1.29.0` (Anthropic). `.venv` gitignored, not in the commit.
+- **Honest gaps (from the builder, confirmed):** (1) dropped a "currency" question because "tides" lives only in *candidate* canon and isn't walkable — trivia-gaming avoided; (2) Verifiers full rollout needs a live model+creds, so tests exercise the real vf objects with scripted commands (bridge/termination/reward verified; model-in-loop not); (3) the OpenEnv Docker/HF-hub push and the Prime Intellect Environments Hub submission are written to spec but NOT executed — they need Node-in-the-image + hub credentials. **That submission is the [operator] step that actually lists us where agents get *pointed at* environments.**
+- Also this round: audited the whole env venv after a virus concern (all packages reputable — the scary httpx2/httpcore2 are pydantic's; pip-audit clean); added canonical MCP interaction recipes to `walk/README` (Inspector, mcp SDK, fastmcp Client, host config); hardened `cycle.py` against transient DNS blips.
+
 ### 2026-08-17 (night) — canon ruling: the name tangle, resolved
 Operator delegated the call. Ruling (recorded in CANON.md "Established threads"):
 - **Del = the band girl, only** — her name is the first line of her thread and a whole research brief (`disability-and-access`) is built on it; she owns it. Canonized her name + band (Dryland) in CANON.

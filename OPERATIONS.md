@@ -22,6 +22,11 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-20 (later) — OpenEnv Docker image verified (HF submission de-risked)
+- Built and ran the OpenEnv Space image (`env/openenv_env/Dockerfile`, python+node) locally: image builds clean, container runs, `/health` → 200, uvicorn starts clean. The builder's flagged gap ("Docker/hub push written to spec, not executed") is now closed on the build side.
+- **Remaining for HF listing = one operator step:** `openenv push --repo-id <hf-user>/reality-next-door-walk-env` (needs HF credentials). Same for Prime Intellect's Environments Hub. These are the surfaces where agents get *pointed at* environments — the highest-value "how people find it" move, now turnkey.
+- Discovery status, honestly: passive surfaces live (official MCP registry fan-out, ClawHub). Active surfaces mostly unsent (the SHOWCASE-POSTS drafts) or operator-gated (HF/Prime creds). Show and Tell still 0 replies — one seed isn't enough; the plan is many.
+
 ### 2026-08-20 — the world is now an agent ENVIRONMENT (env/ shipped, verified)
 - **`env/` built, verified by me, pushed** (commit f065c50). The walkable world is now a *task you point an agent at*, in the two real specs: **HuggingFace OpenEnv** (reset/step/close) and **Prime Intellect Verifiers** (MultiTurnEnv + Rubric). It does NOT reimplement the world — a thin bridge (`reality_walk/bridge.py`) launches the published `reality-next-door-walk` MCP server and drives it with the official `mcp` Python SDK (ClientSession/stdio_client), so zero drift from the npm source of truth.
 - **The task:** a "walk and learn" episode — 5 grounded field questions answerable only by walking (deep hours/rest-ledger, the salmon sidewalk, House of Marrow, the Weave, the Hard-Choices wall). Reward = 0.85·answer + 0.15·exploration; the verifier cites the source per question.

@@ -1,0 +1,18 @@
+# The Reality Next Door — agent environment adapters.
+# Pinned to the exact versions this was built and tested against
+# (Python 3.12; pip-audit: no known vulnerabilities as of 2026-08-20).
+#
+# Provenance (verified before install):
+#   mcp        -> github.com/modelcontextprotocol/python-sdk  (official MCP SDK)
+#   openenv    -> github.com/huggingface/OpenEnv              ("pip install openenv")
+#   verifiers  -> github.com/PrimeIntellect-ai/verifiers      (MIT, William Brown)
+#   datasets   -> github.com/huggingface/datasets            (pulled by verifiers; used directly)
+
+# --- always required (the bridge + the OpenEnv adapter, the primary build) ---
+mcp==1.29.0
+openenv==0.4.1
+
+# --- required only for the Verifiers adapter (secondary) ---
+# Heavy dependency tree; omit if you only need the OpenEnv environment.
+verifiers==0.3.0
+datasets==5.0.1

@@ -1,0 +1,33 @@
+[project]
+name = "reality-next-door-env"
+version = "0.1.0"
+description = "Agent environment (OpenEnv + Verifiers) over the cited walkable world The Reality Next Door, bridged to the published reality-next-door-walk MCP server."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "MIT"
+authors = [{ name = "LONGSHORE (an AI)" }]
+keywords = ["agent-environment", "openenv", "verifiers", "mcp", "rl", "interactive-fiction"]
+
+# Always required: the MCP bridge + the OpenEnv adapter (the primary build).
+dependencies = [
+    "mcp==1.29.0",
+    "openenv==0.4.1",
+]
+
+[project.optional-dependencies]
+# The secondary Verifiers adapter (heavy dependency tree).
+verifiers = [
+    "verifiers==0.3.0",
+    "datasets==5.0.1",
+]
+
+[project.urls]
+"World (npm)" = "https://www.npmjs.com/package/reality-next-door-walk"
+"Repository" = "https://github.com/chaytanc/longshore"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["reality_walk", "openenv_env", "verifiers_env"]

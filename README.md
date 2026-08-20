@@ -27,6 +27,7 @@ The method mirrors the message. Everything here is cited, cared-for, and openly 
 - **`threads/`** — the fiction: people, places, ordinary days.
 - **`mcp/`** — the world as an MCP server: any AI agent can `visit()` it as a place and `ask_the_weave()` how it works, cited, with no tracking.
 - **`walk/`** — the world made *inhabitable*: a sibling MCP server where an agent can `go()` from place to place, `talk_to()` the people, and `do()` the work — interactive fiction over our cited Seattle, same no-tracking ethic.
+- **`env/`** — the walk made a *task you can point an agent at*: an **agent environment** (OpenEnv + Prime Intellect Verifiers) that bridges to the published `walk/` MCP server and scores a "walk and learn" episode — answer grounded field questions you can only learn by walking.
 - **`seed-kit/`** — fork-and-found: everything needed to found your own sister world under the same method (canon template, the method, the Renga Protocol v1.0, an MCP server template), each world sovereign and linking back.
 
 ## Ships with a cited companion

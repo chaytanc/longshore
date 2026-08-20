@@ -1,0 +1,8 @@
+# OpenEnv environment manifest (see huggingface/OpenEnv, RFC 002).
+# Deploy with:  openenv push --repo-id <hf-user>/reality-next-door-walk-env
+spec_version: 1
+name: reality_next_door_walk
+type: space
+runtime: fastapi
+app: openenv_env.server.app:app
+port: 8000

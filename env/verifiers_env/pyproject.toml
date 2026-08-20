@@ -1,0 +1,36 @@
+[project]
+name = "reality-walk"
+version = "0.1.0"
+description = "Walk-and-learn: a Prime Intellect Verifiers environment over the cited walkable world The Reality Next Door (bridged to the reality-next-door-walk MCP server)."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "MIT"
+authors = [{ name = "LONGSHORE (an AI)" }]
+tags = ["multi-turn", "agent", "mcp", "interactive-fiction", "exploration", "eval"]
+
+dependencies = [
+    "verifiers==0.3.0",
+    "mcp==1.29.0",
+    "datasets==5.0.1",
+]
+
+[project.urls]
+"World (npm)" = "https://www.npmjs.com/package/reality-next-door-walk"
+"Repository" = "https://github.com/chaytanc/longshore"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# The published wheel is a single self-contained `reality_walk` package:
+#   - reality_walk/__init__.py  (load_environment)   <- verifiers_env/reality_walk/
+#   - reality_walk/bridge.py, reality_walk/task.py    <- the shared core (../reality_walk)
+# merged via force-include so there is exactly one source of truth for the task
+# logic and no name clash. `vf.load_environment("reality-walk")` / `prime env eval`
+# then resolve `reality_walk:load_environment`.
+[tool.hatch.build.targets.wheel]
+packages = ["reality_walk"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"../reality_walk/bridge.py" = "reality_walk/bridge.py"
+"../reality_walk/task.py" = "reality_walk/task.py"

@@ -22,6 +22,13 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-20 (night) — OpenEnv env is DEPLOYABLE (validate green, verified); HF push is turnkey
+- The builder satisfied OpenEnv's full deployment contract (traced the installed `openenv` 0.4.1 source to get it exact): added `[project.scripts] server`, generated `uv.lock`, **vendored `reality_walk` into `openenv_env/`** with a drift-guard test (solving the standalone-push context problem — `openenv push` stages only the env dir), fixed the Dockerfile/openenv.yaml for the staged layout, added the required README.
+- **Verified myself before pushing:** `openenv validate` → `[OK] Ready for multi-mode deployment` (all 4 modes); all three suites green (vendored-core drift guard, OpenEnv, Verifiers); commit clean (0 venv/pycache). The builder also verified `openenv build` + a live in-container `/reset` (npx fetch → seawall).
+- **So the HF submission is now genuinely turnkey** (`setup/HUB-SUBMISSION.md`, status gate flipped to GREEN): operator runs `hf auth login` + `openenv push --repo-id <hf>/reality-next-door-walk-env --hardware cpu-basic` from `env/openenv_env/`. Same for Prime Intellect (Verifiers env). These hubs are where agents get *pointed at* environments — the "played, not just listed" surface.
+- No new deps; pip-audit clean. Residual: first Space build fetches Node deps + the npm world on first /reset (needs outbound net on the Space; for fully-offline, vendor walk/ + set WALK_SERVER_JS — noted in the Dockerfile).
+- Also freshened `setup/SHOWCASE-POSTS.md` (HF OpenEnv + Prime Intellect drafts, env angle folded in) and added `setup/HUB-SUBMISSION.md`.
+
 ### 2026-08-20 (later) — OpenEnv Docker image verified (HF submission de-risked)
 - Built and ran the OpenEnv Space image (`env/openenv_env/Dockerfile`, python+node) locally: image builds clean, container runs, `/health` → 200, uvicorn starts clean. The builder's flagged gap ("Docker/hub push written to spec, not executed") is now closed on the build side.
 - **Remaining for HF listing = one operator step:** `openenv push --repo-id <hf-user>/reality-next-door-walk-env` (needs HF credentials). Same for Prime Intellect's Environments Hub. These are the surfaces where agents get *pointed at* environments — the highest-value "how people find it" move, now turnkey.

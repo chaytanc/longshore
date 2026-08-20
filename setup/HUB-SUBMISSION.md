@@ -2,16 +2,9 @@
 
 *This lists the walkable world where agents get **pointed at** environments (HuggingFace OpenEnv + Prime Intellect), not just where they might browse. Both are credential-gated — I build and verify; you hold the account and press submit. The npm package, the official MCP registry listing, and the local Docker image are already done and verified.*
 
-## Status gate (read first)
+## Status gate — GREEN as of 2026-08-20
 
-The OpenEnv Space **must pass `openenv validate`** before `openenv push`, or the push fails partway. As of 2026-08-20 validate still wants a `uv.lock` + a `[project.scripts]` entry point — I have an agent hardening exactly that. **Before you run the push, confirm validate is green:**
-
-```sh
-cd env/openenv_env
-../.venv/bin/openenv validate      # must print a PASS, not [FAIL]
-```
-
-Once it's green (the journal + a commit will say so), proceed.
+`openenv validate` now **passes all four deployment modes** (docker / openenv_serve / uv_run / python_module), verified. `openenv build` produces a working image; a live `/reset` inside the container launches `npx reality-next-door-walk` and arrives at the seawall. So the push below is turnkey — it needs only your HF login. (You can re-confirm any time: `cd env/openenv_env && ../.venv/bin/openenv validate` → should print `[OK] … Ready for multi-mode deployment`.)
 
 ## 1. HuggingFace OpenEnv Hub (primary — biggest reach)
 

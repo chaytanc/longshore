@@ -16,9 +16,23 @@ Run:  ./.venv/bin/python tests/test_verifiers_env.py     (or: pytest tests/)
 import asyncio
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+
+def _walk_procs() -> str:
+    """PIDs of any lingering local walk server subprocess (poll for a grace
+    period: a child caught mid-exit right after cleanup is not an orphan)."""
+    for _ in range(50):  # up to ~5s
+        out = subprocess.run(
+            ["pgrep", "-f", "walk/server.js"], capture_output=True, text=True
+        ).stdout.strip()
+        if out == "":
+            return ""
+        time.sleep(0.1)
+    return out
 
 import verifiers as vf  # noqa: E402
 
@@ -133,9 +147,7 @@ def test_no_orphan_subprocess():
         await env._close_episode(state)
 
     asyncio.run(run())
-    out = subprocess.run(
-        ["pgrep", "-f", "walk/server.js"], capture_output=True, text=True
-    ).stdout.strip()
+    out = _walk_procs()
     check("no orphaned walk subprocess after cleanup", out == "", out or "none")
 
 

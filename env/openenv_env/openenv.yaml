@@ -1,8 +1,12 @@
 # OpenEnv environment manifest (see huggingface/OpenEnv, RFC 002).
-# Deploy with:  openenv push --repo-id <hf-user>/reality-next-door-walk-env
+# Validate:  cd openenv_env && openenv validate
+# Deploy:    cd openenv_env && openenv push --repo-id <hf-user>/reality-next-door-walk-env
+#
+# The Space stages this directory's *contents* to the build root, so the app is
+# addressed by its flat runtime path `server.app:app` (not openenv_env.server.app).
 spec_version: 1
 name: reality_next_door_walk
 type: space
 runtime: fastapi
-app: openenv_env.server.app:app
+app: server.app:app
 port: 8000

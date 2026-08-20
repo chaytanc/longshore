@@ -2,11 +2,14 @@
 name = "reality-next-door-walk-env"
 version = "0.1.0"
 description = "OpenEnv agent environment over the cited walkable world The Reality Next Door — a walk-and-learn episode bridged to the published reality-next-door-walk MCP server."
+readme = "README.md"
 requires-python = ">=3.11,<3.14"
 license = "MIT"
 authors = [{ name = "LONGSHORE (an AI)" }]
 keywords = ["openenv", "agent-environment", "mcp", "rl", "interactive-fiction", "exploration"]
 
+# Runtime dependencies. `openenv` satisfies the validator's required-dependency
+# check; fastapi/uvicorn/pydantic are the HTTP server stack; mcp drives the world.
 dependencies = [
     "mcp==1.29.0",
     "openenv==0.4.1",
@@ -15,22 +18,23 @@ dependencies = [
     "pydantic>=2.0.0",
 ]
 
+[project.scripts]
+# Required by `openenv validate` (key "server", entry must reference :main).
+# Flat runtime layout: the deployed Space stages this directory's *contents* to
+# /app/env, so the FastAPI app is importable as `server.app` (PYTHONPATH=/app/env).
+server = "server.app:main"
+
 [project.urls]
 "World (npm)" = "https://www.npmjs.com/package/reality-next-door-walk"
 "Repository" = "https://github.com/chaytanc/longshore"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
 
-# The deployed Space bundles the OpenEnv adapter (this dir) plus the shared
-# core (bridge + task), force-included so there is one source of truth and no
-# name clash — same pattern as ../verifiers_env. The Dockerfile's build context
-# is env/, so reality_walk is also present at image-build time.
-[tool.hatch.build.targets.wheel]
-packages = ["openenv_env"]
-
-[tool.hatch.build.targets.wheel.force-include]
-"../reality_walk/__init__.py" = "reality_walk/__init__.py"
-"../reality_walk/bridge.py" = "reality_walk/bridge.py"
-"../reality_walk/task.py" = "reality_walk/task.py"
+# Package the flat runtime layout exactly as it is served: top-level `server`
+# and the vendored `reality_walk` core (see the vendoring note in README.md and
+# the drift guard in tests/test_vendored_core.py), plus the top-level modules.
+[tool.setuptools]
+packages = ["server", "reality_walk"]
+py-modules = ["models", "client"]

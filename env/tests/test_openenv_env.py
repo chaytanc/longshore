@@ -13,9 +13,23 @@ Run:  ./.venv/bin/python tests/test_openenv_env.py      (or: pytest tests/)
 
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+
+def _walk_procs() -> str:
+    """PIDs of any lingering local walk server subprocess (poll for a grace
+    period: a child caught mid-exit right after close() is not an orphan)."""
+    for _ in range(50):  # up to ~5s
+        out = subprocess.run(
+            ["pgrep", "-f", "walk/server.js"], capture_output=True, text=True
+        ).stdout.strip()
+        if out == "":
+            return ""
+        time.sleep(0.1)
+    return out
 
 from openenv_env import RealityWalkEnvironment, WalkAction  # noqa: E402
 from tests.paths import (  # noqa: E402
@@ -94,9 +108,7 @@ def test_no_orphan_subprocess():
     env.reset()
     env.step(WalkAction(command="go the north harbor"))
     env.close()
-    out = subprocess.run(
-        ["pgrep", "-f", "walk/server.js"], capture_output=True, text=True
-    ).stdout.strip()
+    out = _walk_procs()
     check("no orphaned walk subprocess after close()", out == "",
           out or "none")
 

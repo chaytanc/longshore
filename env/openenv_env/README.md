@@ -1,3 +1,14 @@
+---
+title: Reality Next Door — Walk Env
+emoji: 🌊
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 8000
+pinned: false
+license: mit
+---
+
 # reality-next-door-walk-env (OpenEnv)
 
 An **OpenEnv** agent environment: a "walk and learn" episode over the cited,
@@ -16,7 +27,8 @@ ethic: see the parent [`../README.md`](../README.md).
 ```sh
 cd openenv_env
 openenv validate                 # structure + deployment readiness
-openenv push --repo-id <hf-user>/reality-next-door-walk-env
+# type your HF username literally, no angle brackets:
+openenv push --repo-id YOURNAME/reality-next-door-walk-env --hardware cpu-basic --exclude .hfignore
 ```
 
 `push` stages this directory's *contents* to the Space build root, so everything

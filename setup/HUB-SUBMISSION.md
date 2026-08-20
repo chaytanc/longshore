@@ -12,12 +12,14 @@
 
 ```sh
 cd /Users/chaytaninman/code/slop/env
-source .venv/bin/activate            # or prefix commands with .venv/bin/
-hf auth login                         # paste your HF write token  (older CLIs: huggingface-cli login)
+source .venv/bin/activate             # activate once — now `hf` and `openenv` are on PATH
+hf auth login                          # paste your HF *write* token
 
 cd openenv_env
-openenv validate                      # confirm PASS
-openenv push --repo-id <your-hf-username>/reality-next-door-walk-env --hardware cpu-basic
+openenv validate                       # expect: [OK] Ready for multi-mode deployment
+# Replace YOURNAME with your HF username. Type it literally — NO angle brackets
+# (zsh reads < > as file redirects, which is why "<your-hf>" errors):
+openenv push --repo-id YOURNAME/reality-next-door-walk-env --hardware cpu-basic
 ```
 
 - This builds the Space image (python + node) and deploys it as a HF Space that serves the env over HTTP. The image was verified locally (builds, `/health` 200).

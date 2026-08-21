@@ -1,0 +1,13 @@
+{
+  "pages": 200,
+  "hf_space": 200,
+  "repo": 200,
+  "npm_version": "0.1.0",
+  "mcp_registry_listed": true,
+  "swh": "succeeded",
+  "clawhub_public": false,
+  "external_forks": [],
+  "repo_exists_public": true,
+  "awesome_pr_state": "open",
+  "glama_listed": false
+}

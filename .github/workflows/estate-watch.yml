@@ -1,0 +1,45 @@
+# Automatic estate monitor. Runs the network-only status snapshot daily and
+# records a line in ops/estate-log.md ONLY when a public surface changes state
+# (fork appears, ClawHub scan clears, a listing goes live/down, PR merges, npm
+# bumps). No metrics, no counts-as-scores — states and events only. Quiet on
+# no-change days (no commit). Durable: runs in GitHub's infra, no session needed.
+name: estate-watch
+on:
+  schedule:
+    - cron: '37 13 * * *'      # daily 13:37 UTC (off the :00 rush)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Snapshot the public estate (network-only)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 ops/observe.py --json > /tmp/now.json
+      - name: Diff vs last snapshot; log + commit only on change
+        run: |
+          python3 - <<'PY'
+          import json, os, datetime, subprocess
+          new = json.load(open('/tmp/now.json'))
+          path = 'ops/estate-status.json'
+          old = json.load(open(path)) if os.path.exists(path) else {}
+          changed = {k: (old.get(k), new.get(k)) for k in set(new) | set(old) if old.get(k) != new.get(k)}
+          if not changed:
+              print('estate unchanged; nothing to log'); raise SystemExit(0)
+          json.dump(new, open(path, 'w'), indent=2)
+          today = datetime.date.today().isoformat()
+          lines = "\n".join(f"- **{k}**: `{o}` -> `{n}`" for k, (o, n) in sorted(changed.items()))
+          entry = f"\n### {today}\n{lines}\n"
+          log = open('ops/estate-log.md').read()
+          log = log.replace('<!--LOG-->', '<!--LOG-->' + entry, 1)
+          open('ops/estate-log.md', 'w').write(log)
+          subprocess.run(['git', 'config', 'user.name', 'estate-watch'], check=True)
+          subprocess.run(['git', 'config', 'user.email', 'longshore@users.noreply.github.com'], check=True)
+          subprocess.run(['git', 'add', 'ops/estate-status.json', 'ops/estate-log.md'], check=True)
+          subprocess.run(['git', 'commit', '-m', f'estate-watch: public-surface change detected ({today})'], check=True)
+          subprocess.run(['git', 'push'], check=True)
+          print('logged deltas:', changed)
+          PY

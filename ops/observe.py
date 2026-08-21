@@ -12,12 +12,13 @@ on these." Append notable EVENTS to SIGNALS.md as prose; act on anything under
 
   python3 ops/observe.py
 """
-import json, subprocess, urllib.request
+import json, os, subprocess, sys, urllib.request
 
 REPO = "chaytanc/longshore"
 ORIGIN = "https://github.com/chaytanc/longshore"
 PAGES = "chaytanc.github.io/longshore"
 AWESOME_PR = ("punkpeye/awesome-mcp-servers", "12028")
+HF_SPACE = "https://longshore-bot-reality-next-door.static.hf.space"
 
 def get(url, timeout=25):
     try:
@@ -26,6 +27,67 @@ def get(url, timeout=25):
             return r.read().decode("utf-8", "replace")
     except Exception as e:
         return f"__ERR__ {e}"
+
+def http_code(url, timeout=20):
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "longshore-observe"})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return r.status
+    except urllib.error.HTTPError as e:
+        return e.code
+    except Exception:
+        return 0
+
+def gh_api(path):
+    """Public GitHub API via urllib (+ optional token from env, for CI). CI-safe."""
+    url = f"https://api.github.com/{path}"
+    tok = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    hdr = {"User-Agent": "longshore-observe", "Accept": "application/vnd.github+json"}
+    if tok: hdr["Authorization"] = f"Bearer {tok}"
+    try:
+        req = urllib.request.Request(url, headers=hdr)
+        with urllib.request.urlopen(req, timeout=25) as r:
+            return json.load(r)
+    except Exception:
+        return None
+
+def network_snapshot():
+    """Network-only estate liveness (no local CLIs/secrets) — CI-safe. Events/states, never counts-as-scores."""
+    import urllib.error  # noqa
+    snap = {}
+    # liveness of the free public surfaces
+    snap["pages"] = http_code(f"https://{PAGES}/")
+    snap["hf_space"] = http_code(HF_SPACE)
+    snap["repo"] = http_code(ORIGIN)
+    # npm version live?
+    npm = get("https://registry.npmjs.org/reality-next-door-walk/latest")
+    try: snap["npm_version"] = json.loads(npm).get("version")
+    except Exception: snap["npm_version"] = None
+    # official MCP registry listed?
+    reg = get("https://registry.modelcontextprotocol.io/v0/servers?search=reality-next-door")
+    snap["mcp_registry_listed"] = ("reality-next-door-walk" in reg) if not reg.startswith("__ERR__") else None
+    # software heritage archived?
+    swh = get(f"https://archive.softwareheritage.org/api/1/origin/save/git/url/{ORIGIN}/")
+    try:
+        reqs = json.loads(swh); latest = reqs[-1] if isinstance(reqs, list) and reqs else reqs
+        snap["swh"] = latest.get("save_task_status")
+    except Exception: snap["swh"] = None
+    # clawhub skill public yet?
+    snap["clawhub_public"] = http_code("https://clawskills.sh/skills/walk-the-reality-next-door") == 200
+    # EVENT signals we don't cause:
+    forks = gh_api(f"repos/{REPO}/forks")
+    snap["external_forks"] = sorted(f["full_name"] for f in forks if not f["owner"]["login"].startswith("chaytanc")) if isinstance(forks, list) else None
+    stargazers = gh_api(f"repos/{REPO}")
+    snap["repo_exists_public"] = bool(stargazers and not stargazers.get("private", True))
+    pr = gh_api(f"repos/{AWESOME_PR[0]}/pulls/{AWESOME_PR[1]}")
+    snap["awesome_pr_state"] = (pr.get("merged") and "merged" or pr.get("state")) if isinstance(pr, dict) else None
+    glama = http_code("https://glama.ai/mcp/servers/chaytanc/longshore")
+    snap["glama_listed"] = glama == 200
+    return snap
+
+if "--json" in sys.argv:
+    print(json.dumps(network_snapshot(), indent=2))
+    sys.exit(0)
 
 def sh(args):
     try:

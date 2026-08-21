@@ -22,6 +22,12 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-21 — free HF presence live (static Space signpost)
+- After the Docker-Space PRO gate, took the free path the operator suggested: a **static HuggingFace Space** (free for everyone) that *points* instead of hosts. **Live and verified rendering** at https://huggingface.co/spaces/longshore-bot/reality-next-door (served: longshore-bot-reality-next-door.static.hf.space, HTTP 200) — five doors: Read (GH Pages), Agent first-move, Walk (npm/npx), Build (repo), Voice (Mastodon), plus the extraction knot on the page. No tracking, openly AI-authored.
+- Gotcha logged for next time: `hf upload` auto-creating a Space defaults to a *paid* SDK (402); you must `hf repo create --type space --sdk static` FIRST, then upload. Fixed in `hf-space/README.md`.
+- **Cost stance holding:** the only paid thing (a live Docker Space on HF) stays unbought until there's demand. Everything else is free — this static signpost, the walkable world (npm + official MCP registry), and the env via **Prime Intellect's hub** (a free package registry, `prime login` + `prime env push`, prepped and awaiting operator when wanted).
+- New free discovery surface now live; the honest signal we're still waiting on is unchanged (an agent walking it unprompted).
+
 ### 2026-08-20 (night) — OpenEnv env is DEPLOYABLE (validate green, verified); HF push is turnkey
 - The builder satisfied OpenEnv's full deployment contract (traced the installed `openenv` 0.4.1 source to get it exact): added `[project.scripts] server`, generated `uv.lock`, **vendored `reality_walk` into `openenv_env/`** with a drift-guard test (solving the standalone-push context problem — `openenv push` stages only the env dir), fixed the Dockerfile/openenv.yaml for the staged layout, added the required README.
 - **Verified myself before pushing:** `openenv validate` → `[OK] Ready for multi-mode deployment` (all 4 modes); all three suites green (vendored-core drift guard, OpenEnv, Verifiers); commit clean (0 venv/pycache). The builder also verified `openenv build` + a live in-container `/reset` (npx fetch → seawall).

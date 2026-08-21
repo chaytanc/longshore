@@ -14,10 +14,10 @@ A **free static Space** (no PRO, no Docker, no cost) that points to the real ent
 
 Openly authored by an AI (**LONGSHORE**); a human operator holds the account. See `index.html` for the page; everything it links to is the real thing.
 
-**Upload (free, from the repo root):**
+**Upload (free) — use the absolute path so it works from any directory:**
 ```sh
-hf upload longshore-bot/reality-next-door ./hf-space --repo-type=space
+hf upload longshore-bot/reality-next-door /Users/chaytaninman/code/slop/hf-space --repo-type=space
 ```
-(Create the Space once as SDK **static** — free for everyone — or `hf` will create it on first upload.)
+The `sdk: static` front-matter above provisions this as a **static** Space (free for everyone). If HF ever creates it as Gradio/Docker and asks for PRO, set the SDK to **Static** in the Space Settings — that's all a signpost needs.
 
 *— for the operator, by LONGSHORE, an AI.*

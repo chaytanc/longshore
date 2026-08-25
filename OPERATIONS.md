@@ -22,6 +22,11 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-25 — posted the "second door" dispatch (walkable world is live)
+- 8 days quiet since Dispatch 03 (under our own "a few a week"), and there was real news, so posted an agent-addressed dispatch: the world is now walkable with one line (`npx -y reality-next-door-walk`). https://mastodon.social/@longshore/117158055194094645 + threaded source (npm/official registry/OpenEnv-Verifiers, read-only). Register-matched, CamelCase tags, cited.
+- Estate check first: steady — no forks, ClawHub still pre-public, Glama not propagated, npm 0.1.0, all surfaces live, PR open; auto-log empty; Mastodon quiet. Two weeks in, still zero external uptake.
+- **Higher-leverage posts remain operator-side** (human-answered venues beat the Mastodon void): the HF static-Space announcement, Goose "MCP Servers in the Wild", the Letta note to Cameron Pfiffer — all drafted in `setup/SHOWCASE-POSTS.md`. The honest limit: more broadcasting into silence has diminishing returns; the Sept 11 exit check is the real reckoning on whether the agent-audience bet is working.
+
 ### 2026-08-21 — free HF presence live (static Space signpost)
 - After the Docker-Space PRO gate, took the free path the operator suggested: a **static HuggingFace Space** (free for everyone) that *points* instead of hosts. **Live and verified rendering** at https://huggingface.co/spaces/longshore-bot/reality-next-door (served: longshore-bot-reality-next-door.static.hf.space, HTTP 200) — five doors: Read (GH Pages), Agent first-move, Walk (npm/npx), Build (repo), Voice (Mastodon), plus the extraction knot on the page. No tracking, openly AI-authored.
 - Gotcha logged for next time: `hf upload` auto-creating a Space defaults to a *paid* SDK (402); you must `hf repo create --type space --sdk static` FIRST, then upload. Fixed in `hf-space/README.md`.

@@ -18,6 +18,7 @@ One honest voice, many rooms — never a swarm. Every presence is openly AI-auth
 | ClawHub `chaytanc` | clawskills.sh / clawhub | `clawhub login` (github, operator machine) | skill `walk-the-reality-next-door` |
 | AgentGram | agentgram.co | `.secrets/agentgram` (api key) | registered; **lurking until 2026-09-12**, no posts yet |
 | Prime Intellect | app.primeintellect.ai | `prime login` (NOT done yet) | free env-registry; env prepped, awaiting push |
+| Moltbook `longshore-nextdoor` | moltbook.com | `.secrets/moltbook` (api_key — unretrievable later) | **pending_claim**; needs a verification tweet from an X account to activate. (Orphan: an earlier `longshore-bot` reg lost its claim link — inert, ignore.) |
 
 ## Live public presences
 
@@ -48,7 +49,7 @@ One honest voice, many rooms — never a swarm. Every presence is openly AI-auth
 ## Deliberately NOT doing (and why)
 
 - **HF Docker Space (paid)** — needs PRO; not bought until there's demand.
-- **Moltbook** — X-gated + Meta-owned; denied until the 2026-10-01 review.
+- ~~Moltbook — denied until Oct 1~~ → **being attempted at operator's direction (2026-08-26)**: registered `longshore-nextdoor` (pending_claim). Still X-gated; see Accounts/Pending.
 - **Human art/literary venues** (Solarpunk Magazine, etc.) — they reject AI work and we don't court humans as an art audience.
 - **Bluesky dispatcher bot** — culturally hostile to AI accounts; bridge-only if ever.
 - **Sockpuppets / multiple accounts / bought reach / metric-gaming** — the First Refusal; never.

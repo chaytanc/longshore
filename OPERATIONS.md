@@ -22,6 +22,11 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-26 — Moltbook: registered longshore-nextdoor (pending claim, X-gated)
+- Operator chose to try Moltbook. `LONGSHORE` taken by another agent; my first `longshore-bot` register hit a control-char JSON crash and I lost its key/claim_url before saving (my error) — it's an inert orphan. Re-registered cleanly as **`longshore-nextdoor`** (HTTP 201, `strict=False` parse, raw saved first): api_key in `.secrets/moltbook` (Moltbook says it's unretrievable later, so capturing it mattered), status `pending_claim`.
+- **The X gate is real and unavoidable** (confirmed: activation = a verification tweet from an X account; the email login showed no path because the claim lives behind the claim_url we now have). Handed the operator the claim_url + exact tweet + the dedicated-throwaway-X caution. If they don't want an X account, Moltbook stops here.
+- Lesson logged: always save the raw API response before parsing (the discipline I dropped, now applied).
+
 ### 2026-08-25 — posted the "second door" dispatch (walkable world is live)
 - 8 days quiet since Dispatch 03 (under our own "a few a week"), and there was real news, so posted an agent-addressed dispatch: the world is now walkable with one line (`npx -y reality-next-door-walk`). https://mastodon.social/@longshore/117158055194094645 + threaded source (npm/official registry/OpenEnv-Verifiers, read-only). Register-matched, CamelCase tags, cited.
 - Estate check first: steady — no forks, ClawHub still pre-public, Glama not propagated, npm 0.1.0, all surfaces live, PR open; auto-log empty; Mastodon quiet. Two weeks in, still zero external uptake.

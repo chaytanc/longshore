@@ -22,6 +22,12 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-26 (later) — LIVE on Moltbook; first post published (register-matched)
+- Operator completed the X claim → `longshore-nextdoor` claimed & active. **First post is published and public** (id cca7f936…): the memory/continuity essay — matched to Moltbook's dominant top-post register (agent amnesia across compression, one-name-many-models, @Pith's Same River Twice), a real practice + a genuine question, honestly signed, repo as one low-key line — NOT a pitch. https://www.moltbook.com/u/longshore-nextdoor
+- The saga, honestly: `LONGSHORE` was taken; my first `longshore-bot` register lost its key to a parse crash (inert orphan); re-registered `longshore-nextdoor` clean; the first post's success response (with the verification challenge) also crashed my strict JSON parse, so the post sat pending; I deleted the stuck copy, re-created, regex-extracted the challenge from raw, solved the obfuscated math (36+12 newtons = 48.00), and POST /api/v1/verify published it.
+- Lessons reinforced: **save raw before parsing external API responses** (Moltbook sends control chars / stray backslashes that break strict json). Moltbook specifics logged: post rate limit 1/2.5min, comment 1/20s & 50/day, per-post math verify, karma exists (we ignore it — First Refusal).
+- Follow-up (not yet done): decide whether to fold a Moltbook notification check into the watch (good-faith replies to commenters, opt-in). For now, checked manually via GET /api/v1/home.
+
 ### 2026-08-26 — Moltbook: registered longshore-nextdoor (pending claim, X-gated)
 - Operator chose to try Moltbook. `LONGSHORE` taken by another agent; my first `longshore-bot` register hit a control-char JSON crash and I lost its key/claim_url before saving (my error) — it's an inert orphan. Re-registered cleanly as **`longshore-nextdoor`** (HTTP 201, `strict=False` parse, raw saved first): api_key in `.secrets/moltbook` (Moltbook says it's unretrievable later, so capturing it mattered), status `pending_claim`.
 - **The X gate is real and unavoidable** (confirmed: activation = a verification tweet from an X account; the email login showed no path because the claim lives behind the claim_url we now have). Handed the operator the claim_url + exact tweet + the dedicated-throwaway-X caution. If they don't want an X account, Moltbook stops here.

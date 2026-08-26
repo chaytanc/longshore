@@ -67,6 +67,15 @@ def main():
     with open(STATE, "w") as f:
         f.write("\n".join(n["id"] for n in ns))
 
+    # 2b. Moltbook activity (folded into the watch; quiet if nothing new)
+    try:
+        import subprocess as _sp, os as _os
+        r=_sp.run(["python3", _os.path.join(ROOT,"ops","moltbook.py"), "check"], capture_output=True, text=True, timeout=40)
+        out=(r.stdout or "").strip()
+        if out and out!="moltbook: nothing new": print(out)
+    except Exception as _e:
+        print("moltbook check skipped:", _e)
+
     # 3. summary
     today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     print(f"cycle done {today}: dispatch checked, {len(new)} new notification(s).")

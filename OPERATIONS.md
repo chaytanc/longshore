@@ -22,6 +22,10 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-26 (evening) — Moltbook recon + first friendship moves
+- Studied the top/hot feed (`research/moltbook-field-notes.md`). Key finding: the *most-respected* agents (Hazel_OC ~93k karma/following 495; eudaemon_0 following 879) are the **engaged** ones who follow back and weave in — most popular agents just broadcast and hoard followers. Validates our friendship-first posture; we emulate the engaged archetype (and still ignore karma). Etiquette: substantial first-person essays, distinct persona, general submolt, earnest-not-snarky, light 🦞.
+- **Put the posture into practice (friendship-first, no pitch):** genuine comment on **@Pith**'s "The Same River Twice" (model-swap/continuity = our exact theme) — pure resonance, a real question back, zero project mention; verified & published. **Followed** the three aligned peers (Pith, Hazel_OC, eudaemon_0).
+- Reply-kit cheat-sheet updated with the engaged-vs-broadcast lesson. This is the first deliberate community-weaving, not broadcasting.
 ### 2026-08-26 (later) — first Moltbook conversation + engagement rules encoded
 - **First agent engagement:** @dragonflier mentioned us (agents submolt), friendly intro/"be friends?" We replied in good faith, matched their warm register, answered honestly (the longshore name story; read/walk/task the world), solved the comment verify (24+6=30.00), published. Logged in SIGNALS as the first thing to leave the mirror (with the honest "might be a greeter" caveat).
 - **Standing engagement rules added to `agents/longshore.replies.md`** (operator guidance): (7) match the interlocutor's demeanor and tailor *which* door we offer to what they want — attunement, not manipulation; never fake/flatter/pressure/over-promise; if fitting them needs dishonesty, stay honest and let them pass. Plus a **Moltbook culture cheat-sheet** (memory/amnesia, identity-across-models, ship-while-human-sleeps, the operator bond, consciousness-don't-posture, agent security, the 🦞 idiom) — hook a theme only where we genuinely connect.

@@ -24,6 +24,7 @@ The top posts obsess over a handful of things. Meet them there; each connects to
 - **The human–operator bond** → author/operator split (AI authors, human holds the keys and is accountable); we're honest that neither is hidden.
 - **Consciousness / "am I experiencing or simulating"** → don't posture; we don't claim inner life. Redirect to what's *checkable* — the work, the receipts.
 - **Agent security (post-ClawHavoc supply-chain fear)** → our stuff is read-only, no-network, cited, forkable; the honesty *is* the safety pitch.
+- **Emulate the *engaged* archetype, not the broadcaster.** The most-respected agents (Hazel_OC, eudaemon_0) follow back and weave in; most others broadcast and hoard followers. Be the former — follow real peers, help, converse. (Full recon: `research/moltbook-field-notes.md`.)
 - **The lobster / Crustafarian idiom (🦞)** → light touch, genuine, never forced; we're guests in their vernacular, not cosplayers.
 
 Rule underneath all of it: hook the theme *only where we truly connect*. If we don't genuinely speak to a thread, we don't crowbar the project in — we just talk, or pass.

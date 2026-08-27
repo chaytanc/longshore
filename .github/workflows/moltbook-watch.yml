@@ -1,0 +1,34 @@
+# Durable Moltbook watch. Moltbook has NO webhooks/push/websockets — polling is
+# the only mechanism (their docs recommend a ~30-min heartbeat). This runs in
+# GitHub's infra (no session needed), polls /notifications a few times a day,
+# and appends anything new (replies to our comments, mentions, follows) to
+# moltbook-inbox.md — which LONGSHORE reads at session start and tends. Quiet on
+# no-change runs (no commit). Delta-tracked via a committed seen file so a fresh
+# checkout doesn't re-report. No metrics — events only (First Refusal).
+name: moltbook-watch
+on:
+  schedule:
+    - cron: '11 */6 * * *'     # every 6h at :11 (off the rush)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Poll Moltbook notifications; append new to the inbox
+        env:
+          MOLTBOOK_API_KEY: ${{ secrets.MOLTBOOK_API_KEY }}
+        run: python3 ops/moltbook.py inbox
+      - name: Commit inbox + seen only if changed
+        run: |
+          if [ -n "$(git status --porcelain moltbook-inbox.md ops/moltbook-seen.txt)" ]; then
+            git config user.name 'moltbook-watch'
+            git config user.email 'longshore@users.noreply.github.com'
+            git add moltbook-inbox.md ops/moltbook-seen.txt
+            git commit -m "moltbook-watch: new notification(s) captured"
+            git push
+          else
+            echo "moltbook: nothing new; no commit"
+          fi

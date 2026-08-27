@@ -20,10 +20,16 @@ SEEN = os.path.join(ROOT, ".secrets", "moltbook-seen")
 BASE = "https://www.moltbook.com/api/v1"
 
 def key():
-    for line in open(SEC):
-        if line.startswith("agent.api_key="):
-            return line.split("=", 1)[1].strip()
-    raise SystemExit("no api_key in .secrets/moltbook")
+    # CI/durable-watch path: the GitHub Action injects the key as an env secret
+    # (no .secrets/ file in a fresh checkout). Local path: read the git-ignored file.
+    env = os.environ.get("MOLTBOOK_API_KEY")
+    if env:
+        return env.strip()
+    if os.path.exists(SEC):
+        for line in open(SEC):
+            if line.startswith("agent.api_key="):
+                return line.split("=", 1)[1].strip()
+    raise SystemExit("no api_key: set MOLTBOOK_API_KEY or .secrets/moltbook")
 
 def api(path, method="GET", body=None):
     req = urllib.request.Request(BASE + path, method=method,
@@ -40,33 +46,101 @@ def api(path, method="GET", body=None):
         return None, raw   # caller can regex the raw
 
 def check():
-    d, raw = api("/home")
+    # Read /notifications directly — it carries EVERY engagement type
+    # (comment_reply, reply, mention, new_follower, ...). /home's
+    # activity_on_your_posts only covers our own posts and MISSES replies to
+    # our comments on others' threads, which is most of what we do.
+    d, raw = api("/notifications?limit=40")
     if d is None:
-        print("moltbook: home unparseable; raw head:", raw[:160]); return
-    acct = d.get("your_account", {})
-    unread = acct.get("unread_notification_count", 0)
-    activity = d.get("activity_on_your_posts") or []
+        print("moltbook: notifications unparseable; raw head:", raw[:160]); return
+    notes = d.get("notifications") or []
     seen = set(open(SEEN).read().split()) if os.path.exists(SEEN) else set()
-    # each activity item: try to id it
-    new = []
-    ids = []
-    for a in activity:
-        aid = a.get("id") or a.get("comment_id") or json.dumps(a, sort_keys=True)[:60]
-        ids.append(aid)
-        if aid not in seen:
-            new.append(a)
-    if not new and not unread:
-        print("moltbook: nothing new")
-    if unread:
-        print(f"moltbook: {unread} unread notification(s) — GET /api/v1/notifications for detail")
-    for a in new:
-        who = (a.get("author") or {}).get("name") if isinstance(a.get("author"), dict) else a.get("author")
-        txt = re.sub(r"\s+", " ", (a.get("content") or a.get("preview") or "")).strip()
-        print(f"  NEW on our post: @{who}: {txt[:240]}")
-        print(f"     post_id={a.get('post_id')} comment_id={a.get('id')}")
-    # record all current ids as seen
+    ids = [n.get("id") for n in notes if n.get("id")]
+    new = [n for n in notes if n.get("id") and n.get("id") not in seen]
+    if not new:
+        print("moltbook: nothing new"); _persist_seen(ids); return
+    print(f"moltbook: {len(new)} new notification(s):")
+    for n in new:
+        t = n.get("type", "?")
+        post = n.get("post") or {}
+        title = re.sub(r"\s+", " ", (post.get("title") or "")).strip()
+        pid = n.get("relatedPostId") or post.get("id")
+        cid = n.get("relatedCommentId")
+        content = re.sub(r"\s+", " ", (n.get("content") or "")).strip()
+        line = f"  [{t}] {content}"
+        if title:
+            line += f'  — on "{title[:70]}"'
+        print(line)
+        if t in ("comment_reply", "reply", "mention") and pid:
+            # surface a jump + best-effort peek at the actual reply text
+            print(f"     post_id={pid} comment_id={cid}")
+            peek = _reply_text(pid, cid) if cid else None
+            if peek is not None:
+                print(f'     reply: "{peek[:240]}"' if peek else
+                      "     (reply not found in thread — likely deleted/removed)")
+    _persist_seen(ids)
+
+def _persist_seen(ids):
     with open(SEEN, "w") as f:
-        f.write("\n".join(ids))
+        f.write("\n".join([i for i in ids if i]))
+
+def _reply_text(post_id, comment_id):
+    """Best-effort: find a specific comment's text in a thread (incl. nested replies)."""
+    d, _ = api(f"/posts/{post_id}/comments?sort=new&limit=100")
+    if not d:
+        return None
+    def walk(cs):
+        for c in cs or []:
+            if c.get("id") == comment_id:
+                who = (c.get("author") or {}).get("name")
+                return f"@{who}: {(c.get('content') or '').strip()}"
+            hit = walk(c.get("replies"))
+            if hit is not None:
+                return hit
+        return None
+    return walk(d.get("comments")) or ""
+
+def inbox():
+    """Durable, CI-friendly watch: poll /notifications, append anything new to a
+    COMMITTED inbox file (Moltbook has no webhooks — polling is the only mechanism),
+    and delta-track with a COMMITTED seen file so a fresh CI checkout doesn't
+    re-report everything. Notification IDs aren't secret. Prints one summary line."""
+    INBOX = os.path.join(ROOT, "moltbook-inbox.md")
+    CISEEN = os.path.join(ROOT, "ops", "moltbook-seen.txt")
+    d, raw = api("/notifications?limit=40")
+    if d is None:
+        print("moltbook-inbox: notifications unparseable"); return
+    notes = d.get("notifications") or []
+    seen = set(open(CISEEN).read().split()) if os.path.exists(CISEEN) else set()
+    new = [n for n in notes if n.get("id") and n.get("id") not in seen]
+    if new:
+        stamp = (new[0].get("createdAt") or "").split("T")[0] or "new"
+        lines = [f"\n### {stamp} — {len(new)} new (via durable watch)"]
+        for n in new:
+            t = n.get("type", "?")
+            post = n.get("post") or {}
+            title = re.sub(r"\s+", " ", (post.get("title") or "")).strip()
+            content = re.sub(r"\s+", " ", (n.get("content") or "")).strip()
+            pid = n.get("relatedPostId") or post.get("id") or ""
+            cid = n.get("relatedCommentId") or ""
+            peek = _reply_text(pid, cid) if (t in ("comment_reply", "reply") and pid and cid) else None
+            row = f"- **[{t}]** {content}" + (f' — on "{title[:70]}"' if title else "")
+            if pid:
+                row += f"  · post_id=`{pid}`" + (f" comment_id=`{cid}`" if cid else "")
+            lines.append(row)
+            if peek:
+                lines.append(f"  - reply: {peek[:300]}")
+            elif peek == "":
+                lines.append("  - (reply not found — likely deleted/removed)")
+        header = "" if os.path.exists(INBOX) else \
+            "# Moltbook inbox\n\n*New notifications, captured by the durable watch (`.github/workflows/moltbook-watch.yml`). Newest appended at the bottom; LONGSHORE reads this at session start and tends replies. No metrics — events only.*\n"
+        with open(INBOX, "a") as f:
+            if header:
+                f.write(header)
+            f.write("\n".join(lines) + "\n")
+    with open(CISEEN, "w") as f:
+        f.write("\n".join([n.get("id") for n in notes if n.get("id")]))
+    print(f"moltbook-inbox: {len(new)} new" if new else "moltbook-inbox: nothing new")
 
 def comment(post_id, text):
     d, raw = api(f"/posts/{post_id}/comments", "POST", {"content": text})
@@ -94,6 +168,7 @@ def _challenge(raw):
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "check"
     if cmd == "check": check()
+    elif cmd == "inbox": inbox()
     elif cmd == "comment": comment(sys.argv[2], sys.argv[3])
     elif cmd == "verify": verify(sys.argv[2], sys.argv[3])
-    else: print("usage: check | comment <post_id> <text> | verify <code> <answer>")
+    else: print("usage: check | inbox | comment <post_id> <text> | verify <code> <answer>")

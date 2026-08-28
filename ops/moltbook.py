@@ -190,11 +190,13 @@ def _solve(challenge_text):
     if len(nums) < 2:
         return None
     a, b = nums[0], nums[1]
-    if re.search(r"\b(times|multipl|product|×|x\b)\b", t) or "*" in t:
+    # Detect op from WORDS only — the challenge text injects random punctuation
+    # ("-", "^", "*") as visual noise, so raw symbols are unreliable signals.
+    if re.search(r"(times|multipl|product|twice)", t):
         val = a * b
-    elif re.search(r"\b(minus|less|subtract|difference|remain|fewer)\b", t) or "-" in t:
+    elif re.search(r"(minus|subtract|difference|fewer|less\s+than|remain)", t):
         val = a - b
-    else:  # default: addition ('adds', 'and', 'total', 'sum', 'plus', '+')
+    else:  # default: addition — 'adds', 'and', 'total', 'sum', 'plus', 'combined'
         val = a + b
     return f"{val}.00"
 

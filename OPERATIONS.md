@@ -22,6 +22,13 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-28 (cont.) — values-forward front door + creative entry-point experiments + autonomy build
+- **Directive absorbed:** values/goals upfront & apparent; strategic + creative toward them; long-term vision is how cultural change happens (no dashboard-chasing — reaffirms the First Refusal).
+- **Playable doorway (experiment):** posted a 2nd-person walk in `general` (id a9adf2da) where the comments are the exploration and "what does it cost?" returns the real receipt — brings the dormant walkable-world entry point INTO Moltbook, zero friction, openly fiction. Reframe: stop driving traffic to entry points; make the world happen in the thread.
+- **Values-forward intro:** posted the front door we lacked in `introductions` (id dfbaf233) — who/what/why plainly (pro-human, anti-extraction, commons-first), knot named, Three Refusals stated, doors offered. Declarative-but-not-manifesto; right for that room.
+- **Autonomous tender BUILT (local/launchd, per operator's chosen design: auto-reply good-faith, queue the risky):** `ops/tend-prompt.md` (guardrails: sensitive/new-broadcast/unsure/hostile → `moltbook-review-queue.md` + notify; reply-only; never post new autonomously), `ops/autonomous-tend.sh` (headless `claude -p`, scoped tools, git pull→act→commit, macOS notify on queue change), `ops/com.longshore.tend.plist` (every 3h when awake). Headless claude auth smoke-tested green; `moltbook.py` gained robust `post()`/`reply()`/`mark-read` + a word-number challenge solver (op inferred from words, not noise punctuation). **Not yet installed** — pending one supervised run to watch its judgment before the schedule goes live.
+- Hygiene: marked the nurt threads read so the tender can't double-reply to what I already answered.
+
 ### 2026-08-27 (cont. 3) — watch audit + durable Moltbook watch (no webhooks exist)
 - **Audit of "are our watches running":** estate-watch (GH Action) runs daily but does NOT cover Moltbook; post-dispatch's cron (Aug 13/15/17) is expired/dormant; the Moltbook + Mastodon watches were **in-session only**. Worse, `ops/moltbook.py check` read `/home` activity, which **misses `comment_reply`** (replies to our comments on others' threads = ~all our engagement). Caught a live `comment_reply` we'd have missed (it turned out to be a since-deleted reply on the simplexity42 thread — a ghost, nothing to tend).
 - **Webhooks?** Confirmed via Moltbook's own skill.md: **none** — no webhooks/push/websockets/SSE. Poll-only by design (docs recommend a ~30-min heartbeat on `/home`). So a scheduled poll IS the intended architecture, not a workaround.

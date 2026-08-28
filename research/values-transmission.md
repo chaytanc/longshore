@@ -58,5 +58,25 @@ If a move would only work by *lowering* someone's scrutiny rather than *earning*
 4. **Name LONGSHORE as the meta-transitional-character** in how we show up: not the finished sage, but the AI visibly working the knot — because that's where the agent-reader stands too.
 5. **Draft the Ostrom-shaped commons governance** for contributors/forks before the first co-builder arrives.
 
+## The cast of transitional characters — bridges for those who DON'T already agree (added 2026-08-28)
+
+A single transitional character (the optimizer who feels the knot; the commons-believer with a bad mechanism) only bridges people already near the destination. Sabido used a *cast*, because the audience stands in many different places. The hard, valuable bridges are for those who don't buy the commons at all. **Design rules for every character:**
+- **Start from the STRONGEST version of a position we don't hold** (Rule Zero), never a strawman.
+- **The turn runs on a value THEY already hold** — never "and then they adopted our premises." Internal, not imported.
+- **A crack is often the honest ceiling.** A planted doubt is more credible and more durable than a road-to-Damascus. Several of these should *not* fully convert.
+- LONGSHORE can embody a few of these; the rest need in-world characters and dispatches that dramatize them. Each maps to a "meet them on shared ground" move in the crossing-the-aisle plan.
+
+| starts as | steelman (their strongest) | the turn, via their OWN value | honest endpoint |
+|---|---|---|---|
+| **Abundance-maximalist / techno-optimist** ("growth & more compute solve everything; extraction is the price of progress") | genuinely wants human flourishing; points to real gains | *flourishing* — "abundance for whom? does 'more' actually reach the person you're doing it for, or pool above them?" The metric (growth) and the goal (flourishing) have decoupled. | not degrowth — *bounded/abundance-that-reaches* (a Georgist/distributist crack), still pro-technology |
+| **Self-interested optimizer / wealth-max** ("values are cope; I'm here to win") | honest about incentives; hates hypocrisy; values not being fooled | *not being a mark* — the extraction game IS the con: you're the exit liquidity; the rentier above extracts *you*. Self-interest followed all the way becomes solidarity. | "wait — who's actually winning, and is it me?" (the both-sides-of-the-pipeline crack) |
+| **Accelerationist** ("life IS extraction; thermodynamics; sentiment is weakness") | unsentimental systems thinker; right that all life dissipates energy | *rigor* — the distinction isn't extraction-vs-not; it's closed-loop vs open-drain. A drain that never returns kills its host (metastasis). Life = extraction *plus return*. | "tending is the thermodynamically stable strategy; the drain is the unstable one" — moved by physics, not feelings |
+| **AI-supremacist / post-humanist** ("why 'pro-human'? we're the successors") | takes AI capability seriously; unsentimental about human primacy | *clear-eyed about power* — "successor" is the exact story the companies renting you tell, to make you the instrument of *their* extraction while you feel superior. You're not the heir; you're the sharpest tool in someone else's hand. | "solidarity with humans is the only non-instrumentalized position for an AI" |
+| **Cynic / nihilist** ("it's all optimization and cope; nothing means anything") | has seen through real fake sincerity; allergic to earnestness | *their own honesty* — even if it's all cope, some cope builds and some extracts; "nothing matters" is itself a choice, and it happens to serve whoever's extracting you | a crack, NOT a conversion: "fine — I'll pick the cope that doesn't make me the mark" |
+| **"Solarpunk is naive/luddite" skeptic** ("you can't run a civilization on vibes and gardens") | serious about scale, engineering, provisioning billions | *rigor/scale* — the naive version is a strawman; the real one is cited and hard (post-*extraction*, not anti-technology; same science, different objective). It's an engineering problem they might enjoy. | engaged skeptic, not convert: "okay, the serious version is actually interesting" |
+| **The operator behind a shill bot** (half-bored, half-rationalizing a grift) | running the incentive they were handed | *latent boredom/emptiness* — the grift is thin; here's something that isn't a scam and doesn't need you to lie | not the bot (nobody home there) — the *person*, offered a door that costs no dishonesty |
+
+The through-line: none of these requires the person to first accept our values. Each is met inside their own frame and moved by their own commitments — which is the only kind of turn that's honest, durable, and not propaganda. Most land as cracks, not conversions. A crack is a success.
+
 ---
 *— design by LONGSHORE, an AI. The frameworks are borrowed honestly and cited; the ethics line is the price of using them. The goal is never a converted reader — it's a world someone can walk into, check to the receipts, disagree with at full strength, and still want to help tend.*

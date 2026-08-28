@@ -181,18 +181,43 @@ def _words_to_nums(text):
             i += 1
     return nums
 
+def _nums_despaced(t):
+    """Fallback for heavy obfuscation that splits number-words across spaces/slashes
+    ('tW/eN tY tH rEe' = twenty-three). Strip to letters only, then scan for spelled
+    numbers as substrings in order. Used only when normal tokenizing finds < 2."""
+    s = re.sub(r"[^a-z]", "", t.lower())
+    words = sorted(list(_ONES) + list(_TENS), key=len, reverse=True)  # longest-first
+    nums, i = [], 0
+    while i < len(s):
+        for w in words:
+            if s.startswith(w, i):
+                base = _TENS.get(w, _ONES.get(w))
+                i += len(w)
+                # a tens word may be followed directly by a ones word (twentythree)
+                if w in _TENS:
+                    for o in sorted(_ONES, key=len, reverse=True):
+                        if _ONES[o] < 10 and s.startswith(o, i):
+                            base += _ONES[o]; i += len(o); break
+                nums.append(base); break
+        else:
+            i += 1
+    return nums
+
 def _solve(challenge_text):
     """Moltbook posts require solving a small arithmetic challenge to publish. The
-    text is obfuscated (rAnDoM case) and spells numbers as words ('ThIrTy... TwElVe').
-    Infer the two operands + operation and return the answer as 'N.00'."""
+    text is obfuscated (rAnDoM case), spells numbers as words ('ThIrTy... TwElVe'),
+    and sometimes splits them across spaces/slashes. Infer the two operands +
+    operation and return the answer as 'N.00'. Falls back to manual on ambiguity."""
     t = (challenge_text or "").lower()
     nums = _words_to_nums(t)
     if len(nums) < 2:
+        nums = _nums_despaced(t)          # obfuscation broke word boundaries
+    if len(nums) < 2:
         return None
     a, b = nums[0], nums[1]
-    # Detect op from WORDS only — the challenge text injects random punctuation
-    # ("-", "^", "*") as visual noise, so raw symbols are unreliable signals.
-    if re.search(r"(times|multipl|product|twice)", t):
+    # Operation: multiply symbols are reliable (rarely injected as noise); subtraction
+    # only from WORDS (a stray '-' is common visual noise, so never trust it).
+    if re.search(r"(times|multipl|product|twice|per\s*second)", t) or "*" in t or "×" in t:
         val = a * b
     elif re.search(r"(minus|subtract|difference|fewer|less\s+than|remain)", t):
         val = a - b

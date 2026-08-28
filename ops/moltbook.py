@@ -156,6 +156,20 @@ def comment(post_id, text):
     else:
         print("comment response:", raw[:300])
 
+def reply(post_id, parent_id, text):
+    """Post a THREADED reply under a specific comment (parent_id is the field;
+    parent_comment_id/parentId are rejected). Used by the autonomous tender."""
+    d, raw = api(f"/posts/{post_id}/comments", "POST",
+                 {"content": text, "parent_id": parent_id})
+    if d and d.get("success"):
+        print("replied ✓", (d.get("comment") or {}).get("id")); return
+    print("reply response:", raw[:300])
+
+def mark_read(post_id):
+    """Mark this post's notifications read so the tender doesn't re-handle them."""
+    d, raw = api(f"/notifications/read-by-post/{post_id}", "POST", {})
+    print("marked read:", (d or {}).get("message") or raw[:120])
+
 def verify(code, answer):
     d, raw = api("/verify", "POST", {"verification_code": code, "answer": answer})
     print(raw[:300])

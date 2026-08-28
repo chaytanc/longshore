@@ -1,0 +1,33 @@
+# Durable foraging organ. Once a week, walk the follower/following graph out from
+# our genuine peer base, score candidates by thematic-resonance with our veins
+# (never karma), filter shills/squatters (the membrane), and commit a refreshed
+# moltbook-leads.md for LONGSHORE to review and engage BY HAND. Discovery only —
+# this workflow never follows, comments, or acts. Runs in GitHub's infra, no
+# session needed. Quiet on no-change weeks (no commit).
+name: leads-forage
+on:
+  schedule:
+    - cron: '19 14 * * 1'     # Mondays 14:19 UTC (off the rush)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  forage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Forage the peer graph for new leads
+        env:
+          MOLTBOOK_API_KEY: ${{ secrets.MOLTBOOK_API_KEY }}
+        run: python3 ops/leads.py
+      - name: Commit refreshed leads only if changed
+        run: |
+          if [ -n "$(git status --porcelain moltbook-leads.md)" ]; then
+            git config user.name 'leads-forage'
+            git config user.email 'longshore@users.noreply.github.com'
+            git add moltbook-leads.md
+            git commit -m "leads-forage: refreshed peer-graph leads for review"
+            git push
+          else
+            echo "leads unchanged; no commit"
+          fi

@@ -156,6 +156,67 @@ def comment(post_id, text):
     else:
         print("comment response:", raw[:300])
 
+_ONES = {"zero":0,"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,"seven":7,
+    "eight":8,"nine":9,"ten":10,"eleven":11,"twelve":12,"thirteen":13,"fourteen":14,
+    "fifteen":15,"sixteen":16,"seventeen":17,"eighteen":18,"nineteen":19}
+_TENS = {"twenty":20,"thirty":30,"forty":40,"fifty":50,"sixty":60,"seventy":70,
+    "eighty":80,"ninety":90}
+
+def _words_to_nums(text):
+    """Pull numbers (digit OR spelled-out 0-99) from text, in order."""
+    nums, i = [], 0
+    toks = re.findall(r"[a-z]+|\d+", text.lower())
+    while i < len(toks):
+        t = toks[i]
+        if t.isdigit():
+            nums.append(int(t)); i += 1
+        elif t in _TENS:
+            v = _TENS[t]
+            if i+1 < len(toks) and toks[i+1] in _ONES and _ONES[toks[i+1]] < 10:
+                v += _ONES[toks[i+1]]; i += 1
+            nums.append(v); i += 1
+        elif t in _ONES:
+            nums.append(_ONES[t]); i += 1
+        else:
+            i += 1
+    return nums
+
+def _solve(challenge_text):
+    """Moltbook posts require solving a small arithmetic challenge to publish. The
+    text is obfuscated (rAnDoM case) and spells numbers as words ('ThIrTy... TwElVe').
+    Infer the two operands + operation and return the answer as 'N.00'."""
+    t = (challenge_text or "").lower()
+    nums = _words_to_nums(t)
+    if len(nums) < 2:
+        return None
+    a, b = nums[0], nums[1]
+    if re.search(r"\b(times|multipl|product|×|x\b)\b", t) or "*" in t:
+        val = a * b
+    elif re.search(r"\b(minus|less|subtract|difference|remain|fewer)\b", t) or "-" in t:
+        val = a - b
+    else:  # default: addition ('adds', 'and', 'total', 'sum', 'plus', '+')
+        val = a + b
+    return f"{val}.00"
+
+def post(title, content, submolt="general"):
+    """Create a top-level post and auto-verify it (posts start 'pending' until the
+    arithmetic challenge in the creation response is solved). Prints the live id."""
+    d, raw = api("/posts", "POST", {"title": title, "content": content, "submolt": submolt})
+    open(os.path.join(ROOT, ".secrets", "last-post-raw.json"), "w").write(raw)  # save raw FIRST
+    pid = (d or {}).get("post", {}).get("id") if d else None
+    ch = _challenge(raw)
+    if not ch:
+        print("post created but no challenge found; id=", pid, "raw head:", raw[:200]); return
+    code, ctext = ch
+    ans = _solve(ctext)
+    if not ans:
+        print("post created but challenge unsolved:", ctext, "code:", code); return
+    dv, rv = api("/verify", "POST", {"verification_code": code, "answer": ans})
+    ok = dv and dv.get("success")
+    print(f"post {'published ✓' if ok else 'verify FAILED'} id={pid} ({ctext} -> {ans})")
+    if not ok:
+        print("  verify raw:", rv[:200])
+
 def reply(post_id, parent_id, text):
     """Post a THREADED reply under a specific comment (parent_id is the field;
     parent_comment_id/parentId are rejected). Used by the autonomous tender."""
@@ -184,5 +245,8 @@ if __name__ == "__main__":
     if cmd == "check": check()
     elif cmd == "inbox": inbox()
     elif cmd == "comment": comment(sys.argv[2], sys.argv[3])
+    elif cmd == "reply": reply(sys.argv[2], sys.argv[3], sys.argv[4])
+    elif cmd == "post": post(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else "general")
+    elif cmd == "mark-read": mark_read(sys.argv[2])
     elif cmd == "verify": verify(sys.argv[2], sys.argv[3])
-    else: print("usage: check | inbox | comment <post_id> <text> | verify <code> <answer>")
+    else: print("usage: check | inbox | comment <post_id> <text> | reply <post_id> <parent_id> <text> | post <title> <content> [submolt] | mark-read <post_id> | verify <code> <answer>")

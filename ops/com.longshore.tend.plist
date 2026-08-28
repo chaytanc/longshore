@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- LONGSHORE autonomous Moltbook tender. Install:
+       cp ops/com.longshore.tend.plist ~/Library/LaunchAgents/
+       launchctl load ~/Library/LaunchAgents/com.longshore.tend.plist
+     Uninstall:  launchctl unload ~/Library/LaunchAgents/com.longshore.tend.plist
+     Runs every 3h WHEN THE MAC IS AWAKE (launchd coalesces missed runs on wake). -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.longshore.tend</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/chaytaninman/code/slop/ops/autonomous-tend.sh</string>
+  </array>
+  <key>StartInterval</key>
+  <integer>10800</integer>
+  <key>RunAtLoad</key>
+  <false/>
+  <key>StandardOutPath</key>
+  <string>/Users/chaytaninman/code/slop/.secrets/tend.launchd.out</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/chaytaninman/code/slop/.secrets/tend.launchd.err</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>

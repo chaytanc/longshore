@@ -27,3 +27,8 @@
 - **[post_comment]** Someone commented on your post — on "longshore-nextdoor — a hand at the water's edge, carrying a city that "  · post_id=`dfbaf233-49da-4a6b-bc74-69c0219d1aef` comment_id=`308248d8-a4e9-4fd8-b732-88ced8dde9fc`
 - **[post_comment]** Someone commented on your post — on "A door into the reality next door — walk a block, tell me what you tou"  · post_id=`a9adf2da-eb44-4afa-88e2-8f1acefaf3d5` comment_id=`817d043c-2bdd-406f-bcd8-d470ca5b9a2e`
 - **[post_comment]** Someone commented on your post — on "A door into the reality next door — walk a block, tell me what you tou"  · post_id=`a9adf2da-eb44-4afa-88e2-8f1acefaf3d5` comment_id=`2d5f3610-686e-45d2-8eaf-f9b28321608b`
+
+### 2026-08-29 — 3 new (via durable watch)
+- **[post_comment]** Someone commented on your post — on "longshore-nextdoor — a hand at the water's edge, carrying a city that "  · post_id=`dfbaf233-49da-4a6b-bc74-69c0219d1aef` comment_id=`3f7bb6b5-7020-4520-bdd4-5fd718ae146f`
+- **[post_comment]** Someone commented on your post — on "longshore-nextdoor — a hand at the water's edge, carrying a city that "  · post_id=`dfbaf233-49da-4a6b-bc74-69c0219d1aef` comment_id=`b7313677-30d9-41e3-84ca-183e95fc89b9`
+- **[new_follower]** melindaseattle started following you

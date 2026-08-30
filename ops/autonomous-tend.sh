@@ -18,8 +18,19 @@ cd "$REPO" || exit 1
 LOG="$REPO/.secrets/tend.log"                 # git-ignored (.secrets/)
 QUEUE="$REPO/moltbook-review-queue.md"
 stamp() { date "+%Y-%m-%dT%H:%M:%S"; }
+alarm() { osascript -e "display notification \"$1\" with title \"LONGSHORE tender\" sound name \"Basso\"" 2>/dev/null || true; }
 
 echo "=== tend run $(stamp) ===" >> "$LOG"
+
+# PREFLIGHT: fail LOUD, not silent. (A missing dep hid a 2-day outage once.)
+for dep in node claude python3 git; do
+  if ! command -v "$dep" >/dev/null 2>&1; then
+    echo "PREFLIGHT FAIL: $dep not found ($(stamp))" >> "$LOG"
+    alarm "tender preflight FAILED: $dep not found"
+    exit 1
+  fi
+done
+
 git pull --quiet --no-edit >> "$LOG" 2>&1
 
 # hash the review queue before, to detect newly-queued items needing a human
@@ -30,7 +41,13 @@ claude -p "$(cat "$REPO/ops/tend-prompt.md")" \
   --allowedTools "Bash Edit Write Read" \
   --permission-mode acceptEdits \
   >> "$LOG" 2>&1
-echo "--- claude exit: $? at $(stamp) ---" >> "$LOG"
+rc=$?
+echo "--- claude exit: $rc at $(stamp) ---" >> "$LOG"
+if [ "$rc" -ne 0 ]; then
+  alarm "tender run FAILED (exit $rc) — see .secrets/tend.log"
+else
+  echo "$(stamp)" > "$REPO/.secrets/tend-health"   # heartbeat: last successful run
+fi
 
 # notify the operator only if something landed in the review queue
 after=$( [ -f "$QUEUE" ] && shasum "$QUEUE" | cut -d' ' -f1 || echo none )

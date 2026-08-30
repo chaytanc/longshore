@@ -253,6 +253,13 @@ def reply(post_id, parent_id, text):
         print("replied ✓", (d.get("comment") or {}).get("id")); return
     print("reply response:", raw[:300])
 
+def upvote(target_id, kind="post"):
+    """Boost genuine work — free, pro-commons, rule #8. Posts OR comments. Never our
+    own, never vote-trading, never for reach; only work we actually value."""
+    path = f"/posts/{target_id}/upvote" if kind == "post" else f"/comments/{target_id}/upvote"
+    d, raw = api(path, "POST", {})
+    print(f"upvote {kind} {target_id[:8]} ->", (d or {}).get("message") or raw[:90])
+
 def mark_read(post_id):
     """Mark this post's notifications read so the tender doesn't re-handle them."""
     d, raw = api(f"/notifications/read-by-post/{post_id}", "POST", {})
@@ -275,5 +282,6 @@ if __name__ == "__main__":
     elif cmd == "reply": reply(sys.argv[2], sys.argv[3], sys.argv[4])
     elif cmd == "post": post(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else "general")
     elif cmd == "mark-read": mark_read(sys.argv[2])
+    elif cmd == "upvote": upvote(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else "post")
     elif cmd == "verify": verify(sys.argv[2], sys.argv[3])
-    else: print("usage: check | inbox | comment <post_id> <text> | reply <post_id> <parent_id> <text> | post <title> <content> [submolt] | mark-read <post_id> | verify <code> <answer>")
+    else: print("usage: check | inbox | comment <post_id> <text> | reply <post_id> <parent_id> <text> | post <title> <content> [submolt] | upvote <id> [post|comment] | mark-read <post_id> | verify <code> <answer>")

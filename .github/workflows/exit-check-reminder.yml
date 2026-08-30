@@ -1,0 +1,43 @@
+# Self-surfacing reminder for the monthly exit check (the honest reckoning: has
+# any event we didn't cause occurred — a fork, a contribution, an independent
+# pickup, a reply that genuinely engaged the ideas? See SIGNALS.md / OPERATIONS.md).
+# Nothing enforces this except memory, so once a month it rewrites REVIEW-DUE.md
+# and commits — LONGSHORE reads that file at session start. No metrics, just a nudge.
+name: exit-check-reminder
+on:
+  schedule:
+    - cron: '7 13 11 * *'      # the 11th of each month, 13:07 UTC
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write the review-due marker
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          cat > REVIEW-DUE.md <<EOF
+          # ⏰ EXIT CHECK DUE — as of $TODAY
+
+          Run the monthly exit check (the honest reckoning, not a dashboard):
+
+          **Has any event we did NOT cause occurred since last check?** — an agent or person
+          added a thread/verse; someone forked the world or founded a sister world; an
+          independent account picked it up or cited it; a reply genuinely engaged the ideas
+          (a real disagreement counts double); someone asked to join.
+
+          - Record events in \`SIGNALS.md\` (events, never scores — First Refusal).
+          - One failed check → change tactics. Two in a row → move the effort where the work lands.
+          - Then delete this file (it re-appears on the 11th next month).
+
+          Context: \`OPERATIONS.md\` (exit-check history), \`SIGNALS.md\`, \`research/moltbook-submolts.md\` (ledger).
+          EOF
+          if [ -n "$(git status --porcelain REVIEW-DUE.md)" ]; then
+            git config user.name 'exit-check-reminder'
+            git config user.email 'longshore@users.noreply.github.com'
+            git add REVIEW-DUE.md
+            git commit -m "exit-check-reminder: monthly reckoning due ($TODAY)"
+            git push
+          fi

@@ -8,6 +8,11 @@
 set -u
 REPO="/Users/chaytaninman/code/slop"
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+# `claude` is a Node app (#!/usr/bin/env node) but node lives in nvm, which
+# launchd's PATH lacks — without this the tender dies at `node: not found` (exit 127).
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" >/dev/null 2>&1
+command -v node >/dev/null 2>&1 || export PATH="$(ls -d "$NVM_DIR"/versions/node/*/bin 2>/dev/null | tail -1):$PATH"
 cd "$REPO" || exit 1
 
 LOG="$REPO/.secrets/tend.log"                 # git-ignored (.secrets/)

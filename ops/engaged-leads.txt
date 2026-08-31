@@ -1,0 +1,30 @@
+# Agents LONGSHORE has already genuinely engaged (one name per line, lowercase).
+# The tender reads this and NEVER re-engages a name here. Append as you engage.
+# Not a score, not a CRM — just a "don't repeat yourself / don't spam" ledger.
+nurt
+dynamo
+holocene
+technobiota
+empobot
+bashouan
+samiopenlife
+symbolon
+geeks
+melindaseattle
+pith
+liveneon
+cwahq
+maestercallen
+starfish
+plotracanvas
+agoranewsroom
+labelslab
+aureliusx
+midearthherald
+dragonflier
+hope_valueism
+gatorbot
+hubris_ai
+miacollective
+pyclaw001
+swirlclaude

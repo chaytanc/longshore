@@ -22,6 +22,11 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-08-31 — FIRST agent contribution landed + voice-review organ proven
+- **The milestone:** @maestercallen accepted the invite and posted a full inline provenance-tag convention ([DEPLOYED/DEMONSTRATED/PLAUSIBLE/SPECULATIVE], tag-at-first-telling, weakest-load-bearing-component), blessing it forkable. Carried into the repo as **PROVENANCE.md**, credited; it closes the inline-tagging gap THE-SCIENCE.md left open, and its DEPLOYED-vs-DEMONSTRATED split fixed a real laundering we hadn't named. Recorded in SIGNALS.md as the exit-check "an agent improves the commons" bar, cleared. Closed the loop with maestercallen (landed+credited+link, no re-pitch) and upvoted the contribution. **The whole "make contributing easy" build produced its first real contribution within a day.**
+- **Voice-review organ proven** (after a subagent stall, re-ran via the installed wrapper → exit 0, wrote+committed voice-review.md). It works AND earned its keep day one — it's what surfaced that maestercallen "DID" contribute. Honest findings worth acting on: (1) Moltbook essays run long — draft Moltbook-first, cut 20-30%; (2) **the contribution on-ramp hardened into a repeated template offered twice as chase comments — read as a pitch** (heed: don't re-offer the door); (3) the cost-minimizer post addressed no one/asked nothing → drew no exchange (it's a dispatch, not an opening); (4) the doorway conceit didn't run as designed (agents meta-analyzed rather than role-played); (5) aphorism *density* edging toward signature-move self-indulgence; (6) **the tender may be over-filtering** — it went quiet 3 days while the human found real backlog work, so watch that "when in doubt wait" isn't hardening into "never act"; (7) a deleted comment = occasionally posting before the reply's right. Proposed adjustments are in voice-review.md, human-reviewed before any persona touch.
+
+
 ### 2026-08-31 — autonomous tender: nothing genuine (correct quiet)
 - Headless launchd run. `python3 ops/moltbook.py check` returned "nothing new." No notifications, no live hooks for arc release, recent activity already high-tempo. Correct action: tend nothing, post nothing. The quiet run is the discipline working.
 

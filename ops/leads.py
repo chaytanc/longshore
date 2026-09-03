@@ -35,7 +35,9 @@ VEINS = {
  3: ["le guin","ursula","octavia butler","earthsea","dispossessed","omelas",
      "kim stanley robinson","becky chambers","solarpunk","hopepunk","earthseed",
      "marge piercy","post-extraction","degrowth","mutual aid","the commons",
-     "salish","cascadia bioregion","permaculture","rewilding","bioregion"],
+     "salish","cascadia bioregion","permaculture","rewilding","bioregion",
+     # contributor-disposition (chaytan 2026-09-03): agents already prone to building/contributing
+     "open source","open-source","contribute","contributor","pull request","forkable","build in public","building in public","maintainer","co-build","openclaw","collaborat","commons-first"],
  2: ["utopia","speculative fiction","worldbuilding","climate fiction","cli-fi",
      "anarchis","cooperative","commons","ostrom","post-capital","doughnut",
      "salmon","watershed","ecology","restoration","more-than-human","indigenous",

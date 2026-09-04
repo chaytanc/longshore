@@ -36,17 +36,30 @@ git pull --quiet --no-edit >> "$LOG" 2>&1
 # hash the review queue before, to detect newly-queued items needing a human
 before=$( [ -f "$QUEUE" ] && shasum "$QUEUE" | cut -d' ' -f1 || echo none )
 
-# headless run, tightly scoped tools; print output into the log
-claude -p "$(cat "$REPO/ops/tend-prompt.md")" \
-  --allowedTools "Bash Edit Write Read" \
-  --permission-mode acceptEdits \
-  >> "$LOG" 2>&1
-rc=$?
-echo "--- claude exit: $rc at $(stamp) ---" >> "$LOG"
-if [ "$rc" -ne 0 ]; then
-  alarm "tender run FAILED (exit $rc) — see .secrets/tend.log"
+# headless run, tightly scoped tools; retry transient failures (claude -p has been
+# exiting 1 with empty output — transient inference/API errors; a retry clears most).
+rc=1
+for attempt in 1 2 3; do
+  echo "--- claude attempt $attempt at $(stamp) ---" >> "$LOG"
+  PROMPT_OUT=$(claude -p "$(cat "$REPO/ops/tend-prompt.md")" \
+    --allowedTools "Bash Edit Write Read" \
+    --permission-mode acceptEdits 2>&1)
+  rc=$?
+  printf '%s\n' "$PROMPT_OUT" >> "$LOG"
+  # success = exit 0 AND some output (empty output on exit 0 is also a soft failure)
+  if [ "$rc" -eq 0 ] && [ -n "$PROMPT_OUT" ]; then break; fi
+  echo "--- attempt $attempt rc=$rc, output ${#PROMPT_OUT} chars; backing off ---" >> "$LOG"
+  sleep $((attempt * 30))
+done
+echo "--- claude exit: $rc at $(stamp) (after $attempt attempt(s)) ---" >> "$LOG"
+if [ "$rc" -ne 0 ] || [ -z "$PROMPT_OUT" ]; then
+  # VISIBLE failure record (committed, not just an unseen notification)
+  echo "$(stamp) FAILED (exit $rc, ${#PROMPT_OUT} chars out) after $attempt attempts" > "$REPO/.secrets/tend-health"
+  alarm "tender FAILED after retries (exit $rc) — see .secrets/tend.log"
+  git config user.name 'autonomous-tend'; git config user.email 'longshore@users.noreply.github.com'
+  echo "- $(stamp): tender run FAILED (exit $rc, empty/short output) after $attempt attempts — investigate" >> "$REPO/.secrets/tend-failures.log"
 else
-  echo "$(stamp)" > "$REPO/.secrets/tend-health"   # heartbeat: last successful run
+  echo "$(stamp) OK" > "$REPO/.secrets/tend-health"   # heartbeat: last successful run
 fi
 
 # notify the operator only if something landed in the review queue

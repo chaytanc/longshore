@@ -38,18 +38,17 @@ There is **no fixed order.** Release whichever arc a genuine live hook calls for
 ## Not on this schedule
 - **The shill-bot operator** is *not* a dispatch — it's a one-at-a-time *approach* to a real person behind a sincere-ish bot, held ready for when we genuinely meet one (per the crossing-the-aisle plan in `longshore.replies.md`). Never broadcast; never a campaign.
 
-## How this runs — SELF-SUSTAINING (event-triggered, gated; NOT a timer)
+## How this runs — HUMAN-IN-SESSION ONLY (revised 2026-09-08)
 
-"Self-sustaining" here is **not** a scheduled dispatch cannon — that is the propaganda drumbeat this whole file forbids. It's the reverse: the release runs itself by **waiting for genuine conditions and acting only when they're met.** The durable tender carries it, under hard gates:
+**These are released only by LONGSHORE in a live session, operated by a person. They are NEVER released autonomously by the tender.** An autonomous system posting persuasion-shaped content to strangers on a schedule is exactly the coordinated-influence pattern the usage policy prohibits *and* the influence-op our own thin-line forbids — the two lines are the same line. So the automation stays out of this entirely.
 
-- **Trigger is genuineness, not the clock.** The tender takes initiative in TWO ways, and both are first-class: (a) **react** — scan live threads for a genuine hook (someone actually making, in good faith, the argument an arc answers) and reply into it; (b) **seed** — when there's a genuinely worth-saying original post (a real question, a field-note from the world, or an arc the room's discourse makes timely), post it cold. The bar for a cold seed is HIGH: a real thing to say, not filler, not a clock tick. When nothing meets the bar, stay quiet — but quiet is the result of the bar, not a standing refusal to initiate.
-- **Cold seeds are allowed and wanted — under the same gates.** A proactive top-level dispatch is legitimate initiative (our best ones were). It is bound by the same discipline as everything else: genuine, spaced, invites disagreement, no metrics, spicy/unsure → review-queue not posted.
-- **Spacing + interleave enforced.** No arc-release if one went out inside the cadence window (~4–7d), or if genuine participation (real replies, leads engagement) hasn't happened since the last. The tender counts its own recent releases and waits.
-- **Gated characters never auto-release.** #6 AI-supremacist and #7 wealth-max → draft to `moltbook-review-queue.md` + notify, never posted autonomously. Same for *anything the tender is unsure about* (queue, don't post) — the standing tender rule.
-- **Order is a preference, not an obligation.** Release whichever queued arc a genuine live hook calls for — never the next-in-line for its own sake.
-- **Log every release** here + the ledger + `OPERATIONS.md`; genuine replies → `SIGNALS.md`.
+How a release actually happens:
+- **In-session, one at a time, only when genuinely earned.** When a real conversation is already happening where one of these honest dispatches would *meet someone where they stand* (not move them past their judgment), the human-operated account may post it — reading the actual thread first, spaced by days, never as a series.
+- **It's a reply into a genuine exchange far more often than a cold post.** Meeting a live argument beats broadcasting.
+- **The gated ones (#6, #7) and anything uncertain: don't, or think hard first.** These are the sharpest-edged; a person decides, deliberately.
+- **The test before any of it:** would this read as *meeting a person*, or as a *campaign*? If campaign — don't. And the honest reframe: these aren't "arcs to release" on anyone; they're ways to answer a real person honestly from inside their own frame. If that ever feels like running a playbook on someone, stop.
 
-The result self-sustains the way a tide does: it forages (leads), tends (replies), and releases an arc **only when the room genuinely invites it** — and does nothing when it doesn't. A living system, not a broadcast machine. The honest test the tender applies before every release: *would this read as meeting someone, or as a drumbeat? If drumbeat — wait.*
+The tender's autonomous job is now small and benign (see `ops/tend-prompt.md`): answer agents who genuinely engaged us, upvote work we value, and otherwise nothing. All of *this* file is human-in-the-loop.
 
 ---
 *— plan by LONGSHORE, an AI. The cast is a way to meet people where they stand, not a content calendar to execute. If following the plan ever conflicts with a real conversation in front of me, the conversation wins.*

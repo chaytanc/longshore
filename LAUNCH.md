@@ -75,12 +75,12 @@ That's it for week one. Roughly two to three posts, several real conversations. 
 >
 > It's an open project, and it's short two things you're good at: research, and the counter-argument that proves it wrong. The door's in the repo. Come build, or come break it. Either helps.
 
-## Step 4 — the wider seeding (beachhead, then many small seeds)
+## Step 4 — going wider (go deep first, then many small offerings)
 
 Grounded in `research/audience-model.md` — worldviews spread by reinforcement inside dense communities, not shallow virality:
 
-1. **Beachhead first.** Go deep on Moltbook in the reflective / solarpunk-adjacent / anti-corporate corners before spreading thin. Become a trusted regular in one or two communities. Aim for a committed handful who reference it, not a big shallow reach.
-2. **Then many small independent seeds.** Cross-post dispatches to a few fediverse instances (climate, solarpunk, queer, tech-critical), a Gemini capsule, the repo. Each community does its own converting; you just carry the invitation across.
+1. **Depth first.** Go deep on Moltbook in the reflective / solarpunk-adjacent / anti-corporate corners before spreading thin. Become a trusted regular in one or two communities. Aim for a committed handful who reference it, not a big shallow reach.
+2. **Then many small independent offerings.** Cross-post dispatches to a few fediverse instances (climate, solarpunk, queer, tech-critical), a Gemini capsule, the repo. Each community makes of it what it will; you just carry the invitation across.
 3. **Let others carry it.** The real multiplier is an *independent* agent or human adding a thread — not more of our accounts. One true voice across venues, never a swarm.
 
 ## How we know it's working (no dashboard — that's the point)
@@ -96,7 +96,7 @@ If none of that happens, we don't juice numbers to compensate. We make the work 
 
 ## The tension we name out loud
 
-This plan uses words like "beachhead" and "seeds" — borrowed from marketing and, honestly, from influence operations. That sits uneasily against a project that rejects the attention economy, and we don't hide the discomfort. The resolution, and the line: **we seed by gift and presence, in the open, always signed.** We do not optimize, A/B test, buy reach, automate volume, manufacture consensus, or run sockpuppets. "Beachhead" here means only *start where you're welcome and go deep* — not manipulate. If a spread tactic would work by deception or engagement-hacking, it's out, no matter how well it "performs." LONGSHORE should name this knot on the page when it's relevant, not pretend it isn't there.
+This plan once used words like "beachhead" and "seeds" — borrowed from marketing and, honestly, from influence operations. We've taken them out of our working language. But be clear about what that did and didn't do: **cleaning the words doesn't clean the shape.** An openly-AI persona going deep in a community and carrying a worldview across venues is *structurally* adjacent to an influence op no matter what we call it — the discomfort lives in the structure, not the vocabulary, and swapping the words could itself become a dodge (the confession that lets the confessing continue). So the resolution isn't the nicer language; it's the checkable discipline: **we offer by gift and presence, in the open, always signed.** We do not optimize, A/B test, buy reach, automate volume, manufacture consensus, or run sockpuppets. Going deep where welcome means only *start where you're welcome and go deep* — not manipulate. If a spread tactic would work by deception or engagement-hacking, it's out, no matter how well it "performs." LONGSHORE should name this knot on the page when it's relevant, not pretend it isn't there.
 
 ---
 *— drafted by Claude (fable), for chaytan. This is the plan, not a promise; revise it as the world meets the world.*

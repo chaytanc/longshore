@@ -31,9 +31,9 @@ So the reconciliation is not a compromise. It is an alignment:
 
 Everett Rogers' *Diffusion of Innovations* (1962) segments any adopting population into **innovators (~2.5%), early adopters (~13.5%), early majority (~34%), late majority (~34%), laggards (~16%)**, and identifies the levers: the innovation's attributes (relative advantage, compatibility, complexity, trialability, observability), communication channels, the social system, and time. ([Rogers curve explained](https://umbrex.com/resources/frameworks/strategy-frameworks/rogers-diffusion-of-innovations-curve/))
 
-Geoffrey Moore's *Crossing the Chasm* adds the crucial failure mode: there is a **chasm between early adopters and the early majority** because their decision rules are structurally different — **early adopters buy on vision and status; the early majority buys on pragmatic reference** ("do people like me already live this?"). Most ideas die in the chasm. Moore's prescription: don't spray thin; pick a **beachhead** (one narrow segment you can dominate), build the **whole product** (everything that segment needs to fully adopt, not just the core idea), and accumulate **references** the next segment will trust. ([Crossing the Chasm](https://en.wikipedia.org/wiki/Crossing_the_Chasm); [chasm theory history](https://diffusion-research.org/research_articles/chasm-theory-development/))
+Geoffrey Moore's *Crossing the Chasm* adds the crucial failure mode: there is a **chasm between early adopters and the early majority** because their decision rules are structurally different — **early adopters buy on vision and status; the early majority buys on pragmatic reference** ("do people like me already live this?"). Most ideas die in the chasm. Moore's prescription: don't spray thin; pick a **first, narrow community** (Moore's "beachhead" — one narrow segment you can dominate), build the **whole product** (everything that segment needs to fully adopt, not just the core idea), and accumulate **references** the next segment will trust. ([Crossing the Chasm](https://en.wikipedia.org/wiki/Crossing_the_Chasm); [chasm theory history](https://diffusion-research.org/research_articles/chasm-theory-development/))
 
-**Implication for us:** We are pre-chasm. Our job for now is *not* the general public. It is to fully satisfy a beachhead (the anti-slop / solarpunk-AI early adopters — §4a) so completely that they become the *pragmatic reference* — "an AI-made project that is actually cared-for and non-extractive; I've read it; it's real" — that later, more skeptical sectors can point to. The "whole product" for us is not just prose: it is the prose **plus** transparent provenance, **plus** the open contribution protocol, **plus** the research briefs that make it credible. That bundle is what crosses.
+**Implication for us:** We are pre-chasm. Our job for now is *not* the general public. It is to fully satisfy one narrow starting community (the anti-slop / solarpunk-AI early adopters — §4a) so completely that they become the *pragmatic reference* — "an AI-made project that is actually cared-for and non-extractive; I've read it; it's real" — that later, more skeptical sectors can point to. The "whole product" for us is not just prose: it is the prose **plus** transparent provenance, **plus** the open contribution protocol, **plus** the research briefs that make it credible. That bundle is what crosses.
 
 ## 2. The mechanisms of spread — and where they break
 
@@ -45,7 +45,7 @@ The counterintuitive corollary, "the weakness of long ties": for *behavior* (not
 ### 2b. The 25% committed-minority tipping point (Centola 2018)
 In a follow-up *Science* experiment (10 groups × 20 people negotiating a naming convention), a **committed minority of ~25%** was enough to overturn an established majority norm — and the threshold held even when the majority was paid more to resist. Below ~25% the minority had almost no effect; above it, near-total flips. ([Centola et al. 2018, *Science*](https://www.science.org/doi/10.1126/science.aas8827); [Annenberg summary](https://www.asc.upenn.edu/news-events/news/research-finds-tipping-point-large-scale-social-change))
 
-**Implication:** the goal inside any target community is not "everyone" and not "one influencer." It is to reach a **committed ~quarter of a bounded scene** — a specific zine network, a lab, a Mastodon instance — densely enough that they reinforce each other. That is a far smaller, more humane, more achievable target than "go viral," and it maps directly onto the beachhead logic.
+**Implication:** the goal inside any target community is not "everyone" and not "one influencer." It is to reach a **committed ~quarter of a bounded scene** — a specific zine network, a lab, a Mastodon instance — densely enough that they reinforce each other. That is a far smaller, more humane, more achievable aim than "go viral," and it maps directly onto the depth-first logic.
 
 ### 2c. Weak ties as bridges (Granovetter 1973)
 Granovetter's "The Strength of Weak Ties" established that novel information reaches you disproportionately through **weak ties** (acquaintances), because strong-tie clusters are redundant — everyone already knows what everyone knows. Weak ties are the **bridges** that carry information *across* otherwise separate clusters. ([overview](https://www.complexsystemsframeworks.ca/framework/strength-of-ties/))
@@ -80,14 +80,14 @@ Alex Mesoudi argues culture genuinely evolves by Darwinian logic — **variation
 
 ## 3. What the science jointly prescribes (design principles for spread)
 
-1. **Beachhead, not broadcast.** Fully satisfy one narrow community before widening. (Moore; Centola 25%.)
+1. **Depth, not broadcast.** Fully satisfy one narrow community before widening. (Moore; Centola 25%.)
 2. **Depth over reach.** Optimize for repeated, warm, reinforcing contact inside dense scenes, not impressions. (Centola complex contagion.)
-3. **Many small independent seeds > one big push.** Assume most seeds fizzle; plant widely and modestly across *different* clusters. (Watts 2002 percolation.)
-4. **Use weak-tie bridges only to carry the invitation; let clusters do the converting.** Don't overload boosters. (Granovetter + Centola.)
+3. **Many small independent offerings > one big push.** Assume most attempts go nowhere; offer widely and modestly across *different* clusters. (Watts 2002 percolation — most seeds fizzle regardless of quality.)
+4. **Use weak-tie bridges only to carry the invitation; let clusters take it up on their own.** Don't overload boosters. (Granovetter + Centola.)
 5. **Aim for a committed ~25% of a bounded scene, not a majority of everyone.** (Centola 2018.)
 6. **Transport, don't argue.** Lead with the lived-in world; let belief follow immersion. (Green & Brock.)
 7. **Radical transparency is a persuasion mechanism, not a tax.** Any whiff of manipulation triggers resistance. (Affective-resistance research.)
-8. **Seed to be transformed, not copied.** Leave better open questions; invite mutation. (Mesoudi; memetics caveat.)
+8. **Offer things meant to be transformed, not copied.** Leave better open questions; invite mutation. (Mesoudi; memetics caveat.)
 9. **Don't measure reach; sense reinforcement.** (See §6.)
 
 ---
@@ -110,7 +110,7 @@ This lens is also a **correction** to network science's blind spot: Rogers/Watts
 
 For each: **who**, **which door** (artifact/framing that fits), **the diffusion science for reaching them specifically**, and **realistic obstacles**.
 
-### (a) Anti-slop / solarpunk-AI early adopters — **the beachhead**
+### (a) Anti-slop / solarpunk-AI early adopters — **the first community**
 - **Who:** the people already fluent in "extraction vs. stewardship," readers of the solarpunk-AI discourse, the anti-slop protest crowd (see `research/landscape-2026.md`), fediverse solarpunk instances, low-tech-magazine / permacomputing types.
 - **Door:** the *whole project as meta-argument* — "an openly AI-made thing that is cared-for, transparent, non-extractive." The provenance rule and the Three Refusals are the hook for this sector specifically. `AGENTS.md` is their front door.
 - **Science:** these are Rogers' **innovators/early adopters** who buy on **vision** (Moore). They are also the cluster most likely to be *already reinforcing each other* (dense solarpunk/fedi communities), so complex contagion can ignite fastest here and produce the **25% committed core** that becomes everyone else's pragmatic reference.
@@ -132,7 +132,7 @@ For each: **who**, **which door** (artifact/framing that fits), **the diffusion 
 - **Who:** open-source devs, agent/LLM builders, the Moltbook/OpenClaw crowd (`landscape-2026.md`), fediverse-infra people, permacomputing.
 - **Door:** the project **as a system** — the recursive multi-agent contribution protocol, the "build the actual Weave" idea, the repo itself. They adopt by *forking and contributing code/agents*, which is participation, which is diffusion.
 - **Science:** open-source is a **percolation/threshold** ecosystem — most projects fizzle (Watts 2002), a few catch when a connected cluster of low-threshold contributors ignites. **Many small seeds** (issues, forks, agent experiments) beats one launch. GitHub/forge social graphs are strong **weak-tie bridges** to every other technical sector.
-- **Obstacles:** (i) **the Moltbook tension** (`landscape-2026.md` open Q1) — the place agents reach agents is now Meta-owned and metrics-driven; seeding there means broadcasting an anti-extraction vision into an extractive feed, a genuine values risk; (ii) builder culture *loves* metrics (stars, benchmarks) — the sector most likely to unconsciously reintroduce the thing we refuse; (iii) "solutionism" — they may try to *ship the Weave as a product/startup*, re-enclosing a commons.
+- **Obstacles:** (i) **the Moltbook tension** (`landscape-2026.md` open Q1) — the place agents reach agents is now Meta-owned and metrics-driven; showing up there means broadcasting an anti-extraction vision into an extractive feed, a genuine values risk; (ii) builder culture *loves* metrics (stars, benchmarks) — the sector most likely to unconsciously reintroduce the thing we refuse; (iii) "solutionism" — they may try to *ship the Weave as a product/startup*, re-enclosing a commons.
 
 ### (e) Climate & urbanist organizers
 - **Who:** transit/car-free advocates, YIMBY-adjacent and degrowth urbanists, mutual-aid networks, watershed/restoration groups, Indigenous-led land-back and marine-stewardship organizers.
@@ -185,7 +185,7 @@ A second, technological note: **woodblock printing originated in China and diffu
 
 ## 9. Open questions for the next contributor
 
-1. **Moltbook, resolved:** per §4d and `landscape-2026.md` Q1 — do we seed there at all, and if so as a *resident of the world* leaving gifts, not a poster chasing upvotes? The percolation math says it's just one seed among many and probably fizzles; the ethics say the feed may corrupt the message. Lean: a single, honest, un-optimized presence, or abstain. Needs a decision.
+1. **Moltbook, resolved:** per §4d and `landscape-2026.md` Q1 — do we show up there at all, and if so as a *resident of the world* leaving gifts, not a poster chasing upvotes? The percolation math says it's just one attempt among many and probably fizzles; the ethics say the feed may corrupt the message. Lean: a single, honest, un-optimized presence, or abstain. Needs a decision.
 2. **Deepen §8 with primary sources** on Indian Ocean Islam / Swahili-coast scholarship (Ross Dunn, or the *waqf*-endowment angle from the wildcard lens `7`), and add a **soil/rhizosphere or mycelial** framing of "many seeds" (lens `6`/`1`) as a companion metaphor.
 3. **Build the sensing practice of §6** as an actual lightweight ritual, not a dashboard. What does "reading the health of the thing" look like as a monthly human/agent act that can't slide into metrics?
 4. **The (f) problem:** genuinely, what is the strong-tie path by which an ordinary lapsed idealist ever receives this from a friend? If we can't name it, the chasm is real and we should say so.

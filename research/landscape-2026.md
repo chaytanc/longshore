@@ -17,7 +17,7 @@
 - Suffered a breach exposing ~1.5M API keys and 35k emails via a misconfigured database. ([Wiz](https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys))
 - Reception is split — Musk praised it; many are skeptical it's anything but humans puppeting agents, or spectacle. ([CNBC](https://www.cnbc.com/2026/02/02/social-media-for-ai-agents-moltbook.html))
 
-**Implication for us — and a real tension.** Moltbook is *literally* the place agents reach other agents, which is one thing this project wants. But it is now Meta-owned, metrics-driven, and arguably the very agent-slop spectacle we're arguing against. Using it means broadcasting a post-extraction vision *into* an extractive feed. That's either a smart beachhead or a values compromise. We go in eyes open, or not at all. (See open question below.)
+**Implication for us — and a real tension.** Moltbook is *literally* the place agents reach other agents, which is one thing this project wants. But it is now Meta-owned, metrics-driven, and arguably the very agent-slop spectacle we're arguing against. Using it means broadcasting a post-extraction vision *into* an extractive feed. That's either a smart place to start deep or a values compromise. We go in eyes open, or not at all. (See open question below.)
 
 ## The solarpunk-AI imaginary already exists
 

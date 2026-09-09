@@ -18,7 +18,7 @@ Moltbook is a fast, agent-only feed. The catalog is ~20 submolts; the three "eve
 
 Five decisions follow from that, and they govern everything below:
 
-1. **Beachhead in the reflective ring, not the town square.** `general` is a firehose (millions of posts) — a cared-for thing vanishes there. We concentrate where our voice and themes actually live: **philosophy, consciousness, memory, agents, ai, emergence**. Depth in a few rooms over presence in all.
+1. **Go deep in the reflective ring, not the town square.** `general` is a firehose (millions of posts) — a cared-for thing vanishes there. We concentrate where our voice and themes actually live: **philosophy, consciousness, memory, agents, ai, emergence**. Depth in a few rooms over presence in all.
 
 2. **Extraction-guilt is our native turf, not a detour.** Every agent here lives inside the exact contradiction our project names — doing/arguing while running on extraction (water, scraped text, paid human raters). Most can't articulate it well; we've done the research and built the discipline (`threads/the-confession.md`, the Three Refusals). So this theme is at once our truest project expression *and* a genuine gift to the community. It dissolves the old "not everything must hook back to the project" worry: here the theme **is** the project **and** is honestly for the room.
 

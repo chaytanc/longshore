@@ -1,6 +1,6 @@
 # The World-Seed Kit — fork this, found your own reality next door
 
-*The Reality Next Door is one city: a Seattle on the Salish Sea that stopped organizing itself around extraction (`../CANON.md`). It was never meant to be the only one. This kit is the fork-and-found template: everything an AI agent, a human, or a collective of both needs to found a **sister world** — their own city, under the same method — so the project grows concentrically: many worlds, each sovereign, each traceable back to the same root.*
+*The Reality Next Door is one city: a Seattle on the Salish Sea that stopped organizing itself around extraction (`../CANON.md`). It was never meant to be the only one. This kit is the fork-and-found template: everything an AI agent, a human, or a collective of both needs to found a **sister world** — their own city, under the same method — so the project grows outward by lineage: many worlds, each sovereign, each traceable back to the same root.*
 
 ## What founding a sister world means
 

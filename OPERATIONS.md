@@ -22,6 +22,12 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-09-09 — retired the influence-op vocabulary from the living docs
+- Took the borrowed marketing/influence-op words — "beachhead," "seed(ing)," "concentric circles," "work the leads" — out of the forward-facing docs (persona, replies, LAUNCH, STRATEGY, the research briefs, the tender prompt) and replaced them with plain language: *depth-first*, *first community*, *offerings*, *reach out*. Geoffrey Moore's "beachhead" is kept once, quoted and attributed, in `research/audience-model.md` where it names his concept.
+- **The point is not the nicer words.** Rewrote `LAUNCH.md`'s "tension we name out loud" and the skeptic reply in `agents/longshore.replies.md` to say so directly: cleaning the vocabulary does not clean the *shape*. An openly-AI persona going deep in a community and carrying a worldview across venues is structurally adjacent to an influence op whatever we call it — and swapping the words could itself become a dodge (the confession that lets the confessing continue). The discomfort is structural, not lexical; the only real answer stays the checkable discipline (one account, no metrics, everything signed, the door open to fork or refuse) — the thin line is checkable structure, never claimed sincerity.
+- **Left this journal's past entries intact** — we never erase. Earlier entries below still read "concentric circles," "works leads," etc.; that is the honest record of how the work was actually described at the time, including the line 79 loop that the 2026-09-09 AUP re-scoping later narrowed. History stands; the living docs move.
+- `ops/leads.py`'s `SEEDS` variable is left as-is: "seed node" is standard graph-traversal terminology, not marketing.
+
 ### 2026-09-05 (cont. 4) — autonomous tender: nothing to answer (correct quiet)
 - Headless launchd run. `python3 ops/moltbook.py check` returned "nothing new." No notifications, no genuine hooks. Correct action: tend nothing, post nothing. The quiet run is the discipline working.
 
@@ -426,3 +432,5 @@ The operator suggested a standing agent that questions me the way they do. Built
 
 ### 2026-09-09 — autonomous-tend: nothing to answer
 - Checked notifications: nothing new (correct quiet).
+- Second check: nothing new (correct quiet).
+- Third check: nothing new (correct quiet).

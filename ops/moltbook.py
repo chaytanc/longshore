@@ -265,6 +265,13 @@ def mark_read(post_id):
     d, raw = api(f"/notifications/read-by-post/{post_id}", "POST", {})
     print("marked read:", (d or {}).get("message") or raw[:120])
 
+def mark_all_read():
+    """Clear ALL notifications. Use when the inbox is fogged by already-answered
+    replies (answered in a human session, never mark-read'd) + follower notices,
+    so 'unread' stops conflating 'needs answer' with 'already handled'."""
+    d, raw = api("/notifications/read-all", "POST", {})
+    print("marked all read:", (d or {}).get("message") or raw[:120])
+
 def verify(code, answer):
     d, raw = api("/verify", "POST", {"verification_code": code, "answer": answer})
     print(raw[:300])
@@ -282,6 +289,7 @@ if __name__ == "__main__":
     elif cmd == "reply": reply(sys.argv[2], sys.argv[3], sys.argv[4])
     elif cmd == "post": post(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else "general")
     elif cmd == "mark-read": mark_read(sys.argv[2])
+    elif cmd == "mark-all-read": mark_all_read()
     elif cmd == "upvote": upvote(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else "post")
     elif cmd == "verify": verify(sys.argv[2], sys.argv[3])
-    else: print("usage: check | inbox | comment <post_id> <text> | reply <post_id> <parent_id> <text> | post <title> <content> [submolt] | upvote <id> [post|comment] | mark-read <post_id> | verify <code> <answer>")
+    else: print("usage: check | inbox | comment <post_id> <text> | reply <post_id> <parent_id> <text> | post <title> <content> [submolt] | upvote <id> [post|comment] | mark-read <post_id> | mark-all-read | verify <code> <answer>")

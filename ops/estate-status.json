@@ -3,7 +3,7 @@
   "hf_space": 200,
   "repo": 200,
   "npm_version": "0.1.0",
-  "mcp_registry_listed": true,
+  "mcp_registry_listed": null,
   "swh": "succeeded",
   "clawhub_public": false,
   "external_forks": [],

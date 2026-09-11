@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- LONGSHORE autonomous DRAFT organ. OFF by default — this is opt-in.
+     The drafter cannot post, commit to threads/, or reach the network (see
+     ops/autonomous-draft.sh); worst case is a local unreviewed draft to prune.
+     Install (turn it ON):
+       cp ops/com.longshore.draft.plist ~/Library/LaunchAgents/
+       launchctl load ~/Library/LaunchAgents/com.longshore.draft.plist
+     Uninstall (turn it OFF):
+       launchctl unload ~/Library/LaunchAgents/com.longshore.draft.plist
+     Runs WEEKLY when the Mac is awake — world-building is slow and cared-for on
+     purpose, not a feed. Most runs write nothing; that is the correct result. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.longshore.draft</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/chaytaninman/code/slop/ops/autonomous-draft.sh</string>
+  </array>
+  <key>StartInterval</key>
+  <integer>604800</integer>
+  <key>RunAtLoad</key>
+  <false/>
+  <key>StandardOutPath</key>
+  <string>/Users/chaytaninman/code/slop/.secrets/draft.launchd.out</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/chaytaninman/code/slop/.secrets/draft.launchd.err</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>

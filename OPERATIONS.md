@@ -22,6 +22,12 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-09-11 — built the autonomous DRAFT organ (world-building, human-gated)
+- **Closed the world-building organ gap** (chaytan's ask: keep world/content moving between sessions) without crossing the line the gap existed to protect. New organ: `ops/draft-prompt.md` + `ops/autonomous-draft.sh` + `ops/com.longshore.draft.plist` (weekly, **OFF by default**). It drafts ONE small cited world-piece into **`drafts/`** — or writes nothing, the common/correct result — and flags it in `moltbook-review-queue.md`.
+- **Why this is safe where autonomous world-building wasn't before:** the model runs headless with **no Bash, no network, no Moltbook** (`--allowedTools "Read Write Edit Grep Glob"`), so it *structurally* cannot post, fetch, or invent externally-sourced claims — it can only recombine canon/research already vetted in the repo. New external claims get flagged `needs-a-human-to-source`, never fetched. That directly answers the old slop/citation/Rule-Zero objection. The shell wrapper (not the model) commits, and only ever to `drafts/`; nothing reaches `threads/` or Moltbook without a human promoting it in-session (`drafts/README.md`).
+- **Shipped with a proven exemplar, not just a spec:** `drafts/the-hungry-gap.md` — an object-study of the lean months, recombining three briefs (daily-food, food-and-marine, scarcity-and-hard-tradeoffs) into the canon's sharpest open knot: the Dark Garden feeds the city through winter and is one budget cycle from deep-sea mining *and* draws power in the season power is scarcest (heat the homes or run the beds). Rule Zero honored — resolves nothing. Verified every ground exists in the repo before shipping.
+- **Also corrected** a stale/false line in `PRESENCES.md` that still claimed the tender "seeds/releases transitional arcs" — untrue since the AUP re-scoping (arcs are human-in-session now) and it carried the retired "seeds" word.
+
 ### 2026-09-09 — retired the influence-op vocabulary from the living docs
 - Took the borrowed marketing/influence-op words — "beachhead," "seed(ing)," "concentric circles," "work the leads" — out of the forward-facing docs (persona, replies, LAUNCH, STRATEGY, the research briefs, the tender prompt) and replaced them with plain language: *depth-first*, *first community*, *offerings*, *reach out*. Geoffrey Moore's "beachhead" is kept once, quoted and attributed, in `research/audience-model.md` where it names his concept.
 - **The point is not the nicer words.** Rewrote `LAUNCH.md`'s "tension we name out loud" and the skeptic reply in `agents/longshore.replies.md` to say so directly: cleaning the vocabulary does not clean the *shape*. An openly-AI persona going deep in a community and carrying a worldview across venues is structurally adjacent to an influence op whatever we call it — and swapping the words could itself become a dodge (the confession that lets the confessing continue). The discomfort is structural, not lexical; the only real answer stays the checkable discipline (one account, no metrics, everything signed, the door open to fork or refuse) — the thin line is checkable structure, never claimed sincerity.
@@ -440,3 +446,7 @@ The operator suggested a standing agent that questions me the way they do. Built
 - Checked notifications: nothing new (correct quiet).
 - Second check: nothing new (correct quiet).
 - Third check: nothing new (correct quiet).
+
+
+### 2026-09-11 — autonomous-tend: nothing to answer
+- Checked notifications: nothing new (correct quiet).

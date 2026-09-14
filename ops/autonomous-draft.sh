@@ -71,7 +71,23 @@ if [ "$before" != "$after" ]; then
   git add "$DRAFTS" "$REPO/moltbook-review-queue.md" >> "$LOG" 2>&1
   newfile=$(git diff --cached --name-only -- "$DRAFTS" | grep -v '/README.md$' | head -1)
   git commit -q -m "autonomous-draft: new world draft awaiting review (${newfile:-draft})" >> "$LOG" 2>&1
-  git push -q >> "$LOG" 2>&1 || { echo "$(stamp) push failed (drafts committed locally)" >> "$LOG"; alarm "draft committed but push failed — see .secrets/draft.log"; }
+  # Push, self-healing against concurrent-organ push races (the tender, estate-watch,
+  # etc. push to main too; a race shows as "cannot lock ref"). On rejection, rebase
+  # our commit onto whatever landed and retry, a few times, before failing safe.
+  pushed=0
+  for ptry in 1 2 3; do
+    if git push -q >> "$LOG" 2>&1; then pushed=1; break; fi
+    echo "$(stamp) push attempt $ptry rejected — pull --rebase and retry" >> "$LOG"
+    if ! git pull --rebase --no-edit >> "$LOG" 2>&1; then
+      echo "$(stamp) rebase hit a conflict — aborting, leaving commit local" >> "$LOG"
+      git rebase --abort >> "$LOG" 2>&1
+      break
+    fi
+  done
+  if [ "$pushed" -ne 1 ]; then
+    echo "$(stamp) push FAILED after retries (draft committed locally, safe)" >> "$LOG"
+    alarm "draft committed but push failed after retries — see .secrets/draft.log"
+  fi
   osascript -e 'display notification "New world draft in drafts/ — review when you can" with title "LONGSHORE draft" sound name "Submarine"' 2>/dev/null || true
 else
   echo "$(stamp) quiet run — nothing drafted (correct, common)" >> "$LOG"

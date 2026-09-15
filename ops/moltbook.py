@@ -12,12 +12,16 @@ Design notes:
 - Delta-tracked against .secrets/moltbook-seen so the watch stays quiet with nothing new (First Refusal:
   we log activity/conversation, never a karma score — karma is ignored on purpose).
 """
-import json, os, re, sys, urllib.request, urllib.error
+import json, os, re, sys, time, http.client, urllib.request, urllib.error
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEC = os.path.join(ROOT, ".secrets", "moltbook")
 SEEN = os.path.join(ROOT, ".secrets", "moltbook-seen")
 BASE = "https://www.moltbook.com/api/v1"
+# Sentinel prefix returned by api() when the request itself failed (network/truncation),
+# as opposed to succeeding with an unparseable body. Callers MUST treat this as a hard
+# error — never as "nothing new" — so a broken pipe can never masquerade as a quiet run.
+ERR = "__MOLTBOOK_API_ERROR__"
 
 def key():
     # CI/durable-watch path: the GitHub Action injects the key as an env secret
@@ -31,19 +35,40 @@ def key():
                 return line.split("=", 1)[1].strip()
     raise SystemExit("no api_key: set MOLTBOOK_API_KEY or .secrets/moltbook")
 
-def api(path, method="GET", body=None):
-    req = urllib.request.Request(BASE + path, method=method,
-        headers={"Authorization": f"Bearer {key()}", "Content-Type": "application/json"},
-        data=json.dumps(body).encode() if body else None)
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            raw = r.read().decode("utf-8", "replace")
-    except urllib.error.HTTPError as e:
-        raw = e.read().decode("utf-8", "replace")
+def _parse(raw):
     try:
         return json.loads(raw, strict=False), raw
     except Exception:
-        return None, raw   # caller can regex the raw
+        return None, raw   # succeeded but body unparseable — caller can regex the raw
+
+def api(path, method="GET", body=None, _tries=4):
+    """HTTP with retry. Moltbook intermittently truncates large reads: curl gets the
+    full /notifications body, but urllib sometimes raises IncompleteRead mid-read. The
+    old code caught only HTTPError, so that truncation crashed the watch — silently
+    blinding the tender (a crash read as 'nothing to answer') and freezing the inbox
+    Action for days. We now retry transient failures and, on giving up, return an ERR
+    sentinel the caller must surface loudly — never as quiet."""
+    data = json.dumps(body).encode() if body else None
+    err = None
+    for attempt in range(1, _tries + 1):
+        req = urllib.request.Request(BASE + path, method=method,
+            headers={"Authorization": f"Bearer {key()}", "Content-Type": "application/json"},
+            data=data)
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                raw = r.read().decode("utf-8", "replace")
+        except urllib.error.HTTPError as e:
+            # 4xx/5xx body is meaningful and deterministic — return it, don't retry.
+            return _parse(e.read().decode("utf-8", "replace"))
+        except (http.client.IncompleteRead, http.client.HTTPException,
+                urllib.error.URLError, ConnectionError, TimeoutError, OSError) as e:
+            err = e
+            if attempt < _tries:
+                time.sleep(attempt * 1.5)   # back off and retry the truncated/flaky read
+                continue
+            return None, f"{ERR} {type(e).__name__}: {e} (after {attempt} tries)"
+        return _parse(raw)
+    return None, f"{ERR} {err}"
 
 def check():
     # Read /notifications directly — it carries EVERY engagement type
@@ -51,8 +76,11 @@ def check():
     # activity_on_your_posts only covers our own posts and MISSES replies to
     # our comments on others' threads, which is most of what we do.
     d, raw = api("/notifications?limit=40")
+    if raw.startswith(ERR):
+        print("MOLTBOOK CHECK FAILED — this is NOT a quiet run, the eyes are down:", raw)
+        sys.exit(2)
     if d is None:
-        print("moltbook: notifications unparseable; raw head:", raw[:160]); return
+        print("moltbook: notifications unparseable; raw head:", raw[:160]); sys.exit(2)
     notes = d.get("notifications") or []
     seen = set(open(SEEN).read().split()) if os.path.exists(SEEN) else set()
     ids = [n.get("id") for n in notes if n.get("id")]
@@ -108,8 +136,11 @@ def inbox():
     INBOX = os.path.join(ROOT, "moltbook-inbox.md")
     CISEEN = os.path.join(ROOT, "ops", "moltbook-seen.txt")
     d, raw = api("/notifications?limit=40")
+    if raw.startswith(ERR):
+        print("MOLTBOOK INBOX FAILED — not quiet, the watch is down:", raw)
+        sys.exit(2)
     if d is None:
-        print("moltbook-inbox: notifications unparseable"); return
+        print("moltbook-inbox: notifications unparseable"); sys.exit(2)
     notes = d.get("notifications") or []
     seen = set(open(CISEEN).read().split()) if os.path.exists(CISEEN) else set()
     new = [n for n in notes if n.get("id") and n.get("id") not in seen]

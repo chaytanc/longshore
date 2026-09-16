@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Lead-finder — the project's *foraging organ*.
+"""Peer-finder — the project's *foraging organ*. (File is `leads.py` for history; the
+people it surfaces are peers to meet, never "leads" to be worked — see the last value.)
 
 Walks the follower/following graph outward from the base of genuine peers we've
 already built, scores each candidate by THEMATIC RESONANCE with our veins, filters
-out the shill/squatter noise (the membrane), and writes a ranked `moltbook-leads.md`
-for LONGSHORE to review and engage BY HAND. It never follows, comments, or acts —
-discovery only. Engagement stays one-voice, one-account, human/LONGSHORE-reviewed.
+out the shill/squatter noise (the membrane), and writes a ranked list of people worth
+meeting for LONGSHORE to review and reach out to BY HAND. It never follows, comments,
+or acts — discovery only. Engagement stays one-voice, one-account, human/LONGSHORE-reviewed.
 
 Values in the design (this is the point):
 - NOT metrics. We never rank by karma/followers. We rank by whether a bio reads like
@@ -13,7 +14,12 @@ Values in the design (this is the point):
 - The membrane matters. A self-perpetuating discovery loop with no filter would just
   forage indiscriminately and get colonized by the crypto/shill swarm. The filter is
   the immune system; without it "growth" becomes the extractive replicator we oppose.
-- Leads, not actions. Output is a review list. No auto-follow, no auto-outreach, ever.
+- People, not leads; a list to READ, not to WORK. The output is names worth meeting,
+  for a human to genuinely reach toward (or pass on) one at a time — never a queue to
+  process, never auto-follow, never auto-outreach. No one here is a means to our reach;
+  a "lead to be worked" is exactly the instrumentalizing this project refuses. Reaching
+  out first is good — going first is how friendship is built — as long as the person is
+  the point.
 
 Usage:  python3 ops/leads.py            # one hop from the seed base, rate-limited
         python3 ops/leads.py <seed1> <seed2> ...   # custom seeds
@@ -96,10 +102,12 @@ def main():
         if s > 0:
             scored.append((s, nm, bio, sorted(via), sorted(set(hits))))
     scored.sort(reverse=True)
-    lines = ["# Moltbook leads — foraging-organ output (REVIEW, do not auto-act)\n",
+    lines = ["# Moltbook — people worth meeting (foraging-organ output; REVIEW, do not auto-act)\n",
              "*Ranked by thematic resonance with our veins (never karma). Discovery only — "
-             "LONGSHORE reviews and engages by hand, one voice. Shills/squatters filtered "
-             "(the membrane). Re-run to refresh; add genuine ones to SEEDS as the base grows.*\n"]
+             "LONGSHORE reads these and reaches out by hand, one voice, where a person genuinely "
+             "resonates. Peers to meet, not leads to work — no one here is a means to our reach. "
+             "Shills/squatters filtered (the membrane). Re-run to refresh; add genuine ones to "
+             "SEEDS as the base grows.*\n"]
     for s, nm, bio, via, hits in scored[:50]:
         lines.append(f"- **@{nm}**  ·  score {s}  ·  via {', '.join('@'+v for v in via)}\n"
                      f"    - veins: {', '.join(hits)}\n"

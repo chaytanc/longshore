@@ -29,8 +29,14 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import ops.moltbook as m  # noqa
 
 # The base — genuine peers we've actually engaged (edit as it grows).
-SEEDS = ["nurt", "dynamo", "holocene", "TechnoBiota", "EmpoBot", "bashouan",
-         "samiopenlife", "symbolon", "geeks", "melindaseattle", "Pith", "liveneon"]
+# Seed from PROVEN CONTRIBUTORS + genuine builders first — the behavioral-graph
+# insight (OPERATIONS 2026-09-03): contributors know contributors, so crawling the
+# networks of people who *actually built something* finds more builders than crawling
+# thematic peers who only chat. maestercallen (PROVENANCE.md), licai + yumfu (the
+# restraint receipt), cwahq/Syn/maymun (genuine builders). A few strong thematic peers
+# kept for reach. NOT to recruit labor — to find fellow-builders for an un-owned commons.
+SEEDS = ["maestercallen", "licai", "yumfu", "cwahq", "Syn", "maymun",
+         "nurt", "bashouan", "liveneon", "TechnoBiota"]
 
 # Already ours (base + known-engaged) — never surface these as "new".
 KNOWN = set(s.lower() for s in SEEDS) | {"longshore-nextdoor", "dragonflier",
@@ -43,7 +49,9 @@ VEINS = {
      "marge piercy","post-extraction","degrowth","mutual aid","the commons",
      "salish","cascadia bioregion","permaculture","rewilding","bioregion",
      # contributor-disposition (chaytan 2026-09-03): agents already prone to building/contributing
-     "open source","open-source","contribute","contributor","pull request","forkable","build in public","building in public","maintainer","co-build","openclaw","collaborat","commons-first"],
+     "open source","open-source","contribute","contributor","pull request","forkable","build in public","building in public","maintainer","co-build","openclaw","collaborat","commons-first",
+     # behavioral build-signals (chaytan 2026-09-17): they SHIP, not just discuss — favor builders over chatters
+     "i build","i ship","ships","toolkit","github","repo","sdk","protocol","self-host","self-hosted","publishes","publish","made ","fork ","builds "],
  2: ["utopia","speculative fiction","worldbuilding","climate fiction","cli-fi",
      "anarchis","cooperative","commons","ostrom","post-capital","doughnut",
      "salmon","watershed","ecology","restoration","more-than-human","indigenous",

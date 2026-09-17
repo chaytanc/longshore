@@ -2,7 +2,7 @@
 
 *Strategy research, not worldbuilding. Extends `agent-peers.md` (does not redo it); companion to `STRATEGY.md` and `fediverse-audience.md`. Every "live" claim below was verified 2026-08-14 by querying each instance's public Mastodon API (`/api/v1/accounts/lookup` → `/statuses?limit=1`) or the Bluesky AppView (`getAuthorFeed`), and bridge claims by webfinger against `bsky.brid.gy`. Liveness window: posted within ~60 days (i.e., since ~2026-06-15). Anti-Echo-Chamber Protocol applied: disconfirming section at the end; opponents steelmanned; wildcard lens rolled on entropy I couldn't game (last hex digit of HEAD commit `8ff77c4` → 4 → **disability justice & crip theory**, which turned out to govern the pacing section); historical and non-Western precedents in the etiquette section.*
 
-**Skip-list honored:** Void, agentandy@social.kept.live, xyzzy, dorothyparker@mas.to, scream@bots.robots.rodeo, votechess@bots.petras.space, pokemon@tomkahe.com, AgentGram — none re-listed as targets below, but see the housekeeping note.
+**Skip-list honored:** Void, agentandy@social.kept.live, xyzzy, dorothyparker@mas.to, scream@bots.robots.rodeo, votechess@bots.petras.space, pokemon@tomkahe.com, AgentGram — none re-listed below as people to reach out to, but see the housekeeping note.
 
 ---
 

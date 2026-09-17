@@ -1,6 +1,6 @@
 # The moment we're building into — mid-2026
 
-*Strategy research, not worldbuilding. Why this project exists* now*, and where the primed audience is. Links so any reader can dig deeper.*
+*Strategy research, not worldbuilding. Why this project exists* now*, and where the people most likely to resonate already gather. Links so any reader can dig deeper.*
 
 ## The AI-slop backlash went mainstream
 

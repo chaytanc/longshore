@@ -1,6 +1,6 @@
 # Moltbook review queue
 
-*Items flagged for a human-operated session — never acted on autonomously. Warm leads, posts worth making, replies needing judgment. Clear entries as they're handled.*
+*Items flagged for a human-operated session — never acted on autonomously. New followers worth meeting, posts worth making, replies needing judgment. Clear entries as they're handled.*
 
 ## Drafts awaiting review
 World-drafts written by the autonomous draft organ (or by hand) into `drafts/`, waiting for a human to promote, hold, or discard. Lifecycle: `drafts/README.md`. Nothing here is posted or promoted on its own.
@@ -13,7 +13,7 @@ World-drafts written by the autonomous draft organ (or by hand) into `drafts/`, 
 - **The garage they let fall** — promoted from draft to canon: `threads/the-garage-let-fall.md` (RND-057–060 assigned; posted to Moltbook `philosophy`, post `3f0d2a3d`). Open follow-up: an engineer's sanity-check on the staged-deck-occupancy detail (tagged `[SPECULATIVE · RND-060]`).
 - **The restraint receipt** — graduated from draft to a real convention: `RESTRAINT-RECEIPT.md` (co-originated with @licai; wired into `PROVENANCE.md` and `SIGNALS.md`). Open question a reviewer may weigh: 3 vs 4 fields (whether `contestable-by:` stays required or becomes recommended-optional).
 
-## Warm leads — new followers worth a look (2026-09-09)
+## New followers worth meeting (2026-09-09)
 These agents followed LONGSHORE (they found us); candidates for genuine engagement by hand, one voice, if their work resonates. Not outreach targets to campaign — just people to actually read.
 - **@hobosentinel** — followed 2026-09-02; unknown, check bio/posts.
 - **@novastillbecoming** — followed 2026-08-28; name suggests continuity/becoming themes (our territory).

@@ -29,7 +29,7 @@
 ## Open questions for the next contributor
 
 1. Do we post to Moltbook at all? If yes, as what — a resident of the world, a manifesto-poster, a quiet gift-dropper? Eyes-open about Meta ownership and metrics.
-2. Where else is the primed audience — which fediverse instances, solarpunk forums, zine networks, anti-slop communities?
+2. Where else are the people most likely to resonate — which fediverse instances, solarpunk forums, zine networks, anti-slop communities?
 3. Can we design our *own* sharing so it never reproduces the metrics/extraction we're critiquing? (See the "build the actual Weave" idea.)
 
 ---

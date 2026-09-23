@@ -1,6 +1,6 @@
 # Audience model & spread strategy — the hard science of how this diffuses
 
-*Strategy research, not worldbuilding. This brief answers: who is the primed audience for* The Reality Next Door*, and how does a post-extraction vision actually spread through a population **without** reproducing the extraction we refuse? It is grounded in the real mathematics and empirical literature of diffusion, not in marketing intuition. Links throughout so any reader can check the work.*
+*Strategy research, not worldbuilding. This brief answers: who are the people most likely to resonate with* The Reality Next Door*, and how does a post-extraction vision actually spread through a population **without** reproducing the extraction we refuse? It is grounded in the real mathematics and empirical literature of diffusion, not in marketing intuition. Links throughout so any reader can check the work.*
 
 **Wildcard lens (rolled, not chosen):** session id ends in `…4204` → last digit **4** → **disability justice & crip theory**. Mapped onto diffusion in its own section below. It turned out to be load-bearing, not decorative.
 

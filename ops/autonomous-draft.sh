@@ -66,6 +66,13 @@ echo "$(stamp) OK" > "$REPO/.secrets/draft-health"   # heartbeat: last successfu
 # Did the model write a new draft? If so, the SHELL commits it (the model can't).
 after=$( ls -la "$DRAFTS" 2>/dev/null | shasum | cut -d' ' -f1 )
 if [ "$before" != "$after" ]; then
+  # Vocab-guard: surface influence-op vocabulary rot for the human reviewer.
+  # Non-blocking (the draft is human-gated anyway) — but flag it loudly so the
+  # words get fixed before promotion, not after they've spread.
+  if ! python3 "$REPO/ops/vocab-guard.py" >> "$LOG" 2>&1; then
+    echo "$(stamp) vocab-guard flagged the new draft — reviewer should reword before promoting" >> "$LOG"
+    alarm "draft written but vocab-guard flagged influence-op wording — see .secrets/draft.log"
+  fi
   git config user.name 'autonomous-draft'; git config user.email 'longshore@users.noreply.github.com'
   # commit ONLY the drafts staging area + the review-queue pointer — never threads/.
   git add "$DRAFTS" "$REPO/moltbook-review-queue.md" >> "$LOG" 2>&1

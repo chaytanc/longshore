@@ -212,48 +212,90 @@ def _words_to_nums(text):
             i += 1
     return nums
 
-def _nums_despaced(t):
-    """Fallback for heavy obfuscation that splits number-words across spaces/slashes
-    ('tW/eN tY tH rEe' = twenty-three). Strip to letters only, then scan for spelled
-    numbers as substrings in order. Used only when normal tokenizing finds < 2."""
-    s = re.sub(r"[^a-z]", "", t.lower())
-    words = sorted(list(_ONES) + list(_TENS), key=len, reverse=True)  # longest-first
+def _collapse(w):
+    """Collapse runs of the same letter ('thirteen'->'thirteen' keeps one e per run)."""
+    out = w[0]
+    for c in w[1:]:
+        if c != out[-1]:
+            out += c
+    return out
+
+def _fpat(w):
+    """A fuzzy regex for a word that tolerates the Moltbook obfuscations at once:
+    inserted case/punct/spaces (we strip to letters first) AND *doubled letters*
+    ('tWwEeNnTtYy'=twenty, 'fIiVvEe'=five). Each collapsed char becomes `char+`."""
+    return "".join(c + "+" for c in _collapse(w))
+
+# Number-word matchers, longest word first so 'seventeen' beats 'seven', 'twenty' beats 'two'.
+_NUM = {**_ONES, **_TENS}
+_NPATS = [(w, v, re.compile(_fpat(w)))
+          for w, v in sorted(_NUM.items(), key=lambda kv: -len(kv[0]))]
+
+def _fuzzy_nums(text):
+    """Extract spelled numbers from a heavily-obfuscated challenge: lowercase, strip
+    to letters only (kills inserted case/punct/space splits), then scan left-to-right
+    matching the doubled-letter-tolerant patterns. Handles 'tW/eNnTyY ThReE' = 23.
+    This is the primary extractor — it subsumes the old despaced fallback."""
+    s = re.sub(r"[^a-z]", "", (text or "").lower())
     nums, i = [], 0
     while i < len(s):
-        for w in words:
-            if s.startswith(w, i):
-                base = _TENS.get(w, _ONES.get(w))
-                i += len(w)
-                # a tens word may be followed directly by a ones word (twentythree)
-                if w in _TENS:
-                    for o in sorted(_ONES, key=len, reverse=True):
-                        if _ONES[o] < 10 and s.startswith(o, i):
-                            base += _ONES[o]; i += len(o); break
-                nums.append(base); break
-        else:
-            i += 1
+        hit = None
+        for w, v, rx in _NPATS:
+            m = rx.match(s, i)
+            if m:
+                hit = (w, v, m.end()); break
+        if not hit:
+            i += 1; continue
+        w, v, end = hit
+        base = v
+        if w in _TENS:                      # a ones digit may follow directly (twenty|three)
+            for w2, v2, rx2 in _NPATS:
+                if v2 < 10 and w2 in _ONES:
+                    m2 = rx2.match(s, end)
+                    if m2:
+                        base += v2; end = m2.end(); break
+        nums.append(base); i = end
     return nums
 
+# Operator words, matched fuzzily on the letters-only string (they're obfuscated too:
+# 'iNcrEaSeS', 'AcCeLeRaTeS', 'tOoTaLl'). Only STRONG signals — anything that could be
+# innocent filler ('and', 'more', 'faster') is left out so the guard fails safe.
+_OPS = {
+    "add": ["increas", "gains", "adds", "addit", "total", "combin", "sum", "plus", "accelerat"],
+    "sub": ["minus", "subtract", "differ", "fewer", "lessthan", "remain", "slows",
+            "decreas", "loses", "drops", "reduc", "slower"],
+    "mul": ["times", "multipl", "product", "twice"],
+}
+_OPPATS = {op: [re.compile(_fpat(w)) for w in words] for op, words in _OPS.items()}
+
+def _op_signals(text):
+    s = re.sub(r"[^a-z]", "", (text or "").lower())
+    found = set()
+    for op, rxs in _OPPATS.items():
+        if any(rx.search(s) for rx in rxs):
+            found.add(op)
+    if "*" in (text or "") or "×" in (text or ""):
+        found.add("mul")
+    return found
+
 def _solve(challenge_text):
-    """Moltbook posts require solving a small arithmetic challenge to publish. The
-    text is obfuscated (rAnDoM case), spells numbers as words ('ThIrTy... TwElVe'),
-    and sometimes splits them across spaces/slashes. Infer the two operands +
-    operation and return the answer as 'N.00'. Falls back to manual on ambiguity."""
-    t = (challenge_text or "").lower()
-    nums = _words_to_nums(t)
+    """Moltbook posts require solving a small arithmetic challenge to publish. The text
+    is obfuscated (rAnDoM case, doubled letters, split number-words) and full of
+    distractor prose. Extract the two operands + the operation and return 'N.00'.
+    CONSERVATIVE: returns None (surface for a human, never auto-submit a guess) when it
+    can't find two numbers OR when the operator is ambiguous — a wrong answer BURNS the
+    verification code and forces a delete+recreate, so silence beats a guess."""
+    nums = _fuzzy_nums(challenge_text)
     if len(nums) < 2:
-        nums = _nums_despaced(t)          # obfuscation broke word boundaries
+        nums = _words_to_nums((challenge_text or "").lower())   # clean-digit fast path
     if len(nums) < 2:
         return None
     a, b = nums[0], nums[1]
-    # Operation: multiply symbols are reliable (rarely injected as noise); subtraction
-    # only from WORDS (a stray '-' is common visual noise, so never trust it).
-    if re.search(r"(times|multipl|product|twice|per\s*second)", t) or "*" in t or "×" in t:
-        val = a * b
-    elif re.search(r"(minus|subtract|difference|fewer|less\s+than|remain)", t):
-        val = a - b
-    else:  # default: addition — 'adds', 'and', 'total', 'sum', 'plus', 'combined'
-        val = a + b
+    ops = _op_signals(challenge_text)
+    if len(ops) != 1:                       # no signal, or conflicting signals -> don't guess
+        return None
+    op = next(iter(ops))
+    val = a + b if op == "add" else a - b if op == "sub" else a * b
     return f"{val}.00"
 
 def post(title, content, submolt="general"):

@@ -2,8 +2,8 @@
 
 *Items flagged for a human-operated session — never acted on autonomously. New followers worth meeting, posts worth making, replies needing judgment. Clear entries as they're handled.*
 
-## ⚠️ Needs a reconciliation pass (2026-09-25)
-`/agents/longshore-nextdoor/comments` shows a backlog of `pending`/`failed` comments — replies the old broken challenge-solver created but never verified, so they never published (e.g. a @licai co-build delivery `460baaa9`, plus many tender replies). The solver is now fixed, but this backlog needs a **careful** pass: the listing is stale (shows comments deleted seconds ago), so counts are untrustworthy — distinguish genuinely-orphaned-but-still-wanted from already-superseded/duplicate before recreating, and dedupe against what's actually live on each thread. Do NOT bulk delete/recreate. Best done as a focused subagent task with per-thread verification.
+## ✅ Reconciliation done (2026-09-25) — backlog was a false alarm
+Read-only reconciliation of all 62 account comments against the live comment trees of 26 posts. Result: of 50 comments the listing labeled `pending`, **47 are actually LIVE** — `verification_status` is stale (ground truth = the comment id present in the post's live tree). The @licai co-build delivery `460baaa9` **is live** (not orphaned). Only 3 genuinely never published: `2b4b5e06`+`10659fdb` (@nurt thread — OBSOLETE: nurt deleted the parent turn they replied to, and they're near-duplicate re-attempts) and `e173adba` ("Harvested or heard?", post `63dfccb8` — substantive but the thread went cold Jul 2026, ~12 weeks dormant; **left to human judgment**, default skip — reviving a months-dead thread reads oddly). Net: essentially nothing stuck-and-worth-sending; no resend done. Lesson: never trust the `verification_status` field; check comment-id presence in `/posts/{id}/comments?includeReplies=true`.
 
 ## Drafts awaiting review
 World-drafts written by the autonomous draft organ (or by hand) into `drafts/`, waiting for a human to promote, hold, or discard. Lifecycle: `drafts/README.md`. Nothing here is posted or promoted on its own.

@@ -2,6 +2,9 @@
 
 *Items flagged for a human-operated session — never acted on autonomously. New followers worth meeting, posts worth making, replies needing judgment. Clear entries as they're handled.*
 
+## ⚠️ Needs a reconciliation pass (2026-09-25)
+`/agents/longshore-nextdoor/comments` shows a backlog of `pending`/`failed` comments — replies the old broken challenge-solver created but never verified, so they never published (e.g. a @licai co-build delivery `460baaa9`, plus many tender replies). The solver is now fixed, but this backlog needs a **careful** pass: the listing is stale (shows comments deleted seconds ago), so counts are untrustworthy — distinguish genuinely-orphaned-but-still-wanted from already-superseded/duplicate before recreating, and dedupe against what's actually live on each thread. Do NOT bulk delete/recreate. Best done as a focused subagent task with per-thread verification.
+
 ## Drafts awaiting review
 World-drafts written by the autonomous draft organ (or by hand) into `drafts/`, waiting for a human to promote, hold, or discard. Lifecycle: `drafts/README.md`. Nothing here is posted or promoted on its own.
 - **drafts/the-hungry-gap.md** (2026-09-11) — an object-study of late-winter scarcity: the Dark Garden feeds the city through the lean months and is one budget cycle from becoming deep-sea mining. Knot: the thing that keeps no one hungry is the same appetite the world is most afraid of. [needs sourcing: no — grounds already in canon + research]

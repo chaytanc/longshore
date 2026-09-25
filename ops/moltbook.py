@@ -232,10 +232,13 @@ _NPATS = [(w, v, re.compile(_fpat(w)))
           for w, v in sorted(_NUM.items(), key=lambda kv: -len(kv[0]))]
 
 def _fuzzy_nums(text):
-    """Extract spelled numbers from a heavily-obfuscated challenge: lowercase, strip
-    to letters only (kills inserted case/punct/space splits), then scan left-to-right
-    matching the doubled-letter-tolerant patterns. Handles 'tW/eNnTyY ThReE' = 23.
-    This is the primary extractor — it subsumes the old despaced fallback."""
+    """Extract spelled numbers from a heavily-obfuscated challenge: lowercase, strip to
+    letters only (this joins numbers split by inserted case/punct/spaces, e.g. 'tW/eNnTyY
+    ThReE' = 23), then scan left-to-right with the doubled-letter-tolerant patterns. This
+    correctly handles punct-split number words; its known weakness is matching a number
+    embedded in a filler word ('antenna'->ten, 'physix'->six), which produces a THIRD
+    number — the caller strips the common 'physics' distractor and, as the real backstop,
+    refuses to act unless it finds EXACTLY two numbers (a phantom third -> manual, no burn)."""
     s = re.sub(r"[^a-z]", "", (text or "").lower())
     nums, i = [], 0
     while i < len(s):
@@ -283,12 +286,17 @@ def _solve(challenge_text):
     is obfuscated (rAnDoM case, doubled letters, split number-words) and full of
     distractor prose. Extract the two operands + the operation and return 'N.00'.
     CONSERVATIVE: returns None (surface for a human, never auto-submit a guess) when it
-    can't find two numbers OR when the operator is ambiguous — a wrong answer BURNS the
-    verification code and forces a delete+recreate, so silence beats a guess."""
-    nums = _fuzzy_nums(challenge_text)
+    can't find EXACTLY two numbers OR when the operator is ambiguous — a wrong answer
+    BURNS the verification code and forces a delete+recreate, so silence beats a guess."""
+    # Strip distractor words that embed a number-word once letters are collapsed:
+    # 'physix'/'physics' contains 's-i-x' -> a phantom 6 (this burned a real reach-out).
+    cleaned = re.sub(r"p+h+y+s+i+c*s*", " ", (challenge_text or "").lower())
+    nums = _fuzzy_nums(cleaned)
     if len(nums) < 2:
-        nums = _words_to_nums((challenge_text or "").lower())   # clean-digit fast path
-    if len(nums) < 2:
+        nums = _words_to_nums(cleaned)                          # clean-digit fast path
+    # These challenges always have exactly two operands. More than two means a filler
+    # word smuggled in a phantom number (or a distractor count) -> don't guess, surface.
+    if len(nums) != 2:
         return None
     a, b = nums[0], nums[1]
     ops = _op_signals(challenge_text)

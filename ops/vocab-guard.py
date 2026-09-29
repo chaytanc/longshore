@@ -79,6 +79,7 @@ FORWARD = {
     "ops/tend-prompt.md",
     "ops/draft-prompt.md",
     "ops/voice-review-prompt.md",
+    "ops/outreach-prompt.md",
     "moltbook-review-queue.md",
     "README.md",
     "the-first-move.md",
@@ -108,6 +109,9 @@ ANCHORS = {
     "ops/voice-review-prompt.md": [
         "never let reach become the target",  # refusal
         "it lands better / converts more",    # naming what we KILL
+    ],
+    "ops/outreach-prompt.md": [
+        "never a lead to be worked",          # refusal (the thin-line discipline)
     ],
     "moltbook-review-queue.md": [
         "Not outreach targets to campaign",   # refusal in prose

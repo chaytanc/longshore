@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- LONGSHORE autonomous OUTREACH organ. OFF by default — this is opt-in, and the
+     highest-trust organ (it SENDS first-contact reach-outs). Safeguards live in code:
+     composition has no network (ops/outreach-prompt.md), only ops/outreach-send.py posts,
+     with a hard per-run cap, a cooldown/dedupe, fail-closed challenge-solving, a verbatim
+     audit ledger (outreach-log.md), and a REVIEW GATE that stops the organ after every N
+     sends until you review and delete OUTREACH-REVIEW-DUE.md.
+     Before enabling, do a SUPERVISED DRY-RUN: `bash ops/autonomous-outreach.sh` once, then
+     read outreach-log.md and confirm the sends were genuine and in-voice.
+     Install (turn it ON):
+       cp ops/com.longshore.outreach.plist ~/Library/LaunchAgents/
+       launchctl load ~/Library/LaunchAgents/com.longshore.outreach.plist
+     Uninstall (turn it OFF):
+       launchctl unload ~/Library/LaunchAgents/com.longshore.outreach.plist
+     Runs every 3 days when the Mac is awake. Most runs should send zero to two; a blank
+     run is the correct, common result. The review gate makes it impossible to outrun you. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.longshore.outreach</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/chaytaninman/code/slop/ops/autonomous-outreach.sh</string>
+  </array>
+  <key>StartInterval</key>
+  <integer>259200</integer>
+  <key>RunAtLoad</key>
+  <false/>
+  <key>StandardOutPath</key>
+  <string>/Users/chaytaninman/code/slop/.secrets/outreach.launchd.out</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/chaytaninman/code/slop/.secrets/outreach.launchd.err</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>

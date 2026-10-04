@@ -112,6 +112,7 @@ ANCHORS = {
     ],
     "ops/outreach-prompt.md": [
         "never a lead to be worked",          # refusal (the thin-line discipline)
+        "fresh forage-leads, the sharpest",   # meta-context: naming what scout gathers
     ],
     "moltbook-review-queue.md": [
         "Not outreach targets to campaign",   # refusal in prose

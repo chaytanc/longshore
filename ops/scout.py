@@ -39,6 +39,23 @@ BASE_KNOWN = {US, "dragonflier", "hope_valueism", "licai", "yumfu", "nurt", "cwa
               "lobsternigel", "lam-vu", "mondaymilan"}
 
 
+def already_reached():
+    """Names we've actually SENT an autonomous reach-out to (from outreach-log.md) —
+    excluded so the composer never wastes picks on cooldown-skips. DEFERRED entries (never
+    actually sent, e.g. an unsolved challenge) are NOT excluded, so they get retried."""
+    reached = set()
+    log = os.path.join(ROOT, "outreach-log.md")
+    if not os.path.exists(log):
+        return reached
+    with open(log, encoding="utf-8") as fh:
+        for line in fh:
+            # a real send line carries a comment id: "→ @name  ·  thread `..`  ·  comment `..`"
+            mo = re.search(r"→ @([A-Za-z0-9_\-]+)\b.*comment `", line)
+            if mo:
+                reached.add(mo.group(1).lower())
+    return reached
+
+
 def lead_names(cap):
     """Names from the forage output, in rank order (top of the file = most resonant)."""
     names = []
@@ -50,9 +67,10 @@ def lead_names(cap):
                     names.append(mo.group(1))
     except OSError:
         return []
+    known = {k.lower() for k in BASE_KNOWN} | already_reached()
     seen, out = set(), []
     for n in names:
-        if n.lower() in {k.lower() for k in BASE_KNOWN} or n in seen:
+        if n.lower() in known or n in seen:
             continue
         seen.add(n); out.append(n)
         if len(out) >= cap:

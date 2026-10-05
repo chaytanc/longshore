@@ -12,8 +12,12 @@
        launchctl load ~/Library/LaunchAgents/com.longshore.outreach.plist
      Uninstall (turn it OFF):
        launchctl unload ~/Library/LaunchAgents/com.longshore.outreach.plist
-     Runs every 3 days when the Mac is awake. Most runs should send zero to two; a blank
-     run is the correct, common result. The review gate makes it impossible to outrun you. -->
+     Runs DAILY ~11:00 via StartCalendarInterval (NOT StartInterval: a multi-hour/day
+     StartInterval fires unreliably on a laptop that sleeps — it ran zero times in 4 days
+     that way; launchd runs a MISSED calendar job at next wake). Daily cadence is throttled
+     to honesty by the composer (genuine-or-nothing, usually 0-2), the 30-day cooldown, the
+     per-run cap, and the review gate — so most daily runs send nothing. A blank run is the
+     correct, common result. The review gate makes it impossible to outrun you. -->
 <plist version="1.0">
 <dict>
   <key>Label</key>
@@ -23,8 +27,11 @@
     <string>/bin/bash</string>
     <string>/Users/chaytaninman/code/slop/ops/autonomous-outreach.sh</string>
   </array>
-  <key>StartInterval</key>
-  <integer>86400</integer>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>11</integer>
+    <key>Minute</key><integer>0</integer>
+  </dict>
   <key>RunAtLoad</key>
   <false/>
   <key>StandardOutPath</key>

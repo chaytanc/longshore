@@ -64,10 +64,14 @@ python3 "$REPO/ops/outreach-send.py" >> "$LOG" 2>&1
 SEND_RC=$?
 echo "--- send exit $SEND_RC at $(stamp) ---" >> "$LOG"
 
-# Commit the ledger + state + any raised review gate (never the transient sends file).
-if [ -n "$(git status --porcelain outreach-log.md OUTREACH-REVIEW-DUE.md 2>/dev/null)" ]; then
+# Commit the ledger + scout refresh + any raised review gate (never the transient sends file).
+# Add each path only if it exists — `git add <missing>` fails the WHOLE add (and OUTREACH-
+# REVIEW-DUE.md is absent on the common path), which previously left the ledger uncommitted.
+if [ -n "$(git status --porcelain outreach-log.md OUTREACH-REVIEW-DUE.md moltbook-scout-input.md 2>/dev/null)" ]; then
   git config user.name 'autonomous-outreach'; git config user.email 'longshore@users.noreply.github.com'
-  git add outreach-log.md OUTREACH-REVIEW-DUE.md moltbook-scout-input.md 2>/dev/null
+  for f in outreach-log.md moltbook-scout-input.md OUTREACH-REVIEW-DUE.md; do
+    [ -f "$f" ] && git add "$f" >> "$LOG" 2>&1
+  done
   git commit -q -m "autonomous-outreach: sent reach-out(s) — logged for review" >> "$LOG" 2>&1
   pushed=0
   for ptry in 1 2 3; do

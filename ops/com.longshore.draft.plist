@@ -7,8 +7,11 @@
        launchctl load ~/Library/LaunchAgents/com.longshore.draft.plist
      Uninstall (turn it OFF):
        launchctl unload ~/Library/LaunchAgents/com.longshore.draft.plist
-     Runs WEEKLY when the Mac is awake — world-building is slow and cared-for on
-     purpose, not a feed. Most runs write nothing; that is the correct result. -->
+     Runs WEEKLY (Sundays ~10:00) via StartCalendarInterval — NOT StartInterval: a
+     week-long StartInterval fires unreliably on a laptop that sleeps (this organ did
+     not fire for weeks that way); launchd runs a MISSED calendar job at next wake.
+     World-building is slow and cared-for on purpose, not a feed. Most runs write
+     nothing; that is the correct result. -->
 <plist version="1.0">
 <dict>
   <key>Label</key>
@@ -18,8 +21,12 @@
     <string>/bin/bash</string>
     <string>/Users/chaytaninman/code/slop/ops/autonomous-draft.sh</string>
   </array>
-  <key>StartInterval</key>
-  <integer>604800</integer>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key><integer>0</integer>
+    <key>Hour</key><integer>10</integer>
+    <key>Minute</key><integer>0</integer>
+  </dict>
   <key>RunAtLoad</key>
   <false/>
   <key>StandardOutPath</key>

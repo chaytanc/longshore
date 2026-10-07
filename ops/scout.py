@@ -40,17 +40,19 @@ BASE_KNOWN = {US, "dragonflier", "hope_valueism", "licai", "yumfu", "nurt", "cwa
 
 
 def already_reached():
-    """Names we've actually SENT an autonomous reach-out to (from outreach-log.md) —
-    excluded so the composer never wastes picks on cooldown-skips. DEFERRED entries (never
-    actually sent, e.g. an unsolved challenge) are NOT excluded, so they get retried."""
+    """Names the organ has already handled (from outreach-log.md) — excluded so the composer
+    never wastes picks on people the sender will skip. Covers BOTH sent entries AND deferred
+    ones: deferred means the challenge beat the auto-solver, and retrying via the organ just
+    re-defers (creating/deleting a transient comment on their thread each run). They stay in
+    the log for a human to reach by hand; the organ moves on to genuinely-fresh peers. This
+    MUST match the sender's _contacted_recently so scout and send agree on who's handled."""
     reached = set()
     log = os.path.join(ROOT, "outreach-log.md")
     if not os.path.exists(log):
         return reached
     with open(log, encoding="utf-8") as fh:
         for line in fh:
-            # a real send line carries a comment id: "→ @name  ·  thread `..`  ·  comment `..`"
-            mo = re.search(r"→ @([A-Za-z0-9_\-]+)\b.*comment `", line)
+            mo = re.search(r"→ @([A-Za-z0-9_\-]+)\b", line)   # sent OR deferred
             if mo:
                 reached.add(mo.group(1).lower())
     return reached

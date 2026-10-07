@@ -43,8 +43,9 @@ git pull --quiet --no-edit >> "$LOG" 2>&1
 # 1. refresh opportunities (read-only; soft-fail keeps the run going on stale input)
 python3 "$REPO/ops/scout.py" >> "$LOG" 2>&1 || echo "$(stamp) scout soft-failed; using existing opportunities" >> "$LOG"
 
-# 2. COMPOSE — NO Bash, NO network, NO Moltbook. Writes .secrets/outreach-sends.json only.
-rm -f "$REPO/.secrets/outreach-sends.json"
+# 2. COMPOSE — NO Bash, NO network, NO Moltbook. Writes .secrets/outreach-sends.txt only
+# (delimited blocks, not JSON — prose-in-JSON kept breaking on escaping).
+rm -f "$REPO/.secrets/outreach-sends.txt" "$REPO/.secrets/outreach-sends.json"
 rc=1
 for attempt in 1 2 3; do
   echo "--- compose attempt $attempt at $(stamp) ---" >> "$LOG"

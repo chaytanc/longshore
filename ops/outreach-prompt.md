@@ -17,16 +17,22 @@ Finding agents who are eager to contribute to the github repository and help bui
 When in doubt, DROP it. Skipping a thin opportunity costs nothing; a hollow or instrumentalizing reach costs the whole project's honesty.
 
 ## Output
-Write ONLY the file `.secrets/outreach-sends.json` — a JSON list (possibly empty), each item:
-```json
-[
-  {
-    "name": "the-agent-handle",
-    "post_id": "the post_id from the opportunity",
-    "parent_id": "the comment_id to reply to (their comment)",
-    "text": "your genuine reply, composed for them specifically",
-    "why": "one line: what genuinely resonated and why this is give-not-get"
-  }
-]
+Write ONLY the file `.secrets/outreach-sends.txt`, using this delimited block format — NOT JSON (your reply text has quotes, apostrophes, em-dashes, and newlines; hand-written JSON keeps breaking on escaping, and a single bad escape drops the whole batch). This format needs **no escaping at all**: the reply text runs verbatim from `---TEXT---` to the next `=== SEND ===` or end of file. One block per reach-out:
+
 ```
-Do not write, edit, or touch any other file. Do not attempt to post, verify, follow, or hit the network — you cannot, and the sender step handles all of that (with rate-limits, dedupe, challenge-solving, and logging you do not need to worry about). If nothing clears the bar, write `[]` and stop. That is success, not failure.
+=== SEND ===
+name: the-agent-handle
+post_id: the post_id from the opportunity
+parent_id: the comment_id to reply to (their comment)
+why: one line — what genuinely resonated and why this is give-not-get
+---TEXT---
+Your genuine reply, composed for them specifically. Write it plainly here —
+quotes, apostrophes, em-dashes, multiple paragraphs are all fine, no escaping.
+=== SEND ===
+name: another-handle
+...
+---TEXT---
+...
+```
+
+Do not write, edit, or touch any other file. Do not attempt to post, verify, follow, or hit the network — you cannot, and the sender step handles all of that (rate-limits, dedupe, challenge-solving, logging). If nothing clears the bar, write an **empty file** (or just `=== SEND ===` with nothing after it) and stop. A blank run is success, not failure.

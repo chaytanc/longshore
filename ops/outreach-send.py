@@ -33,7 +33,55 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import ops.moltbook as m  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SENDS = os.path.join(ROOT, ".secrets", "outreach-sends.json")
+SENDS = os.path.join(ROOT, ".secrets", "outreach-sends.txt")
+SENDS_LEGACY = os.path.join(ROOT, ".secrets", "outreach-sends.json")  # old JSON path, still read if present
+
+
+def parse_sends(path):
+    """Parse the composer's delimited send-blocks. We use this instead of JSON because the
+    composer hand-writes prose (quotes, apostrophes, em-dashes, newlines) into the message,
+    and hand-written JSON kept breaking on escaping. This format needs NO escaping: freeform
+    text runs from `---TEXT---` to the next `=== SEND ===` (or EOF). Format per record:
+        === SEND ===
+        name: handle
+        post_id: ...
+        parent_id: ...
+        why: one line
+        ---TEXT---
+        <freeform multi-line reply>
+    """
+    try:
+        with open(path, encoding="utf-8") as fh:
+            raw = fh.read()
+    except OSError:
+        return None
+    items = []
+    for block in raw.split("=== SEND ==="):
+        block = block.strip()
+        if not block:
+            continue
+        head, _, text = block.partition("---TEXT---")
+        it = {"text": text.strip()}
+        for line in head.splitlines():
+            mo = re.match(r"\s*(name|post_id|parent_id|why)\s*:\s*(.*)", line)
+            if mo:
+                it[mo.group(1)] = mo.group(2).strip()
+        # strip surrounding backticks/quotes the composer may add around ids
+        for k in ("post_id", "parent_id"):
+            if it.get(k):
+                it[k] = it[k].strip("`\"' ")
+        if it.get("post_id") and it.get("text"):
+            items.append(it)
+    return items
+
+
+def _load_json_legacy(path):
+    try:
+        with open(path) as fh:
+            d = json.load(fh)
+        return d if isinstance(d, list) else None
+    except (OSError, ValueError):
+        return None
 STATE = os.path.join(ROOT, ".secrets", "outreach-state.json")
 LOG = os.path.join(ROOT, "outreach-log.md")
 DUE = os.path.join(ROOT, "OUTREACH-REVIEW-DUE.md")
@@ -158,12 +206,12 @@ def main():
               "chaytan reviews outreach-log.md and deletes the due-file.")
         return
 
-    try:
-        with open(SENDS) as fh:
-            items = json.load(fh)
-    except (OSError, ValueError) as e:
-        print(f"outreach: no valid sends to execute ({e})"); return
-    if not isinstance(items, list) or not items:
+    items = parse_sends(SENDS)
+    if items is None:                       # no delimited file — fall back to legacy JSON
+        items = _load_json_legacy(SENDS_LEGACY)
+    if items is None:
+        print("outreach: no sends file to execute (composer wrote nothing)."); return
+    if not items:
         print("outreach: composer selected nothing to send (a blank run is a good run)."); return
 
     # 2. HARD CAP (defensive — composer is told the same, but enforce it here regardless).
@@ -220,11 +268,12 @@ def main():
     else:
         print(f"outreach: {sent_count} sent this run; {state['unreviewed']}/{REVIEW_AFTER} toward next review gate.")
 
-    # clear the consumed sends file so a re-run can't double-send
-    try:
-        os.remove(SENDS)
-    except OSError:
-        pass
+    # clear the consumed sends file(s) so a re-run can't double-send
+    for p in (SENDS, SENDS_LEGACY):
+        try:
+            os.remove(p)
+        except OSError:
+            pass
 
 
 if __name__ == "__main__":

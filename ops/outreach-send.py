@@ -182,7 +182,9 @@ def _send_one(item):
         cid = (d or {}).get("comment", {}).get("id")
         if cid:
             m.api(f"/comments/{cid}", "DELETE")
-        return "deferred", f"challenge unsolved (surface for manual): {ctext[:80]}"
+        # Log the FULL challenge (whitespace-collapsed) so a human can solve + send by hand —
+        # truncating it to 80 chars made deferred reaches unrecoverable.
+        return "deferred", f"auto-solver declined (solve by hand): {' '.join(ctext.split())}"
     dv, rv = m.api("/verify", "POST", {"verification_code": code, "answer": ans})
     if dv and dv.get("success"):
         return "sent", (dv.get("content_id") or "verified")

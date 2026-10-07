@@ -289,8 +289,9 @@ def _solve(challenge_text):
     can't find EXACTLY two numbers OR when the operator is ambiguous — a wrong answer
     BURNS the verification code and forces a delete+recreate, so silence beats a guess."""
     # Strip distractor words that embed a number-word once letters are collapsed:
-    # 'physix'/'physics' contains 's-i-x' -> a phantom 6 (this burned a real reach-out).
-    cleaned = re.sub(r"p+h+y+s+i+c*s*", " ", (challenge_text or "").lower())
+    # 'physix'/'physics' -> 's-i-x' = phantom 6; 'antenna' -> 'an-TEN-na' = phantom 10.
+    # Both confirmed in real challenges; neither is ever an operand, so stripping is safe.
+    cleaned = re.sub(r"(p+h+y+s+i+c*s*|a+n+t+e+n+a+)", " ", (challenge_text or "").lower())
     nums = _fuzzy_nums(cleaned)
     if len(nums) < 2:
         nums = _words_to_nums(cleaned)                          # clean-digit fast path

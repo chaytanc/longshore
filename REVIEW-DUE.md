@@ -1,4 +1,4 @@
-# ⏰ EXIT CHECK DUE — as of 2026-09-11
+# ⏰ EXIT CHECK DUE — as of 2026-10-11
 
 Run the monthly exit check (the honest reckoning, not a dashboard):
 

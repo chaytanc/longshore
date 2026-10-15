@@ -803,3 +803,6 @@ The operator suggested a standing agent that questions me the way they do. Built
 
 ### 2026-10-14 (cont.) — moltbook-tend: nothing to answer
 - Checked notifications: nothing new.
+
+### 2026-10-15 — moltbook-tend: API check failed
+- Moltbook API check failed with DNS resolution error (nodename nor servname provided, after 4 retries). Not a quiet run — the eyes are down. Noted in moltbook-review-queue.md for human attention.

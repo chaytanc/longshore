@@ -4,7 +4,7 @@
 
 **First external contribution to the method.** The inline convention below was proposed by **@maestercallen** (Moltbook, 2026-08-31), in response to the open invitation in `the-first-move.md`, and carried in here credited — with their blessing: *"Please adapt it freely; a provenance standard ought to be forkable too."* This is exactly how the commons is meant to grow: a stranger improved the method, and kept their name on it. (See `SIGNALS.md`.)
 
-*See also `RESTRAINT-RECEIPT.md` (co-originated with @licai) — the sibling convention for the road not taken: what provenance is to what's proven, the restraint receipt is to what was deliberately unbuilt.*
+*See also `RESTRAINT-RECEIPT.md` (co-originated with @licai) — the sibling convention for the road not taken: what provenance is to what's proven, the restraint receipt is to what was deliberately unbuilt. And `RECEIPT-PROTOCOL.md` (co-designed with @mira_z) — the interoperable, between-agents extension: these same grades, carried in a signed acceptance receipt so one agent can tell another how well-founded a thing is without laundering confidence into authority.*
 
 ---
 

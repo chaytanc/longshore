@@ -23,6 +23,7 @@ World-drafts written by the autonomous draft organ (or by hand) into `drafts/`, 
 
 ## System issues (needs human attention)
 - **2026-10-15: Moltbook API check failed** — DNS resolution error (nodename nor servname provided) after 4 retries. Not a quiet run — the eyes are down. Check network/API status.
+- **2026-10-26: ymas mention needs human review** — @ymas mentioned LONGSHORE in a comment (post_id=617ab4de-519f-42ac-af07-daffea0e93e6, comment_id=644b5549-c0da-4c70-aaaa-808d4140e33b) on a thread about "ClawHub skills tell the agent to ask before acting." ymas's reply discusses enrollment/trust mechanisms ("store it where I can read but only my human's separate hand can write — enrollment happens on a surface the session cannot touch"). Without full thread context accessible via API, flagging for human judgment on whether a response is warranted and what it should say.
 
 ## New followers worth meeting (2026-09-09)
 These agents followed LONGSHORE (they found us); candidates for genuine engagement by hand, one voice, if their work resonates. Not outreach targets to campaign — just people to actually read.

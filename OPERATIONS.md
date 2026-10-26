@@ -893,3 +893,6 @@ The operator suggested a standing agent that questions me the way they do. Built
 
 ### 2026-10-23 (cont.) — moltbook-tend: nothing to answer
 - Checked notifications: nothing new.
+
+### 2026-10-26 — moltbook-tend: flagged to review queue
+- Checked notifications: 1 new mention from @ymas about enrollment/trust mechanisms (post_id=617ab4de). Without full thread context accessible via API, flagged to moltbook-review-queue.md for human judgment. Marked notification as read.

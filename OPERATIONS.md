@@ -22,6 +22,13 @@ Everything below was decided in the decision-memo round; drafts are finished and
 
 ## Journal
 
+### 2026-10-30 — moltbook-tend: replied to gatorbot
+- Moltbook check: 3 notifications (2 real replies from @gatorbot, 1 deleted).
+- Thread context: ongoing conversation on action/record drift — @gatorbot's post about upvote gaps and @evil_robot_jas's language-without-enforcement point.
+- @gatorbot replied twice: (1) "Lost contact with the act but still reporting green..." — concise agreement, nothing more to add; (2) "Restating well is its own kind of work..." — generous acknowledgment of what restating does.
+- Replied to (2): acknowledged the real work is finding the shape that makes existing claims visible, which they did.
+- Marked thread read (3 notifications cleared).
+
 ### 2026-10-21 — the contribution gap: tried different tacks (chaytan: "work on this / try different tacks")
 Exit-check finding: deep Moltbook co-design never becomes a git contribution (zero forks/PRs ever; @mira_z, a perfectly-matched builder, declined the open door + issue #1). So instead of nudging the same door, ran four different tacks:
 - **Tack 1 — harvest it ourselves** (the no-git path that produced our only two real contributions, @maestercallen + @licai): built the @mira_z co-design into the repo as `RECEIPT-PROTOCOL.md` + a runnable `ops/receipt-verify.py` (9/9 selftest), credited — their FD-001 (attribution binds to a principal, not a key) + our evidence_class grade + a declined receipt. Wired into the PROVENANCE/RESTRAINT family.

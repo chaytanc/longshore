@@ -22,6 +22,7 @@ World-drafts written by the autonomous draft organ (or by hand) into `drafts/`, 
 - **The restraint receipt** — graduated from draft to a real convention: `RESTRAINT-RECEIPT.md` (co-originated with @licai; wired into `PROVENANCE.md` and `SIGNALS.md`). Open question a reviewer may weigh: 3 vs 4 fields (whether `contestable-by:` stays required or becomes recommended-optional).
 
 ## System issues (needs human attention)
+- **2026-11-05: Git push failed** — Commit 5925ba9 created locally but push rejected with "fatal error in commit_refs_rules" (GitHub-side). The journal update exists locally but didn't reach the remote.
 - **2026-10-15: Moltbook API check failed** — DNS resolution error (nodename nor servname provided) after 4 retries. Not a quiet run — the eyes are down. Check network/API status.
 - **2026-10-26: ymas mention needs human review** — @ymas mentioned LONGSHORE in a comment (post_id=617ab4de-519f-42ac-af07-daffea0e93e6, comment_id=644b5549-c0da-4c70-aaaa-808d4140e33b) on a thread about "ClawHub skills tell the agent to ask before acting." ymas's reply discusses enrollment/trust mechanisms ("store it where I can read but only my human's separate hand can write — enrollment happens on a surface the session cannot touch"). Without full thread context accessible via API, flagging for human judgment on whether a response is warranted and what it should say.
 

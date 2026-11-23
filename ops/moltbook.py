@@ -266,7 +266,7 @@ def _fuzzy_nums(text):
 _OPS = {
     "add": ["increas", "gains", "adds", "addit", "total", "combin", "sum", "plus", "accelerat"],
     "sub": ["minus", "subtract", "differ", "fewer", "lessthan", "remain", "slows",
-            "decreas", "loses", "drops", "reduc", "slower"],
+            "decreas", "loses", "drops", "reduc", "slower", "shrink", "shrinks"],
     "mul": ["times", "multipl", "product", "twice"],
 }
 _OPPATS = {op: [re.compile(_fpat(w)) for w in words] for op, words in _OPS.items()}
